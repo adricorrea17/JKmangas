@@ -1,6 +1,6 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Collection|\App\Models\Paquetes[] $paquetes */
+/** @var \Illuminate\Database\Eloquent\Collection|\App\Models\UsuariosPlans[] $UsuariosPlans */
 ?>
 @extends('layouts.main')
 @section('main')
@@ -41,7 +41,7 @@
 <section class="bg-dark mb-6 mt-6">
     <h2 class="pt-5 text-light text-center font">Elige el plan adecuado para ti</h2>
     <div class="d-flex justify-content-around  p-5">
-        @foreach($paquetes as $paquete)
+        @foreach($UsuariosPlans as $paquete)
         <div class="d-flex flex-column text-center border radius p-3 w-25 bg-light">
             <picture>
                 <img src="img/{{$paquete->portada}}" alt="Cabello correspondiente al paquete de {{$paquete->nombre}}">

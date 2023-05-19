@@ -1,0 +1,31 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+
+class UsuariosRolSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        // Crear un usuario con rol "administrador"
+        DB::table('usuarios_rols')->insert([
+            [
+                'id' => 1,
+                'rol' => 'admin',
+            ],
+            [
+                'id' => 2,
+                'rol' => 'userComun',
+            ]
+        ]);
+    }
+}

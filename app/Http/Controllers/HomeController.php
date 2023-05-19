@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Paquetes;
+use App\Models\UsuariosPlans;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function home()
     {
-        $paquetes = Paquetes::all();
+        $UsuariosPlans = UsuariosPlans::all();
         return view('welcome', [
-            'paquetes' => $paquetes
+            'UsuariosPlans' => $UsuariosPlans
         ]);
     }
 }

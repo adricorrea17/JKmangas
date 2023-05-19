@@ -12,8 +12,8 @@ class Usuario extends User
 {
     use HasApiTokens, Notifiable;
     protected $table = 'usuarios';
-    protected $primaryKey = 'usuario_id';
-    protected $fillable = ['nombre_usuario', 'password', 'email', 'rol', 'perfil'];
+    protected $primaryKey = 'id';
+    protected $fillable = ['nombre_usuario', 'password', 'email', 'usuario_rol_id', 'imagen'];
     protected $hidden = ['password', 'remember_token'];
     public const VALIDACION = [
         'nombre_usuario' => 'required',
@@ -24,8 +24,8 @@ class Usuario extends User
         'password.required' => 'El Campo de password esta vacio',
     ];
 
-    public function paquetes()
+    public function UsuariosPlans()
     {
-        return $this->belongsToMany(Paquetes::class, 'usuarios_tienen_paquetes', 'usuario_id', 'paquete_id', 'usuario_id', 'paquete_id');
+        return $this->belongsToMany(UsuariosPlans::class, 'usuarios_tienen_UsuariosPlans', 'usuario_id', 'usuarios_plan_id', 'usuario_id', 'usuarios_plan_id');
     }
 };

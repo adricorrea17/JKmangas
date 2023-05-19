@@ -16,8 +16,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(GenerosTableSeeder::class);
         $this->call(MangasTableSeeder::class);
-        $this->call(PaquetesSeeder::class);
+        $this->call(UsuariosPlansSeeder::class);
         $this->call(UsuariosSeeder::class);
-        $this->call(UsuariosTienenPaquetesSeeder::class);
+        $this->call(UsuariosTienenUsuariosPlansSeeder::class);
     }
 }

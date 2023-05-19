@@ -23,7 +23,7 @@
             <p class="fs-5"><b class="fs-4">Rol:</b> {{$usuario -> rol}}</p>
             <p class="fs-5"><b class="fs-4">Email:</b> {{$usuario -> email}}</p>
             <ul class="d-flex list-unstyled gap-3 mb-3">
-                @forelse($usuario->paquetes as $paquete)
+                @forelse($usuario->UsuariosPlans as $paquete)
                 <p><b class="fs-4">Servicio:</b> <label class="bg-light text-dark px-3 rounded fw-bold">{{$paquete -> nombre}}</label></p>
                 <picture>
                     <img src="../../../img/perfil/{{$paquete -> portada_perfil}}" alt="Imagen que se obtiene en el servicio de {{$paquete -> nombre}}">
