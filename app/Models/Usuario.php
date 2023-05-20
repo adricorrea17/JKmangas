@@ -24,8 +24,15 @@ class Usuario extends User
         'password.required' => 'El Campo de password esta vacio',
     ];
 
+    public function rol()
+    {
+        return $this->hasOne(UsuariosRol::class, 'id');
+    }
+
     public function UsuariosPlans()
     {
-        return $this->belongsToMany(UsuariosPlans::class, 'usuarios_tienen_UsuariosPlans', 'usuario_id', 'usuarios_plan_id', 'usuario_id', 'usuarios_plan_id');
+        return $this->hasOne(UsuariosPlans::class, 'id');
     }
+
+
 };

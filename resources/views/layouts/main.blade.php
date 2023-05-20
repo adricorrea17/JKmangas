@@ -32,7 +32,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-light font fs-5" href="{{ route('estrenos')}}">Mangas</a>
                         </li>
-                        @if(Auth::check() && Auth::user()->rol == 'admin')
+                        @if(Auth::check() && Auth::user()->usuarios_rol_id == '1')
                         <li class="nav-item">
                             <a class="nav-link text-light font fs-5" href="{{ route('admin.mangas.lista')}}">Panel de administracion</a>
                         </li>
@@ -45,7 +45,7 @@
                                 <button type="submit" class="btn text-light font fs-5">Cerrar sesion ({{ Auth::user()->nombre_usuario }})</button>
                             </form>
                         </li>
-                        @elseif(Auth::check() && Auth::user()->rol == 'UserComun')
+                        @elseif(Auth::check() && Auth::user()->usuarios_rol_id == '2')
                         <li class="nav-item ">
                             <form action="{{ route('auth.logout') }}" method="post">
                                 @csrf

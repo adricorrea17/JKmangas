@@ -21,7 +21,7 @@
       <td class="mb-3"><b>{{$usuario -> nombre_usuario}}</b></td>
       <td>
         <div class="d-flex gap-1">
-          <a href="{{route('admin.mangas.verusuario',['id'=> $usuario->usuario_id] )}}" class="btn btn-primary">Ver</a>
+          <a href="{{route('admin.mangas.verusuario',['id'=> $usuario->id] )}}" class="btn btn-primary">Ver</a>
         </div>
 
       </td>

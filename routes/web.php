@@ -55,3 +55,9 @@ Route::post('registro', [\App\Http\Controllers\AuthController::class, 'registroA
 
 //LogOut
 Route::post('out-sesion', [\App\Http\Controllers\AuthController::class, 'logOut'])->name('auth.logout');
+
+// Usuarios perfil -> publico
+Route::get('perfil', [\App\Http\Controllers\AuthController::class, 'perfil'])->name('auth.perfil')->middleware(['auth']);
+
+Route::post('perfil-edit', [\App\Http\Controllers\AuthController::class, 'perfil_edit'])->name('auth.perfil.accion');
+

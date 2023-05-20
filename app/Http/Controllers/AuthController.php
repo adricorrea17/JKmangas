@@ -75,4 +75,38 @@ class AuthController extends Controller
             'usuario' => $usuario
         ]);
     }
+
+    public function perfil(){
+        
+        $usuario = Auth::user();
+        return view('auth.perfil', [
+            'usuario' => $usuario
+        ]);
+    }
+    public function perfil_edit(Request $request){
+        // $request->validate(Usuario::VALIDACION, Usuario::MENSAJES);
+        $usuario = Usuario::find( Auth::user()->id );
+
+        $data = $request->except(['_token']);
+        
+        if( $request->input('newpassword') && $request->input('oldpassword') ) {
+            
+            $credentials = [
+                'email' => Auth::user()->email,
+                'password' => $request->input('oldpassword')
+            ];
+            if( Auth::attempt($credentials) ) {
+                $data['password'] = Hash::make($request->input('newpassword'));
+            } else {
+
+                // CAMBIAR A ERROR USER FRIENDLY
+                throw new \Exception('Contraseña incorrecta');
+            }
+            
+        }
+
+        $usuario->update($data);
+
+        return redirect()->route('auth.perfil')->with('status.message', 'Tu usuario ha sido actualizado')->with('status.type', 'success');
+    }
 }

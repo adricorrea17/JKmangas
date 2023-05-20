@@ -17,7 +17,7 @@ class EsAdmin
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->rol == 'admin') {
+        if (Auth::user()->usuarios_rol_id == '1') {
             return $next($request);
         } else {
             return redirect('/');

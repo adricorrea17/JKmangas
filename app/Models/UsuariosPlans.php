@@ -41,7 +41,7 @@ class UsuariosPlans extends Model
     public function usuarios()
     {
         return $this->belongsTo(
-            UsuariosPlans::class,
+            Usuario::class,
             'usuario_id',
             'usuario_id'
         );
