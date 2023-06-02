@@ -32,20 +32,20 @@
                         <li class="nav-item">
                             <a class="nav-link text-light font fs-5" href="{{ route('estrenos')}}">Mangas</a>
                         </li>
-                        @if(Auth::check() && Auth::user()->usuarios_rol_id == '1')
+
+                        @if(Auth::check() && Auth::user()->usuarios_rol_id == 1)
                         <li class="nav-item">
                             <a class="nav-link text-light font fs-5" href="{{ route('admin.mangas.lista')}}">Panel de administracion</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light font fs-5" href="{{ route('admin.mangas.usuarios')}}">Usuarios</a>
                         </li>
-                        <li class="nav-item ">
-                            <form action="{{ route('auth.logout') }}" method="post">
-                                @csrf
-                                <button type="submit" class="btn text-light font fs-5">Cerrar sesion ({{ Auth::user()->nombre_usuario }})</button>
-                            </form>
+                        @endif
+
+                        @if(Auth::check() && Auth::user()->usuarios_rol_id <= 2)
+                        <li class="nav-item">
+                            <a class="nav-link text-light font fs-5" href="{{ route('auth.perfil') }}">Perfil</a>
                         </li>
-                        @elseif(Auth::check() && Auth::user()->usuarios_rol_id == '2')
                         <li class="nav-item ">
                             <form action="{{ route('auth.logout') }}" method="post">
                                 @csrf

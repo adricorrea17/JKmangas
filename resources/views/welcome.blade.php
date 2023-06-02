@@ -40,21 +40,8 @@
 
 <section class="bg-dark mb-6 mt-6">
     <h2 class="pt-5 text-light text-center font">Elige el plan adecuado para ti</h2>
-    <div class="d-flex justify-content-around  p-5">
-        @foreach($UsuariosPlans as $paquete)
-        <div class="d-flex flex-column text-center border radius p-3 w-25 bg-light">
-            <picture>
-                <img src="img/{{$paquete->portada}}" alt="Cabello correspondiente al paquete de {{$paquete->nombre}}">
-            </picture>
-            <h2 class="mt-3 font">{{$paquete->nombre}}</h2>
-            <p class="mt-2 fs-5 font">{{$paquete->duracion}} meses</p>
-            <p class="fs-3 fw-bold font">${{$paquete->precio}}</p>
-            <p class="mt-2 col-10 mx-auto fs-5 font">{{$paquete->descripcion_paquete}}</p>
-            <button class="col-12 radius mx-auto btn btn-primary fs-5 font">Comprar {{$paquete->nombre}}</button>
-        </div>
 
-        @endforeach
-    </div>
+    @include('components.planes')
 </section>
 
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Usuario;
+use App\Models\UsuariosPlans;
+
 use Hash;
 
 class AuthController extends Controller
@@ -79,7 +81,10 @@ class AuthController extends Controller
     public function perfil(){
         
         $usuario = Auth::user();
+        $UsuariosPlans = UsuariosPlans::all();
+
         return view('auth.perfil', [
+            'UsuariosPlans' => $UsuariosPlans,
             'usuario' => $usuario
         ]);
     }
@@ -95,14 +100,15 @@ class AuthController extends Controller
                 'email' => Auth::user()->email,
                 'password' => $request->input('oldpassword')
             ];
-            if( Auth::attempt($credentials) ) {
-                $data['password'] = Hash::make($request->input('newpassword'));
-            } else {
 
-                // CAMBIAR A ERROR USER FRIENDLY
-                throw new \Exception('Contraseña incorrecta');
+            if( Auth::attempt($credentials) ) {
+                
+                // aca agregamos al array que se va a hacer el update
+                $data['password'] = Hash::make($request->input('newpassword'));
+
+            } else {
+                return redirect()->route('auth.perfil')->with('status.message', 'Contraseña incorrecta')->with('status.type', 'danger');
             }
-            
         }
 
         $usuario->update($data);
