@@ -16,7 +16,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <header class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" data-aos="slide-down">
             <div class="container-fluid">
                 <div>
                     <a class="navbar-brand" href="{{route('inicio')}}">
@@ -26,7 +26,7 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Abrir/cerrar menú de navegación">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse d-flex flex-row-reverse" id="navbar">
+                <nav class="collapse navbar-collapse d-flex flex-row-reverse" id="navbar">
                     <ul class="navbar-nav d-flex align-items-center gap-3">
                         <li class="nav-item">
                             <a class="nav-link text-light font fs-5" href="{{ route('inicio')}}">Home</a>
@@ -64,9 +64,9 @@
                         </li>
                         @endif
                     </ul>
-                </div>
+                </nav>
             </div>
-        </nav>
+        </header>
 
         <main class="height">
             @if(Session::has('status.message'))

@@ -28,8 +28,8 @@
 </section>
 <section>
     <div class="mt-5 col-10 mx-auto text-center">
-        <picture>
-            <img class="img-fluid mt-0" src="img/todoroki.png" alt="tres personajes de mangas, entre ellos todoroki y kaneki">
+        <picture >
+            <img data-aos="fade-up" sclass="img-fluid mt-0" src="img/todoroki.png" alt="tres personajes de mangas, entre ellos todoroki y kaneki">
         </picture>
 
         <p data-aos="zoom-in" class=" fs-1 p-5 bg-dark radius text-light font">Los mejores mangas a los mejores precios</p>

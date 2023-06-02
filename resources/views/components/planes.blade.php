@@ -3,8 +3,8 @@
 /** @var \Illuminate\Database\Eloquent\Collection|\App\Models\UsuariosPlans[] $UsuariosPlans */
 ?>
 <div class="d-flex justify-content-around  p-5">
-    @foreach($UsuariosPlans as $plan)
-    <div class="d-flex flex-column text-center border radius p-3 w-25 bg-light">
+    @foreach($UsuariosPlans as $i => $plan)
+    <div class="d-flex flex-column text-center border radius p-3 w-25 bg-light" data-aos="zoom-in" data-aos-delay="{{ $i==1 ? '0' : '200' }}">
         <picture>
             <img src="img/{{$plan->portada}}" alt="Cabello correspondiente al plan de {{$plan->nombre}}">
         </picture>
