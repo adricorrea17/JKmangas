@@ -9,6 +9,9 @@
 
     <link rel="stylesheet" href="{{ url('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{ url('css/style.css')}}">
+
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 </head>
 
 <body>
@@ -91,5 +94,7 @@
         </footer>
     </div>
 </body>
-
+<script>
+    AOS.init();
+</script>
 </html>
