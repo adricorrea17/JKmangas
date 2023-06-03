@@ -1,4 +1,90 @@
-$bg: blue;
-body {
-    background: $bg;
+@import 'components/plans-boxes.scss';
+@import 'components/manga.scss';
+
+@font-face {
+    font-family: Secret;
+    src: url('../fuentes/SF\ Toontime\ Blotch.ttf') format('truetype');
 }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+html,
+body,
+#app {
+    height: 100%;
+}
+
+body {
+    background-color: #ffffa7;
+}
+
+#app {
+    display: grid;
+    grid-template-rows: 56px 1fr 75px;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer p {
+    margin-bottom: 0;
+}
+
+.margen {
+    margin-top: 10rem !important;
+    margin-bottom: 3rem !important;
+}
+
+.margen-vista {
+    margin-top: 6rem !important;
+    margin-bottom: 3rem !important;
+}
+
+.mt-6 {
+    margin-top: 8rem;
+}
+
+.mb-6 {
+    margin-bottom: 8rem;
+}
+
+.radius {
+    border-radius: 3rem;
+}
+
+.border {
+    border: 0.5rem #212529 solid !important;
+}
+
+.bg-dark {
+    background-color: #df3803 !important;
+}
+
+.font {
+    font-family: Secret;
+}
+
+.btn-primary {
+    background-color: #3E5AA0 !important;
+}
+
+.position-absolute {
+    left: 55%;
+    bottom: 32%;
+
+}
+
+.margen-usuario {
+    margin-top: 15rem !important;
+    margin-bottom: 3rem !important;
+}
+

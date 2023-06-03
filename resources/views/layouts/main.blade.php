@@ -8,18 +8,15 @@
     <title> @yield('title') - Proyecto</title>
 
     <link rel="stylesheet" href="{{ url('css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{ url('css/style.css')}}">
-
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
     @vite(['resources/scss/app.scss', 'resources/js/app.js'])
-
 </head>
 
 <body>
     <div id="app">
-        <header class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" data-aos="slide-down">
+        <header class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
             <div class="container-fluid">
                 <div>
                     <a class="navbar-brand" href="{{route('inicio')}}">
