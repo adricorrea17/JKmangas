@@ -8,10 +8,10 @@
 @section('title') Edicion del manga {{$manga -> titulo}} @endsection
 @section('main')
 <section class="container p-4">
-    <div class="radius bg-dark p-5 text-light w-75 mx-auto">
+    <div class="radius bg-dark p-5 text-light w-100 mx-auto">
         <h1 class="text-center font">Editar Manga</h1>
         @if ($errors -> any())
-        <div class="text-dark fw-bold font">Hay algun error en los campos</div>
+        <div class="text-danger fw-bold font">Hay algun error en los campos</div>
         @endif
         <form action="{{route('admin.mangas.editar.manga', ['id' => $manga->manga_id])}}" method="post" enctype="multipart/form-data">
             @csrf
@@ -20,14 +20,14 @@
                 <input class="form-control" type="text" name="titulo" id="titulo" value="{{old('titulo', $manga->titulo)}}" @error('titulo') aria-describedby="titulo-error" @enderror>
 
                 @error('titulo')
-                <div class="text-dark fw-bold font" id="titulo-error">{{ $errors->first('titulo') }}</div>
+                <div class="text-danger fw-bold font" id="titulo-error">{{ $errors->first('titulo') }}</div>
                 @enderror
             </div>
             <div>
                 <label for="descripcion" class="form-label w-100 mt-3 font">Descripcion: </label>
                 <textarea class="form-control" name="descripcion" id="descripcion" @error('descripcion') aria-describedby="descripcion-error" @enderror>{{old('descripcion',$manga->descripcion)}}</textarea>
                 @error('descripcion')
-                <div class="text-dark fw-bold font" id="descripcion-error">{{ $errors->first('descripcion') }}</div>
+                <div class="text-danger fw-bold font" id="descripcion-error">{{ $errors->first('descripcion') }}</div>
                 @enderror
             </div>
             <div>
@@ -35,7 +35,7 @@
                 <input class="form-control" type="number" name="precio" id="precio" value="{{old('precio', $manga->precio)}}" @error('precio') aria-describedby="precio-error" @enderror>
 
                 @error('precio')
-                <div class="text-dark fw-bold font" id="precio-error">{{ $errors->first('precio') }}</div>
+                <div class="text-danger fw-bold font" id="precio-error">{{ $errors->first('precio') }}</div>
                 @enderror
             </div>
             <div>
@@ -43,7 +43,7 @@
                 <input class="form-control" type="text" name="mangaka" id="mangaka" value="{{old('mangaka', $manga->mangaka)}}" @error('mangaka') aria-describedby="mangaka-error" @enderror>
 
                 @error('mangaka')
-                <div class="text-dark fw-bold font" id="mangaka-error">{{ $errors->first('mangaka') }}</div>
+                <div class="text-danger fw-bold font" id="mangaka-error">{{ $errors->first('mangaka') }}</div>
                 @enderror
             </div>
             <div>
@@ -51,7 +51,7 @@
                 <input class="form-control" type="number" name="tomos" id="tomos" value="{{old('tomos', $manga->tomos)}}" @error('tomos') aria-describedby="tomos-error" @enderror>
 
                 @error('tomos')
-                <div class="text-dark fw-bold font" id="tomos-error">{{ $errors->first('tomos') }}</div>
+                <div class="text-danger fw-bold font" id="tomos-error">{{ $errors->first('tomos') }}</div>
                 @enderror
             </div>
             <div>
@@ -59,7 +59,7 @@
                 <input class="form-control" type="date" name="proximo_tomo" id="proximo_tomo" value="{{old('proximo_tomo', $manga->proximo_tomo)}}" @error('proximo_tomo') aria-describedby="proximo_tomo-error" @enderror>
 
                 @error('proximo_tomo')
-                <div class="text-dark fw-bold font" id="proximo_tomo-error">{{ $errors->first('proximo_tomo') }}</div>
+                <div class="text-danger fw-bold font" id="proximo_tomo-error">{{ $errors->first('proximo_tomo') }}</div>
                 @enderror
             </div>
             <fieldset class="mt-3">

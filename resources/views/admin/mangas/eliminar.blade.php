@@ -11,8 +11,8 @@
 <section class="container p-4">
     <div class="radius bg-dark p-5 text-light mx-auto">
         <h1 class="mb-5">Desea eliminar este Manga?</h1>
-        <div class="w-100 mx-auto d-flex gap-5">
-            <div>
+        <div class="w-100 mx-auto d-flex gap-5 p-3 mangaid flex-column flex-lg-row">
+            <div class="mx-auto">
                 @if($manga->portada != null && file_exists(public_path('img/' . $manga->portada)))
                 <img class="rounded" src="{{ url('img/' . $manga->portada) }}" alt="Portada del manga {{$manga->titulo}}"></img>
                 @endif
@@ -40,7 +40,7 @@
         </div>
         <form class="mt-5" action="{{route ('admin.mangas.eliminar.manga', ['id' => $manga -> manga_id])}}" method="post">
             @csrf
-            <button type="submit" class="btn btn-primary w-100 radius">Eliminar</button>
+            <button type="submit" class="btn btn-outline-danger w-100 radius">Eliminar</button>
         </form>
     </div>
 </section>

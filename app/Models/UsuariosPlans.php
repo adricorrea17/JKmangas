@@ -36,14 +36,14 @@ class UsuariosPlans extends Model
 {
     protected $table = "usuarios_plans";
     protected $primaryKey = "usuarios_plan_id";
-    protected $fillable = ['nombre', 'imagen', 'precio', 'descripcion', 'usuario_id'];
+    protected $fillable = ['nombre', 'imagen', 'precio', 'descripcion', 'id'];
 
     public function usuarios()
     {
         return $this->belongsTo(
             Usuario::class,
-            'usuario_id',
-            'usuario_id'
+            'id',
+            'id',
         );
     }
 }

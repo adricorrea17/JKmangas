@@ -29,38 +29,38 @@
                 <nav class="collapse navbar-collapse d-flex flex-row-reverse" id="navbar">
                     <ul class="navbar-nav d-flex align-items-center gap-3">
                         <li class="nav-item">
-                            <a class="nav-link text-light font fs-5" href="{{ route('inicio')}}">Home</a>
+                            <a class="nav-link text-light font " href="{{ route('inicio')}}">Home</a>
 
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light font fs-5" href="{{ route('estrenos')}}">Mangas</a>
+                            <a class="nav-link text-light font " href="{{ route('estrenos')}}">Mangas</a>
                         </li>
 
                         @if(Auth::check() && Auth::user()->usuarios_rol_id == 1)
                         <li class="nav-item">
-                            <a class="nav-link text-light font fs-5" href="{{ route('admin.mangas.lista')}}">Panel de administracion</a>
+                            <a class="nav-link text-light font " href="{{ route('admin.mangas.lista')}}">Panel de administracion</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light font fs-5" href="{{ route('admin.mangas.usuarios')}}">Usuarios</a>
+                            <a class="nav-link text-light font " href="{{ route('admin.mangas.usuarios')}}">Usuarios</a>
                         </li>
                         @endif
 
                         @if(Auth::check() && Auth::user()->usuarios_rol_id <= 2)
                         <li class="nav-item">
-                            <a class="nav-link text-light font fs-5" href="{{ route('auth.perfil') }}">Perfil</a>
+                            <a class="nav-link text-light font " href="{{ route('auth.perfil') }}">Perfil</a>
                         </li>
                         <li class="nav-item ">
                             <form action="{{ route('auth.logout') }}" method="post">
                                 @csrf
-                                <button type="submit" class="btn text-light font fs-5">Cerrar sesion ({{ Auth::user()->nombre_usuario }})</button>
+                                <button type="submit" class="btn text-light font ">Cerrar sesion ({{ Auth::user()->nombre_usuario }})</button>
                             </form>
                         </li>
                         @else
                         <li class="nav-item rounded">
-                            <a class="nav-link text-light font fs-5" href="{{ route('auth.login.form')}}">Iniciar sesion</a>
+                            <a class="nav-link text-light font " href="{{ route('auth.login.form')}}">Iniciar sesion</a>
                         </li>
                         <li class="nav-item rounded">
-                            <a class="nav-link text-light font fs-5" href="{{ route('auth.register.form')}}">Registrar</a>
+                            <a class="nav-link text-light font " href="{{ route('auth.register.form')}}">Registrar</a>
                         </li>
                         @endif
                     </ul>
@@ -84,17 +84,12 @@
                 </a>
             </div>
 
-            <ul class="nav col-md-4 justify-content-end">
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-light">Home</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-light">Features</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-light">Pricing</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-light">FAQs</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-light">About</a></li>
-            </ul>
+            
         </footer>
     </div>
 </body>
 <script>
     AOS.init();
 </script>
+<script src="/resources/js/bootstrap.js"></script>
 </html>

@@ -5,9 +5,9 @@
 @extends('layouts.main')
 @section('main')
 @section('title'){{$manga -> titulo}} @endsection
-<section class=" container p-4 margen-vista bg-dark px-5 py-3 text-light d-flex flex-column my-4 radius">
-    <div class="w-100 mx-auto d-flex gap-5 p-3">
-        <div>
+<section class=" container margen-vista bg-dark px-2 py-3 text-light d-flex flex-column  my-4">
+    <div class="w-100 mx-auto d-flex gap-5 p-3 mangaid flex-column flex-md-row">
+        <div class="mx-auto">
             @if($manga->portada != null && file_exists(public_path('img/' . $manga->portada)))
             <img class="rounded" src="{{ url('img/' . $manga->portada) }}" alt="Portada del manga {{$manga->titulo}}"></img>
             @endif
@@ -30,7 +30,7 @@
             </ul>
             <p class="fs-5"><b class="fs-4">Precio del manga fisico:</b> ${{$manga -> precio}}</p>
             <p class="fs-5"><b class="fs-4">Mangaka:</b> {{$manga -> mangaka}}</p>
-            <button class="btn btn-primary font">Leer</button>
+            <button class="btn btn-primary font text-dark">Leer</button>
 
         </div>
     </div>

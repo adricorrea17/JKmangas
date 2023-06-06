@@ -58,7 +58,7 @@ class AuthController extends Controller
             'nombre_usuario' => $request->input('nombre_usuario'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
-            'rol' => 'UserComun',
+            'usuarios_rol_id' => 2,
         ]);
         return redirect()->route('inicio')->with('status.message', 'La cuenta se a creado con exito')->with('status.type', 'success');
     }
@@ -76,6 +76,7 @@ class AuthController extends Controller
         return view('admin.mangas.verUsuario', [
             'usuario' => $usuario
         ]);
+
     }
 
     public function perfil(){

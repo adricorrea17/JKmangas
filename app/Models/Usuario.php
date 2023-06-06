@@ -13,7 +13,7 @@ class Usuario extends User
     use HasApiTokens, Notifiable;
     protected $table = 'usuarios';
     protected $primaryKey = 'id';
-    protected $fillable = ['nombre_usuario', 'password', 'email', 'usuario_rol_id', 'imagen'];
+    protected $fillable = ['nombre_usuario', 'password', 'email', 'usuarios_rol_id', 'imagen'];
     protected $hidden = ['password', 'remember_token'];
     public const VALIDACION = [
         'nombre_usuario' => 'required',

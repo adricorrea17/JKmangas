@@ -21,7 +21,7 @@ body,
 }
 
 body {
-    background-color: #ffffa7;
+    background-color: #9d8efd;
 }
 
 #app {
@@ -61,20 +61,21 @@ body {
     border-radius: 3rem;
 }
 
+.bg-dark {
+    background-color: #282248 !important //#0c0c0c;
+}
+
 .border {
     border: 0.5rem #212529 solid !important;
 }
 
-.bg-dark {
-    background-color: #df3803 !important;
-}
 
 .font {
     font-family: Secret;
 }
 
 .btn-primary {
-    background-color: #3E5AA0 !important;
+    background-color: white !important;
 }
 
 .position-absolute {
@@ -88,3 +89,37 @@ body {
     margin-bottom: 3rem !important;
 }
 
+.gradiant {
+    background: linear-gradient(#4d4389, #9d8efd) //(#0c0c0c, rgb(156, 155, 155));
+}
+
+.bannerPerfil {
+    background-image: url(../img/bannerPerfil.jpg);
+    height: 170px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background:#4d4389;
+}
+
+#perfil #infoPerfil {
+    position: relative;
+    width: 100%;
+}
+
+#perfil #infoPerfil img {
+    width: 220px;
+    position: absolute;
+    top: -120px;
+    right: 0;
+    left: 0;
+    margin: auto;
+}
+
+#perfil #infoPerfil h1 {
+    margin-top: 85px;
+    font-size: 1.6rem;
+    padding-bottom: 1rem;
+}
+.rounded-3{
+    border-radius: 1rem !important;
+}

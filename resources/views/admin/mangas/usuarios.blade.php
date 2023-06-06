@@ -7,7 +7,7 @@
 @section('main')
 @section('title') Usuarios @endsection
 <section class="container mt-4">
-  <h1>Usuarios</h1>
+  <h1 class="text-light">Usuarios</h1>
   <table class="w-100 mt-4 table">
     <thead class="bg-dark text-light">
       <tr>
@@ -18,10 +18,10 @@
     </tbody>
     @foreach($usuarios as $usuario)
     <tr>
-      <td class="mb-3"><b>{{$usuario -> nombre_usuario}}</b></td>
+      <td class="mb-3 text-light"><b>{{$usuario -> nombre_usuario}}</b></td>
       <td>
         <div class="d-flex gap-1">
-          <a href="{{route('admin.mangas.verusuario',['id'=> $usuario->id] )}}" class="btn btn-primary">Ver</a>
+          <a href="{{route('admin.mangas.verusuario',['id'=> $usuario->id] )}}" class="btn btn-primary text-dark">Ver</a>
         </div>
 
       </td>
