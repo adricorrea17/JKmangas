@@ -17,7 +17,7 @@
                         @if ($usuario->imagen == null)
                         <img class="rounded-3" src="img/perfil.png" alt="Imagen de perfil de {{$usuario -> nombre_usuario}}">
                         @else
-                        <img class="rounded-3" src="img/perfil/{{$usuario -> imagen}}" alt="Imagen de perfil de {{$usuario -> nombre_usuario}}">
+                        <img class="rounded-3" src="img/{{$usuario -> imagen}}" alt="Imagen de perfil de {{$usuario -> nombre_usuario}}">
                         @endif
                     </picture>
                     <div class="d-flex flex-column ">
@@ -28,7 +28,28 @@
                             <dt>Usuario</dt>
                             <dd>{{$usuario->nombre_usuario}}</dd>
                             <dt>Tu Plan</dt>
-                            <dd>{{$usuario->usuarios_plan_id}}</dd>
+                            <dd>
+                                @if ($usuario->usuarios_plan_id == null)
+                                <p><label class=" bg-danger text-dark px-3 rounded fw-bold">Sin paquete</label></p>
+                                @elseif($usuario->usuarios_plan_id == 1)
+                                <p><label class=" bg-dark text-light px-3 rounded fw-bold">Otaku Junior</label></p>
+                                @elseif($usuario->usuarios_plan_id == 2)
+                                <p><label class=" bg-dark text-light px-3 rounded fw-bold">Otaku Shonen</label></p>
+                                @elseif($usuario->usuarios_plan_id == 3)
+                                <p><label class=" bg-dark text-light px-3 rounded fw-bold">Otaku-Sama</label></p>
+                                @endif
+                            </dd>
+                            <dt>
+                                Tu Rol
+                            </dt>
+                            <dd>
+                            @if ($usuario->usuarios_rol_id == 1)
+                                <p><label class=" bg-dark text-light px-3 rounded fw-bold">Administrador</label></p>
+                                @elseif($usuario->usuarios_rol_id == 2)
+                                <p><label class=" bg-dark text-light px-3 rounded fw-bold">Usuario Comun</label></p>
+                                @endif
+                            </dd>
+
                         </dl>
                     </div>
                 </div>
@@ -54,13 +75,22 @@
         @error('nombre_usuario')
         <div class="mb-3 text-dark font"><span class="visually-hidden">Error:</span> {{ $message }}</div>
         @enderror
-
+        <div class="mb-3">
+            <label for="imagen" class="form-label w-100 mt-3 font fs-5">Foto de perfil:</label>
+            @if($usuario -> imagen != null && file_exists(public_path('img/' . $usuario->imagen)))
+            <img class="rounded mt-3" src="{{ url('img/' . $usuario->imagen) }}" alt="Imagen de perfil de {{$usuario->nombre_usuario}}">
+            @else
+            <p class="fw-bold">No tiene foto de perfil</p>
+            @endif
+            <input class="form-control mt-3" type="file" name="imagen" id="imagen" />
+        </div>
         <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="changePassCheck">
             <label class="form-check-label" for="changePassCheck">
                 ¿Deseas cambiar tu constraseña?
             </label>
         </div>
+
         <div class="d-none" id="hidePasswd">
 
             <div class="mb-3">

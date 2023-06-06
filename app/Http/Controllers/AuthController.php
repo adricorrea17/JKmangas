@@ -112,7 +112,22 @@ class AuthController extends Controller
             }
         }
 
+        $oldimagen = $usuario->imagen;
+        if ($request->hasFile('imagen')) {
+            $imagen = $request->file('imagen');
+            $imagenName = date('YmdHis') . "_" . \Str::slug($data['nombre_usuario']) . "." . $imagen->extension();
+            $imagen->move(public_path('img'), $imagenName);
+            $data['imagen'] = $imagenName;
+            $oldimagen = $usuario->imagen;
+        } else {
+            $oldimagen == null;
+        }
+
         $usuario->update($data);
+
+        if ($oldimagen != null && file_exists(public_path('img' . $oldimagen))) {
+            unlink(public_path('img/' . $oldimagen));
+        }
 
         return redirect()->route('auth.perfil')->with('status.message', 'Tu usuario ha sido actualizado')->with('status.type', 'success');
     }
