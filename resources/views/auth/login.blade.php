@@ -8,7 +8,7 @@
 
 @section('main')
 
-<section class="margen col-12 rounded bg-dark p-5 text-light w-50 mx-auto">
+<section class="margen rounded bg-dark p-5 text-light mx-auto col-10 col-md-6 col-lg-5">
 
     <h1 class="mb-3 font">Iniciar Sesión</h1>
 

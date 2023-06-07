@@ -29,7 +29,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credenciales)) {
             $request->session()->regenerate();
-            return redirect()->route('admin.mangas.lista')->with('status.message', 'La sesion a sido iniciada con exito')->with('status.type', 'success');
+            return redirect()->route('auth.perfil')->with('status.message', 'Bienvenido a JKmangas')->with('status.type', 'success');
         }
         return redirect()
             ->route('auth.login.form')->withInput()->with('status.message', 'Lo sentimos pero las credenciales son distintas')->with('status.type', 'danger');
@@ -89,6 +89,17 @@ class AuthController extends Controller
             'usuario' => $usuario
         ]);
     }
+
+    public function perfil_form()
+    {
+        $usuario = Auth::user();
+        $UsuariosPlans = UsuariosPlans::all();
+
+        return view('auth.perfilForm', [
+            'UsuariosPlans' => $UsuariosPlans,
+            'usuario' => $usuario
+        ]);
+    }
     public function perfil_edit(Request $request){
         // $request->validate(Usuario::VALIDACION, Usuario::MENSAJES);
         $usuario = Usuario::find( Auth::user()->id );
@@ -131,4 +142,5 @@ class AuthController extends Controller
 
         return redirect()->route('auth.perfil')->with('status.message', 'Tu usuario ha sido actualizado')->with('status.type', 'success');
     }
+
 }

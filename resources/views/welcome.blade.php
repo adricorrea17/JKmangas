@@ -16,7 +16,11 @@
         <h1 class="font">JKmangas</h1>
         <p class="font fs-2">La página en la cual podrás enterarte de los próximos estrenos y leer tus mangas favoritos</p>
         <p class="font">Crea una cuenta de JKmangas para poder leer tus mangas favoritos</p>
+        @if(!Auth::check())
         <a href="{{ route('auth.register.form')}}" class="mx-auto mx-md-0 text-center font btn-primary col-6 py-1 radius text-decoration-none text-dark">crear cuenta</a>
+        @else
+        <a href="{{ route('estrenos')}}" class="mx-auto mx-md-0 text-center font btn-primary col-6 py-1 radius text-decoration-none text-dark">Ver Mangas</a>
+        @endif
     </div>
 </section>
 

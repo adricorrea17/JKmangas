@@ -57,6 +57,8 @@ Route::post('out-sesion', [\App\Http\Controllers\AuthController::class, 'logOut'
 
 // Usuarios perfil -> publico
 Route::get('perfil', [\App\Http\Controllers\AuthController::class, 'perfil'])->name('auth.perfil')->middleware(['auth']);
-
+Route::get('perfil-form', [\App\Http\Controllers\AuthController::class, 'perfil_form'])->name('auth.perfil.form');
 Route::post('perfil-edit', [\App\Http\Controllers\AuthController::class, 'perfil_edit'])->name('auth.perfil.accion');
+
+
 

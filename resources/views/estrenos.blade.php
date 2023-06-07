@@ -9,12 +9,12 @@
 <section class="my-5 ">
   <h1 class="font text-center text-light mb-5">Nuestros Mangas</h1>
   <div class="container-fluid">
-    <div class="d-flex text-center justify-content-sm-evenly justify-content-lg-between gap-4 row p-sm-4 ">
+    <div class="d-flex text-center justify-content-sm-evenly justify-content-lg-around gap-4 row">
 
       @foreach($mangas as $manga)
       <article data-aos="fade-down" class="manga card col-7 col-md-5 col-lg-2 mx-auto mx-md-0 p-0">
           @if($manga->portada != null && file_exists(public_path('img/' . $manga->portada)))
-          <img src="{{ url('img/' . $manga->portada) }}" alt="Portada del manga {{$manga->titulo}}">
+          <img class="img-fluid " src="{{ url('img/' . $manga->portada) }}" alt="Portada del manga {{$manga->titulo}}">
           <div class="overlay">
             <h3 class="h1 font">{{$manga->titulo}}</h3>
             <p class="fs-3 font">{{$manga->proximo_tomo}}</p>

@@ -2,7 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Collection|\App\Models\UsuariosPlans[] $UsuariosPlans */
 ?>
-<div class="plans-boxes d-flex flex-column flex-md-row justify-content-md-around p-5">
+<div class="plans-boxes d-flex flex-column flex-md-row justify-content-md-around p-5 gap-3">
     @foreach($UsuariosPlans as $i => $plan)
     <div class="box d-flex flex-column text-center border radius p-3 bg-light col-12 col-md-4 col-lg-3" data-aos="zoom-in" data-aos-delay="{{ $i==1 ? '0' : '200' }}">
         <picture>
