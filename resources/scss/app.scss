@@ -2,7 +2,7 @@
 @import 'components/manga.scss';
 
 @font-face {
-    font-family: Secret;
+    font-family: 'Poppins', sans-serif;;
     src: url('../fuentes/SF\ Toontime\ Blotch.ttf') format('truetype');
 }
 
@@ -10,7 +10,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 
@@ -57,6 +57,10 @@ body {
     margin-bottom: 8rem;
 }
 
+.ml-5{
+    margin-left: 100px;
+}
+
 .radius {
     border-radius: 3rem;
 }
@@ -71,7 +75,7 @@ body {
 
 
 .font {
-    font-family: Secret;
+    font-family: 'Poppins', sans-serif;;
 }
 
 .btn-primary {
@@ -90,7 +94,7 @@ body {
 }
 
 .gradiant {
-    background: linear-gradient(#4d4389, #9d8efd) //(#0c0c0c, rgb(156, 155, 155));
+    background: linear-gradient(#282248, #9d8efd) //(#0c0c0c, rgb(156, 155, 155));
 }
 
 .bannerPerfil {

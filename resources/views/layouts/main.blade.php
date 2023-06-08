@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title> @yield('title') - Proyecto</title>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
@@ -45,24 +47,23 @@
                         </li>
                         @endif
 
-                        @if(Auth::check() && Auth::user()->usuarios_rol_id <= 2)
-                        <li class="nav-item">
+                        @if(Auth::check() && Auth::user()->usuarios_rol_id <= 2) <li class="nav-item">
                             <a class="nav-link text-light font " href="{{ route('auth.perfil') }}">Perfil</a>
-                        </li>
-                        <li class="nav-item ">
-                            <form action="{{ route('auth.logout') }}" method="post">
-                                @csrf
-                                <button type="submit" class="btn text-light font ">Cerrar sesion ({{ Auth::user()->nombre_usuario }})</button>
-                            </form>
-                        </li>
-                        @else
-                        <li class="nav-item rounded">
-                            <a class="nav-link text-light font " href="{{ route('auth.login.form')}}">Iniciar sesion</a>
-                        </li>
-                        <li class="nav-item rounded">
-                            <a class="nav-link text-light font " href="{{ route('auth.register.form')}}">Registrar</a>
-                        </li>
-                        @endif
+                            </li>
+                            <li class="nav-item ">
+                                <form action="{{ route('auth.logout') }}" method="post">
+                                    @csrf
+                                    <button type="submit" class="btn text-light font ">Cerrar sesion ({{ Auth::user()->nombre_usuario }})</button>
+                                </form>
+                            </li>
+                            @else
+                            <li class="nav-item rounded">
+                                <a class="nav-link text-light font " href="{{ route('auth.login.form')}}">Iniciar sesion</a>
+                            </li>
+                            <li class="nav-item rounded">
+                                <a class="nav-link text-light font " href="{{ route('auth.register.form')}}">Registrar</a>
+                            </li>
+                            @endif
                     </ul>
                 </nav>
             </div>
@@ -84,7 +85,7 @@
                 </a>
             </div>
 
-            
+
         </footer>
     </div>
 </body>
@@ -92,4 +93,5 @@
     AOS.init();
 </script>
 <script src="/resources/js/bootstrap.js"></script>
+
 </html>

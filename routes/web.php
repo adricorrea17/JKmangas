@@ -45,20 +45,20 @@ Route::get('/admin/mangas/usuarios', [\App\Http\Controllers\AuthController::clas
 Route::get('/admin/mangas/usuarios/{id}', [\App\Http\Controllers\AuthController::class, 'ver'])->name('admin.mangas.verusuario')->middleware(['auth'])->middleware(['admin']);
 
 //Login
-Route::get('inicio-sesion', [\App\Http\Controllers\AuthController::class, 'loginForm'])->name('auth.login.form');
-Route::post('inicio-sesion', [\App\Http\Controllers\AuthController::class, 'loginAccion'])->name('auth.login.accion');
+Route::get('inicio-sesion', [\App\Http\Controllers\AuthController::class, 'loginForm'])->name('auth.login.form')->middleware(['redirect']);
+Route::post('inicio-sesion', [\App\Http\Controllers\AuthController::class, 'loginAccion'])->name('auth.login.accion')->middleware(['redirect']);
 
 //Registro
-Route::get('registro', [\App\Http\Controllers\AuthController::class, 'registroForm'])->name('auth.register.form');
-Route::post('registro', [\App\Http\Controllers\AuthController::class, 'registroAccion'])->name('auth.register.accion');
+Route::get('registro', [\App\Http\Controllers\AuthController::class, 'registroForm'])->name('auth.register.form')->middleware(['redirect']);
+Route::post('registro', [\App\Http\Controllers\AuthController::class, 'registroAccion'])->name('auth.register.accion')->middleware(['redirect']);
 
 //LogOut
 Route::post('out-sesion', [\App\Http\Controllers\AuthController::class, 'logOut'])->name('auth.logout');
 
 // Usuarios perfil -> publico
 Route::get('perfil', [\App\Http\Controllers\AuthController::class, 'perfil'])->name('auth.perfil')->middleware(['auth']);
-Route::get('perfil-form', [\App\Http\Controllers\AuthController::class, 'perfil_form'])->name('auth.perfil.form');
-Route::post('perfil-edit', [\App\Http\Controllers\AuthController::class, 'perfil_edit'])->name('auth.perfil.accion');
+Route::get('perfil-form', [\App\Http\Controllers\AuthController::class, 'perfil_form'])->name('auth.perfil.form')->middleware(['auth']);
+Route::post('perfil-edit', [\App\Http\Controllers\AuthController::class, 'perfil_edit'])->name('auth.perfil.accion')->middleware(['auth']);
 
 
 
