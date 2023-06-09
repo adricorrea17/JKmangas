@@ -71,22 +71,6 @@ body {
     border-radius: 3rem;
 }
 
-.bg-dark {
-    background-color: #282248 !important //#0c0c0c;
-}
-
-.border {
-    border: 0.5rem #4d4389 solid !important;
-}
-
-// .bg-dark {
-//     background-color: #0c0c0c !important //#0c0c0c;
-// }
-
-// .border {
-//     border: 0.5rem rgb(156, 155, 155) solid !important;
-// }
-
 
 .font {
     font-family: 'Poppins', sans-serif;
@@ -123,6 +107,21 @@ body {
 .bg-purple {
     background-color: #9d8efd
 }
+.bg-dark {
+    background-color: #282248 !important
+}
+
+.border {
+    border: 0.5rem #4d4389 solid !important;
+}
+
+// .bg-dark {
+//     background-color: #0c0c0c !important
+// }
+
+// .border {
+//     border: 0.5rem rgb(156, 155, 155) solid !important;
+// }
 
 // .gradiant {
 //     background: linear-gradient(#0c0c0c, rgb(156, 155, 155))
@@ -153,8 +152,8 @@ body {
     width: 100%;
 }
 .perfilimg{
-    width: 220px;
-    height: 220px;
+    width: 220px !important;
+    height: 220px !important;
 }
 
 #perfil #infoPerfil img {

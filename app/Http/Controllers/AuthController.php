@@ -15,8 +15,9 @@ class AuthController extends Controller
     {
         return view('auth.login');
     }
-    public function loginAccion(Request $request)
+    public function loginAccion(Request $request,)
     {
+
         $request->validate(Usuario::VALIDACION, Usuario::MENSAJES);
         $request->validate([
             'nombre_usuario' => 'required',
@@ -47,7 +48,7 @@ class AuthController extends Controller
     }
     public function registroAccion(Request $request)
     {
-        $request->validate(Usuario::VALIDACION, Usuario::MENSAJES);
+        $request->validate(Usuario::VALIDAR, Usuario::MENSAJE);
         $request->validate([
             'nombre_usuario' => 'required',
             'password' => 'required',
