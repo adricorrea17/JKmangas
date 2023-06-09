@@ -75,7 +75,7 @@
             <div>
                 <label for="portada" class="form-label w-100 mt-3 font ">Portada:</label>
                 @if($manga -> portada != null && file_exists(public_path('img/' . $manga->portada)))
-                <img class="rounded mt-3" src="{{ url('img/' . $manga->portada) }}" alt="Portada del manga {{$manga->titulo}}">
+                <img class="rounded mt-3 imgeditar" src="{{ url('img/' . $manga->portada) }}" alt="Portada del manga {{$manga->titulo}}">
                 @else
                 <p class="fw-bold">No hay ninguan portada para este manga</p>
                 @endif

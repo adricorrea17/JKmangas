@@ -10,9 +10,11 @@
         <div class="mx-auto">
             @if($manga->portada != null && file_exists(public_path('img/' . $manga->portada)))
             <img class="rounded" src="{{ url('img/' . $manga->portada) }}" alt="Portada del manga {{$manga->titulo}}"></img>
+            @elseif($manga->portada == null)
+            <img class="rounded" src="./../../../public/img/default.png" alt="Portada del manga {{$manga->titulo}}"></img>
             @endif
         </div>
-        <div class="d-flex flex-column justify-content-center">
+        <div class="d-flex flex-column justify-content-center w-75">
             <h1 class="mb-3 fw-bold">{{$manga -> titulo}}</h1>
             <p class="fs-5"><b class="fs-4">Descripcion:</b> {{$manga -> descripcion}}</p>
             <p class="fs-5"><b class="fs-4">Tomos:</b> {{$manga -> tomos}}</p>

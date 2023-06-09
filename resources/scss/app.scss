@@ -2,7 +2,8 @@
 @import 'components/manga.scss';
 
 @font-face {
-    font-family: 'Poppins', sans-serif;;
+    font-family: 'Poppins', sans-serif;
+    ;
     src: url('../fuentes/SF\ Toontime\ Blotch.ttf') format('truetype');
 }
 
@@ -23,6 +24,7 @@ body,
 body {
     background-color: #9d8efd;
 }
+
 
 #app {
     display: grid;
@@ -57,8 +59,12 @@ body {
     margin-bottom: 8rem;
 }
 
-.ml-5{
+.ml-5 {
     margin-left: 100px;
+}
+
+.hw {
+    height: 80vh !important; // height: 94vh !important;
 }
 
 .radius {
@@ -70,12 +76,21 @@ body {
 }
 
 .border {
-    border: 0.5rem #212529 solid !important;
+    border: 0.5rem #4d4389 solid !important;
 }
+
+// .bg-dark {
+//     background-color: #0c0c0c !important //#0c0c0c;
+// }
+
+// .border {
+//     border: 0.5rem rgb(156, 155, 155) solid !important;
+// }
 
 
 .font {
-    font-family: 'Poppins', sans-serif;;
+    font-family: 'Poppins', sans-serif;
+    ;
 }
 
 .btn-primary {
@@ -88,13 +103,41 @@ body {
 
 }
 
+.alert {
+    margin-bottom: 0px !important;
+}
+
 .margen-usuario {
     margin-top: 15rem !important;
     margin-bottom: 3rem !important;
 }
 
 .gradiant {
-    background: linear-gradient(#282248, #9d8efd) //(#0c0c0c, rgb(156, 155, 155));
+    background: linear-gradient(#282248, #9d8efd)
+}
+
+.gradiant2 {
+    background: linear-gradient(#9d8efd, #282248)
+}
+
+.bg-purple {
+    background-color: #9d8efd
+}
+
+// .gradiant {
+//     background: linear-gradient(#0c0c0c, rgb(156, 155, 155))
+// }
+
+// .gradiant2 {
+//     background: linear-gradient(rgb(156, 155, 155), #0c0c0c)
+// }
+
+// .bg-purple {
+//     background-color: rgb(156, 155, 155)
+// }
+.imgeditar{
+    width: 300px;
+    height: 459px;
 }
 
 .bannerPerfil {
@@ -102,12 +145,16 @@ body {
     height: 170px;
     background-repeat: no-repeat;
     background-position: center center;
-    background:#4d4389;
+    background: #4d4389;
 }
 
 #perfil #infoPerfil {
     position: relative;
     width: 100%;
+}
+.perfilimg{
+    width: 220px;
+    height: 220px;
 }
 
 #perfil #infoPerfil img {
@@ -123,6 +170,7 @@ body {
     font-size: 1.6rem;
     padding-bottom: 1rem;
 }
-.rounded-3{
+
+.rounded-3 {
     border-radius: 1rem !important;
 }

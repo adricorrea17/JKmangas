@@ -4,7 +4,7 @@
 ?>
 @extends('layouts.main')
 
-@section('title', 'Iniciar Sesión')
+@section('title', 'Registro de usuario')
 
 @section('main')
 <section class="margen col-12 rounded bg-dark p-5 text-light w-50 mx-auto">

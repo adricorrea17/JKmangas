@@ -2,7 +2,7 @@
     border-radius: 20px;
     background: #666;
     overflow: hidden;
-
+    
     img {
         width: 100%;
         height: 100%;
@@ -31,8 +31,11 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        transition-duration: 800s;
+        transition-duration: 8000s;
 
+    }
+    &:hover{
+        border: solid .3rem white;
     }
 
     .btn {

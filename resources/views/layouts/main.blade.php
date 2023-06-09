@@ -28,7 +28,7 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Abrir/cerrar menú de navegación">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <nav class="collapse navbar-collapse d-flex flex-row-reverse" id="navbar">
+                <nav class="collapse navbar-collapse d-flex flex-row-reverse " id="navbar">
                     <ul class="navbar-nav d-flex align-items-center gap-3">
                         <li class="nav-item">
                             <a class="nav-link text-light font " href="{{ route('inicio')}}">Home</a>
@@ -90,8 +90,21 @@
     </div>
 </body>
 <script>
+    // Función para ocultar el alert después de un tiempo determinado
+    function hideAlert() {
+        var alertElement = document.querySelector(".alert");
+        alertElement.style.opacity = "0";
+        setTimeout(function() {
+            alertElement.style.display = "none";
+        }, 2000);
+    }
+
+    // Oculta el alert después de 5 segundos (5000 milisegundos)
+    setTimeout(hideAlert, 3000);
+</script>
+<script>
     AOS.init();
 </script>
-<script src="/resources/js/bootstrap.js"></script>
+
 
 </html>
