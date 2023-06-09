@@ -16,12 +16,6 @@ $primary : #120323;
 }
 
 
-html,
-body,
-#app {
-    height: 100%;
-}
-
 body {
     background-color: darken($primary, 4%);
 }
