@@ -15,7 +15,7 @@
         @csrf
         <div class="mb-3">
             <label for="email" class="form-label fs-5 font">Email</label>
-            <input type="email" placeholder="Ingresa un email" name="email" id="email" class="form-control @error('email') border border-danger @enderror">
+            <input type="email" placeholder="Ingresa un email" name="email" id="email" class="form-control @error('email') border border-danger @enderror" value="{{ request()->get('email') }}">
         </div>
         @error('email')
         <div class="mb-3 text-danger font"><span class="visually-hidden">Error:</span> {{ $message }}</div>

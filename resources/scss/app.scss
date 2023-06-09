@@ -1,5 +1,6 @@
 @import 'components/plans-boxes.scss';
 @import 'components/manga.scss';
+$primary : #120323;
 
 @font-face {
     font-family: 'Poppins', sans-serif;
@@ -22,7 +23,7 @@ body,
 }
 
 body {
-    background-color: #9d8efd;
+    background-color: darken($primary, 4%);
 }
 
 
@@ -63,10 +64,6 @@ body {
     margin-left: 100px;
 }
 
-.hw {
-    height: 80vh !important; // height: 94vh !important;
-}
-
 .radius {
     border-radius: 3rem;
 }
@@ -97,18 +94,18 @@ body {
 }
 
 .gradiant {
-    background: linear-gradient(#282248, #9d8efd)
+    background: linear-gradient($primary, darken($primary,10%))
 }
 
 .gradiant2 {
-    background: linear-gradient(#9d8efd, #282248)
+    background: linear-gradient(lighten($primary,20%), $primary)
 }
 
 .bg-purple {
-    background-color: #9d8efd
+    background-color: lighten($primary,20%)
 }
 .bg-dark {
-    background-color: #282248 !important
+    background-color: $primary !important
 }
 
 .border {
@@ -151,9 +148,11 @@ body {
     position: relative;
     width: 100%;
 }
+
 .perfilimg{
-    width: 220px !important;
-    height: 220px !important;
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
 }
 
 #perfil #infoPerfil img {
@@ -172,4 +171,70 @@ body {
 
 .rounded-3 {
     border-radius: 1rem !important;
+}
+
+
+.fade-out {
+    opacity: 0;
+    animation-name: fadeOut;
+    animation-duration: 1s;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.hero {
+    position: relative;
+    height: calc(100vh - 56px);
+    &::after {
+        content: '';
+        display: block;
+        height: 150px;
+        background: #000;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(0deg, black, transparent);
+    }
+    .marquee {
+        padding: 0 10%;
+        .marquee-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 2rem;
+            width: 100%;
+            img {
+                height: 450px;
+                width: 100%;
+                height: 450px;
+                object-fit: cover;
+            }
+            .item:nth-child(odd) {
+                margin-top: -6rem;
+            }
+
+        }
+    }
+    
+
+    .letras-japonesas {
+        opacity: .4;
+        color: white;
+        font-size: 7rem;
+        position: absolute;
+        top: 2rem;
+        left: 0rem;
+        font-weight: 900;
+    }
+}
+
+.container {
+    max-width: 1580px;
 }

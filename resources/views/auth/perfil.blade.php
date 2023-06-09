@@ -29,24 +29,11 @@
                             <dd>
                                 @if ($usuario->usuarios_plan_id == null)
                                 <p><label class=" bg-danger text-dark px-3 rounded fw-bold">Sin paquete</label></p>
-                                @elseif($usuario->usuarios_plan_id == 1)
-                                <p><label class=" bg-dark text-light px-3 rounded fw-bold">Otaku Junior</label></p>
-                                @elseif($usuario->usuarios_plan_id == 2)
-                                <p><label class=" bg-dark text-light px-3 rounded fw-bold">Otaku Shonen</label></p>
-                                @elseif($usuario->usuarios_plan_id == 3)
-                                <p><label class=" bg-dark text-light px-3 rounded fw-bold">Otaku-Sama</label></p>
+                                @else
+                                <p><label class=" bg-dark text-light px-3 rounded fw-bold">{{ $usuario->UsuariosPlans()->first()->nombre }}</label></p>
                                 @endif
                             </dd>
-                            <dt>
-                                Tu Rol
-                            </dt>
-                            <dd>
-                                @if ($usuario->usuarios_rol_id == 1)
-                                <p><label class=" bg-dark text-light px-3 rounded fw-bold">Administrador</label></p>
-                                @elseif($usuario->usuarios_rol_id == 2)
-                                <p><label class=" bg-dark text-light px-3 rounded fw-bold">Usuario Comun</label></p>
-                                @endif
-                            </dd>
+
                             <a class="btn btn-dark" href="{{ route('auth.perfil.form')}}">¿Quieres modificar tus datos?</a>
                         </dl>
 

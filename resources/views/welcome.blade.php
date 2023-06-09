@@ -6,23 +6,49 @@
 @section('main')
 @section('title') HOME @endsection
 
-<section class="d-flex flex-column flex-md-row gradiant hw">
-    <marquee behavior="scroll" direction="up" class="mx-auto d-flex flex-column align-items-center w-75">
-        <div class="d-flex flex-column gap-4">
-            <img class="img-fluid" src="img/banner-mangas.png" alt="">
+<section class="gradiant">
+    <div class="hero container d-flex flex-column flex-md-row">
+        <div class="letras-japonesas" data-aos="fade-up" data-aos-delay="3000" data-aos-duration="1000">
+            
+            <div>マ</div>
+            <div>ン</div>
+            <div>ガ</div>
         </div>
-    </marquee>
-    <div data-aos="fade-down" data-aos-delay="400" class="mx-auto text-center text-md-start text-light radius gap-3 d-flex flex-column justify-content-center w-100 w-md-75 p-2 py-5 p-md-5 ">
-        <h1 class="font">JKmangas</h1>
-        <p class="font fs-2">La página en la cual podrás enterarte de los próximos estrenos y leer tus mangas favoritos</p>
+        <div class="col-md-6 d-flex">
 
-        @if(!Auth::check())
-        <p class="font">Crea una cuenta de JKmangas para poder leer tus mangas favoritos</p>
-        <a href="{{ route('auth.register.form')}}" class="mx-auto mx-md-0 text-center font btn-primary col-6 py-1 radius text-decoration-none text-dark">Crear cuenta</a>
-        @else
-        <p class="font">Puedes leer muchos de nuestros mangas desde la comodidad de tu hogar.</p>
-        <a href="{{ route('estrenos')}}" class="mx-auto mx-md-0 text-center font btn-primary col-6 py-1 radius text-decoration-none text-dark">Encuentra tus mangas favoritos</a>
-        @endif
+            <marquee direction="up" class="marquee" loop scrollamount="18" >
+                <div class="marquee-grid">
+                    @for($z=0; $z<3; $z++)
+                        @foreach($mangas as $i => $manga)
+                        @if($manga->portada != null && file_exists(public_path('img/' . $manga->portada)))
+                        <div class="item">
+                            <img src="{{ url('img/' . $manga->portada) }}" alt="Portada del manga {{$manga->titulo}}">
+                        </div>
+                        @endif
+                        @endforeach
+                    @endfor
+                </div>
+            </marquee>
+        </div>
+        <div data-aos="fade-right" data-aos-delay="1000" class="text-center text-md-start text-light radius gap-3 d-flex flex-column justify-content-center col-md-6 p-2 py-5 p-md-5 ">
+            <h1 class="font fw-bold">JKmangas</h1>
+            <p class="font fs-3">La página en la cual podrás enterarte de los próximos estrenos y leer tus mangas favoritos</p>
+
+            @if(!Auth::check())
+            <p class="font fs-5">Crea una cuenta de JKmangas para poder leer tus mangas favoritos</p>
+            
+            <form action="{{ route('auth.register.form') }}" method="get">
+
+                <div class="input-group w-75">
+                    <input type="text" name="email" placeholder="e-mail" class="form-control">
+                    <button class="btn btn-primary" type="submit">Crear cuenta</button>
+                </div>
+            </form>
+            @else
+            <p class="font fs-5">Puedes leer muchos de nuestros mangas desde la comodidad de tu hogar.</p>
+            <a href="{{ route('estrenos')}}" class="mx-auto mx-md-0 text-center font btn-primary col-6 py-1 radius text-decoration-none text-dark">Encuentra tus mangas favoritos</a>
+            @endif
+        </div>
     </div>
 </section>
 

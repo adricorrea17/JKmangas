@@ -7,7 +7,7 @@
     <h1></h1>
     <h1 class="mb-3 font">Modifica tus datos</h1>
 
-    <form action="{{ route('auth.perfil.accion') }}" method="post" class="d-flex flex-column justify-content-center">
+    <form action="{{ route('auth.perfil.accion') }}" method="post" class="d-flex flex-column justify-content-center" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
             <label for="email" class="form-label fs-5 font">Email</label>
@@ -26,7 +26,7 @@
         <div class="mb-3">
             <label for="imagen" class="form-label w-100 mt-3 font fs-5">Foto de perfil:</label>
             @if($usuario -> imagen != null && file_exists(public_path('img/' . $usuario->imagen)))
-            <img class="rounded mt-3" src="{{ url('img/' . $usuario->imagen) }}" alt="Imagen de perfil de {{$usuario->nombre_usuario}}">
+            <img class="rounded mt-3 perfilimg" src="{{ url('img/' . $usuario->imagen) }}" alt="Imagen de perfil de {{$usuario->nombre_usuario}}">
             @else
             <p class="fw-bold">No tiene foto de perfil</p>
             @endif

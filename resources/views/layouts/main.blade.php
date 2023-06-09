@@ -93,16 +93,17 @@
     // Función para ocultar el alert después de un tiempo determinado
     function hideAlert() {
         var alertElement = document.querySelector(".alert");
-        alertElement.style.opacity = "0";
-        setTimeout(function() {
-            alertElement.style.display = "none";
-        }, 2000);
-    }
+        if( alertElement ) {
 
-    // Oculta el alert después de 5 segundos (5000 milisegundos)
+            alertElement.classList.add("fade-out");
+            setTimeout(function() {
+                alertElement.style.display = "none";
+            }, 2000);
+        }
+    }
     setTimeout(hideAlert, 3000);
-</script>
-<script>
+
+    // Inicializa AOS
     AOS.init();
 </script>
 

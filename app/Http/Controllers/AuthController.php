@@ -49,11 +49,7 @@ class AuthController extends Controller
     public function registroAccion(Request $request)
     {
         $request->validate(Usuario::VALIDAR, Usuario::MENSAJE);
-        $request->validate([
-            'nombre_usuario' => 'required',
-            'password' => 'required',
-            'email' => 'required',
-        ]);
+
 
         Usuario::create([
             'nombre_usuario' => $request->input('nombre_usuario'),
@@ -101,6 +97,7 @@ class AuthController extends Controller
             'usuario' => $usuario
         ]);
     }
+
     public function perfil_edit(Request $request){
         // $request->validate(Usuario::VALIDACION, Usuario::MENSAJES);
         $usuario = Usuario::find( Auth::user()->id );
