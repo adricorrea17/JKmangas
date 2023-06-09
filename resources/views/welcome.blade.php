@@ -8,8 +8,10 @@
 
 <section class="gradiant">
     <div class="hero container d-flex flex-column flex-md-row">
-        <div class="letras-japonesas" data-aos="fade-up" data-aos-delay="3000" data-aos-duration="1000">
-            
+        <div class="letras-japonesas" data-aos="fade-left" data-aos-delay="3000" data-aos-duration="1000">
+            <div>マ</div>
+            <div>ン</div>
+            <div>ガ</div>
             <div>マ</div>
             <div>ン</div>
             <div>ガ</div>

@@ -192,6 +192,7 @@ body {
 .hero {
     position: relative;
     height: calc(100vh - 56px);
+    overflow-y: hidden;
     &::after {
         content: '';
         display: block;
