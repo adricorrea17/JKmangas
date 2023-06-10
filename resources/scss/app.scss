@@ -32,6 +32,13 @@ body {
     align-items: center;
 }
 
+.cerrar{
+    color: #f8f9fa;
+    &:hover{
+        color:lighten($primary, 30%) ;
+    }
+}
+
 .nav-link:hover {
     color: lighten($primary, 30%) !important;
 }

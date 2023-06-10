@@ -53,7 +53,7 @@
                             <li class="nav-item ">
                                 <form action="{{ route('auth.logout') }}" method="post">
                                     @csrf
-                                    <button type="submit" class="btn text-light font ">Cerrar sesion ({{ Auth::user()->nombre_usuario }})</button>
+                                    <button type="submit" class="btn cerrar font">Cerrar sesion ({{ Auth::user()->nombre_usuario }})</button>
                                 </form>
                             </li>
                             @else

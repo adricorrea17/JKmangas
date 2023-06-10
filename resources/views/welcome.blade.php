@@ -48,7 +48,7 @@
             </form>
             @else
             <p class="font fs-5">Puedes leer muchos de nuestros mangas desde la comodidad de tu hogar.</p>
-            <a href="{{ route('estrenos')}}" class="mx-auto mx-md-0 text-center font btn-primary col-6 py-1 radius text-decoration-none">Encuentra tus mangas favoritos</a>
+            <a href="{{ route('estrenos')}}" class="mx-auto mx-md-0 text-center font btn-secondary col-6 py-1 radius text-decoration-none">Encuentra tus mangas favoritos</a>
             @endif
         </div>
     </div>

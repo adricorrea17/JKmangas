@@ -9,9 +9,9 @@
             <img src="img/{{$plan->imagen}}" alt="Cabello correspondiente al plan de {{$plan->nombre}}">
         </picture>
         <h2 class="mt-3 font">{{$plan->nombre}}</h2>
-        <p class="mt-2 fs-5 font">{{$plan->duracion}} meses</p>
+        <!-- <p class="mt-2 fs-5 font">{{$plan->duracion}} meses</p> -->
         <p class="fs-3 fw-bold font">${{$plan->precio}}</p>
-        <p class="mt-2 col-10 mx-auto fs-6 font">{{$plan->descripcion}}</p>
+        <p class="mt-2 col-10 mx-auto fs-6 font mb-4">{{$plan->descripcion}}</p>
 
         @if(!Auth::check())
         <button class="col-12 radius mx-auto btn btn-primary fs-5 font">Comprar {{$plan->nombre}}</button>
