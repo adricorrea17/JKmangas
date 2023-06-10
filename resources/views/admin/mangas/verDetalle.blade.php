@@ -33,7 +33,6 @@
             <p class="fs-5"><b class="fs-4">Precio del manga fisico:</b> ${{$manga -> precio}}</p>
             <p class="fs-5"><b class="fs-4">Mangaka:</b> {{$manga -> mangaka}}</p>
             <button class="btn btn-secondary font">Leer</button>
-
         </div>
     </div>
 </section>
