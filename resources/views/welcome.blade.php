@@ -18,7 +18,7 @@
         </div>
         <div class="col-md-6 d-flex">
 
-            <marquee direction="up" class="marquee" loop scrollamount="10" >
+            <marquee direction="up" class="marquee" loop scrollamount="18" >
                 <div class="marquee-grid">
                     @for($z=0; $z<3; $z++)
                         @foreach($mangas as $i => $manga)
@@ -48,7 +48,7 @@
             </form>
             @else
             <p class="font fs-5">Puedes leer muchos de nuestros mangas desde la comodidad de tu hogar.</p>
-            <a href="{{ route('estrenos')}}" class="mx-auto mx-md-0 text-center font btn-primary col-6 py-1 radius text-decoration-none text-dark">Encuentra tus mangas favoritos</a>
+            <a href="{{ route('estrenos')}}" class="mx-auto mx-md-0 text-center font btn-primary col-6 py-1 radius text-decoration-none">Encuentra tus mangas favoritos</a>
             @endif
         </div>
     </div>
@@ -56,14 +56,14 @@
 
 
 
-<section class="bg-dark p-5 gap-3 text-light">
+<section class="bg-purple p-5 gap-3 text-light">
     <div class="d-flex col-8 align-items-center mx-auto flex-column flex-md-row py-5">
         <picture data-aos="zoom-in" data-aos-delay="100">
             <img class="img-fluid" src="img/mangas.png" alt="Tres mangas que podras encontrar en nuestra pagina">
         </picture>
         <div class="d-flex flex-column ml-5" data-aos="zoom-in" data-aos-delay="400">
             <p class="text-center text-md-start fs-2">Podrás encontrar una extensa variedad de tus mangas favoritos</p>
-            <a href="{{ route('estrenos')}}" class="text-center btn-primary radius text-decoration-none text-dark w-50 p-1 ">Ver mangas</a>
+            <a href="{{ route('estrenos')}}" class="text-center btn-primary radius text-decoration-none w-50 p-1 ">Ver mangas</a>
         </div>
 
     </div>
@@ -75,12 +75,12 @@
         </picture>
         <div class="d-flex flex-column" data-aos="zoom-in" data-aos-delay="400">
             <p class="text-center text-md-start fs-2 col-10 text-light">También puedes visitar nuestra página donde encontrarás tus animes favoritos</p>
-            <a href="#" class="text-center btn-primary radius text-decoration-none text-dark w-50 p-1 ">Visitanos en JKanime</a>
+            <a href="#" class="text-center btn-primary radius text-decoration-none w-50 p-1 ">Visitanos en JKanime</a>
         </div>
     </div>
 </section>
 
-<section class="pb-5 bg-dark ">
+<section class="pb-5 gradiant2 ">
     <h2 class="pt-5 text-light text-center font">Elige el plan adecuado para ti</h2>
 
     @include('components.planes')

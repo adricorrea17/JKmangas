@@ -32,7 +32,7 @@
               </li>
               @endforelse
             </ul>
-            <a href="{{route('admin.mangas.ver',['id'=> $manga->manga_id] )}}" class="btn w-75 mt-3 font radius ">Ver</a>
+            <a href="{{route('admin.mangas.ver',['id'=> $manga->manga_id] )}}" class="btn-secondary text-decoration-none w-75 mt-3 font radius p-1" >Ver</a>
   
           </div>
         </article>

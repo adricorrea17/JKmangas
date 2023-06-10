@@ -12,11 +12,11 @@
     <div class="radius bg-dark p-5 text-light mx-auto">
         <h1 class="mb-5">Desea eliminar este Manga?</h1>
         <div class="w-100 mx-auto d-flex gap-5 p-3 mangaid flex-column flex-lg-row">
-            <div class="mx-auto">
+            <div class="mx-auto col-3">
                 @if($manga->portada != null && file_exists(public_path('img/' . $manga->portada)))
-                <img class="img-fluid " src="{{ url('img/' . $manga->portada) }}" alt="Portada del manga {{$manga->titulo}}">
+                <img class="img-fluid w-100" src="{{ url('img/' . $manga->portada) }}" alt="Portada del manga {{$manga->titulo}}">
                 @elseif($manga->portada == null)
-                <img class="img-fluid " src="../../../../public/img/default.png" alt="Portada del manga {{$manga->titulo}}">
+                <img class="img-fluid w-100" src="../../../../public/img/default.png" alt="Portada del manga {{$manga->titulo}}">
                 @endif
             </div>
             <div class="d-flex flex-column justify-content-center">

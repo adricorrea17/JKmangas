@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Usuario;
 use App\Models\UsuariosPlans;
-
+use App\Models\UsuariosRol;
 use Hash;
 
 class AuthController extends Controller
@@ -69,15 +69,17 @@ class AuthController extends Controller
 
     public function ver(int $id)
     {
+
         $usuario = Usuario::findOrFail($id);
         return view('admin.mangas.verUsuario', [
-            'usuario' => $usuario
-        ]);
+            'usuario' => $usuario,
 
+        ]);
     }
 
-    public function perfil(){
-        
+    public function perfil()
+    {
+
         $usuario = Auth::user();
         $UsuariosPlans = UsuariosPlans::all();
 
@@ -98,24 +100,24 @@ class AuthController extends Controller
         ]);
     }
 
-    public function perfil_edit(Request $request){
+    public function perfil_edit(Request $request)
+    {
         // $request->validate(Usuario::VALIDACION, Usuario::MENSAJES);
-        $usuario = Usuario::find( Auth::user()->id );
+        $usuario = Usuario::find(Auth::user()->id);
 
         $data = $request->except(['_token']);
-        
-        if( $request->input('newpassword') && $request->input('oldpassword') ) {
-            
+
+        if ($request->input('newpassword') && $request->input('oldpassword')) {
+
             $credentials = [
                 'email' => Auth::user()->email,
                 'password' => $request->input('oldpassword')
             ];
 
-            if( Auth::attempt($credentials) ) {
-                
+            if (Auth::attempt($credentials)) {
+
                 // aca agregamos al array que se va a hacer el update
                 $data['password'] = Hash::make($request->input('newpassword'));
-
             } else {
                 return redirect()->route('auth.perfil')->with('status.message', 'Contraseña incorrecta')->with('status.type', 'danger');
             }
@@ -140,5 +142,4 @@ class AuthController extends Controller
 
         return redirect()->route('auth.perfil')->with('status.message', 'Tu usuario ha sido actualizado')->with('status.type', 'success');
     }
-
 }

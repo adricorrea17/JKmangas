@@ -47,7 +47,7 @@
       </td>
       <td>
         <div class="d-flex gap-1">
-          <a href="{{route('admin.mangas.ver',['id'=> $manga->manga_id] )}}" class="btn btn-primary text-dark">Ver</a>
+          <a href="{{route('admin.mangas.ver',['id'=> $manga->manga_id] )}}" class="btn btn-primary">Ver</a>
           <a href="{{route('admin.mangas.editar.form',['id'=> $manga->manga_id] )}}" class="btn btn-dark">Editar</a>
           <a href="{{route('admin.mangas.eliminar.form',['id'=> $manga->manga_id] )}}" class="btn btn-danger">Eliminar</a>
         </div>

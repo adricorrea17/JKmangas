@@ -31,7 +31,7 @@
                 <nav class="collapse navbar-collapse d-flex flex-row-reverse " id="navbar">
                     <ul class="navbar-nav d-flex align-items-center gap-3">
                         <li class="nav-item">
-                            <a class="nav-link text-light font " href="{{ route('inicio')}}">Home</a>
+                            <a class="nav-link text-light font" href="{{ route('inicio')}}">Home</a>
 
                         </li>
                         <li class="nav-item">

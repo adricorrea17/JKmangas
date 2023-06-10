@@ -20,13 +20,13 @@
         <div class="d-flex flex-column ">
 
             <h1 class="mb-3 fw-bold">{{$usuario->nombre_usuario}}</h1>
-            <p class="fs-5"><b class="fs-4">Rol:</b> {{$usuario->usuarios_rol_id}}</p>
+            <p class="fs-5"><b class="fs-4">Rol:</b> {{ $usuario->rol()->first()->rol }}</p>
             <p class="fs-5"><b class="fs-4">Email:</b> {{$usuario->email}}</p>
-            
-            @if ($usuario->usuarios_plan_id != null)
-            <p><b class="fs-4">Plan:</b> <label class="bg-light text-dark px-3 rounded fw-bold">{{$usuario->usuarios_plan_id}}</label></p>
+
+            @if ($usuario->usuarios_plan_id == null)
+            <p><label class=" bg-danger text-dark px-3 rounded fw-bold">Sin paquete</label></p>
             @else
-            <p><b class="fs-4">Plan:</b> <label class=" bg-danger text-dark px-3 rounded fw-bold">Sin paquete</label></p>
+            <p><label class=" bg-light text-dark px-3 rounded fw-bold">{{ $usuario->UsuariosPlans()->first()->nombre }}</label></p>
             @endif
 
 

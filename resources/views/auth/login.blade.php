@@ -29,7 +29,7 @@
         <div class="mb-3 text-danger font"><span class="visually-hidden">Error:</span> {{ $message }}</div>
         @enderror
         <div class="d-flex justify-content-center mt-3">
-            <button type="submit" class="w-50 btn btn-primary radius text-dark">Ingresar</button>
+            <button type="submit" class="w-50 btn btn-primary radius">Ingresar</button>
         </div>
     </form>
 </section>
