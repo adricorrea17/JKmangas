@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('mangas', function (Blueprint $table) {
-            $table->id('manga_id');
+            $table->increments('manga_id');
             $table->string('titulo', 60);
             $table->unsignedInteger('precio');
             $table->text('descripcion');
