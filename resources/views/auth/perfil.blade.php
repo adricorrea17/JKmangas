@@ -34,7 +34,7 @@
                                 @endif
                             </dd>
 
-                            <a class="btn btn-dark" href="{{ route('auth.perfil.form')}}">¿Quieres modificar tus datos?</a>
+                            <a class="btn btn-secondary" href="{{ route('auth.perfil.form')}}">¿Quieres modificar tus datos?</a>
                         </dl>
 
                     </div>
