@@ -5,9 +5,9 @@
 @extends('layouts.main')
 @section('main')
 @section('title') HOME @endsection
-
+@if(!Auth::check() || Auth::user()->usuarios_rol_id != 3)
 <section class="gradiant">
-    <div class="hero container d-flex flex-column flex-md-row">
+    <div class="hero container d-flex flex-md-row">
         <div class="letras-japonesas" data-aos="fade-left" data-aos-delay="3000" data-aos-duration="1000">
             <div>マ</div>
             <div>ン</div>
@@ -16,7 +16,7 @@
             <div>ン</div>
             <div>ガ</div>
         </div>
-        <div class="col-md-6 d-flex">
+        <div class="col-12 col-md-6 d-flex">
 
             <marquee direction="up" class="marquee" loop scrollamount="18" >
                 <div class="marquee-grid">
@@ -32,7 +32,7 @@
                 </div>
             </marquee>
         </div>
-        <div class="text-center text-md-start text-light radius gap-3 d-flex flex-column justify-content-center col-md-6 p-2 py-5 p-md-5 ">
+        <div class="text-center text-md-start text-light radius gap-3 d-flex flex-column justify-content-center col-12 col-md-6 p-2 py-5 p-lg-5 ">
             <h1 class="font fw-bold">JKmangas</h1>
             <p class="font fs-3">La página en la cual podrás enterarte de los próximos estrenos y leer tus mangas favoritos</p>
 
@@ -57,32 +57,35 @@
 
 
 <section class="bg-purple p-5 gap-3 text-light">
-    <div class="d-flex col-8 align-items-center mx-auto flex-column flex-md-row py-5">
+    <div class="d-flex col-12 col-sm-10 col-xl-8 align-items-center mx-auto flex-column flex-md-row py-5">
         <picture data-aos="zoom-in" data-aos-delay="100">
-            <img class="img-fluid" src="img/mangas.png" alt="Tres mangas que podras encontrar en nuestra pagina">
+            <img class="img-fluid" src="img/tanjiro.png" alt="Tres mangas que podras encontrar en nuestra pagina">
         </picture>
         <div class="d-flex flex-column ml-5" data-aos="zoom-in" data-aos-delay="400">
             <p class="text-center text-md-start fs-2">Podrás encontrar una extensa variedad de tus mangas favoritos</p>
-            <a href="{{ route('estrenos')}}" class="text-center btn-primary radius text-decoration-none w-50 p-1 ">Ver mangas</a>
+            <a href="{{ route('estrenos')}}" class="text-center btn-primary radius text-decoration-none col-10 col-md-8 col-lg-6 p-1 ">Ver mangas</a>
         </div>
 
     </div>
 </section>
 <section class="bg-purple py-5">
-    <div class="d-flex col-8 align-items-center mx-auto py-5 flex-column flex-md-row-reverse">
+    <div class="d-flex col-11 col-sm-10 col-xl-8 align-items-center mx-auto py-5 flex-column flex-md-row-reverse">
         <picture data-aos="zoom-in" data-aos-delay="400">
             <img class="img-fluid" src="img/naruto.png" alt="Tres mangas que podras encontrar en nuestra pagina">
         </picture>
-        <div class="d-flex flex-column" data-aos="zoom-in" data-aos-delay="400">
-            <p class="text-center text-md-start fs-2 col-10 text-light">También puedes visitar nuestra página donde encontrarás tus animes favoritos</p>
-            <a href="#" class="text-center btn-primary radius text-decoration-none w-50 p-1 ">Visitanos en JKanime</a>
+        <div class="d-flex flex-column naruto" data-aos="zoom-in" data-aos-delay="400">
+            <p class="text-center text-md-start w-75 fs-2 text-light">También puedes visitar nuestra página donde encontrarás tus animes favoritos</p>
+            <a href="#" class="text-center btn-primary radius text-decoration-none col-10 col-md-8 col-lg-6 p-1 ">Visitanos en JKanime</a>
         </div>
     </div>
 </section>
 
-<section class="pb-5 gradiant2 ">
-    <h2 class="pt-5 text-light text-center font">Elige el plan adecuado para ti</h2>
+<section class="pb-5 gradiant2">
+    <h2 class="pt-5 text-light col-10 text-center mx-auto font">Elige el plan adecuado para ti</h2>
 
     @include('components.planes')
 </section>
+@else
+<h1 class="text-light">Estas baneado boludito</h1>
+@endif
 @endsection

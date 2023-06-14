@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('comentario');
             $table->unsignedInteger('usuario_id');
-            $table->unsignedInteger('comentario_manga_id');
+            $table->unsignedBigInteger('manga_id');
             $table->foreign('usuario_id')->references('id')->on('usuarios');
-            $table->foreign('comentario_manga_id')->references('manga_id')->on('mangas');  
+            $table->foreign('manga_id')->references('manga_id')->on('mangas');  
             $table->timestamps(); 
         });
     }

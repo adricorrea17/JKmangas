@@ -12,7 +12,7 @@
     <div class="container">
         <div class="row">
             <div class="card col-lg-3" id="infoPerfil">
-                <div class="w-100 mx-auto d-flex gap-5 p-3 ">
+                <div class="w-100 mx-auto d-flex gap-sm-5 p-3 ">
                     <picture>
                         @if ($usuario->imagen == null)
                         <img class="rounded-3 perfilimg" src="img/perfil.png" alt="Imagen de perfil de {{$usuario -> nombre_usuario}}">
@@ -20,7 +20,7 @@
                         <img class="rounded-3 perfilimg" src="img/{{$usuario -> imagen}}"  alt="Imagen de perfil de {{$usuario -> nombre_usuario}}">
                         @endif
                     </picture>
-                    <div class="d-flex flex-column ">
+                    <div class="d-flex flex-column mx-auto mx-sm-0">
                         <h1 class="mb-1">{{$usuario->nombre_usuario}}</h1>
                         <dl>
                             <dt>Email</dt>

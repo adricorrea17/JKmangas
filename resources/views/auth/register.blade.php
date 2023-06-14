@@ -36,7 +36,7 @@
         @enderror
 
         <div class="d-flex justify-content-center mt-3">
-            <button type="submit" class="w-50 btn btn-primary radius">Ingresar</button>
+            <button type="submit" class="w-50 btn btn-primary radius">Registrar</button>
         </div>
     </form>
 </section>

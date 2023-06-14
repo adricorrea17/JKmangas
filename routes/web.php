@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'home'])->name('inicio');
 
 //Todos los mangas
-Route::get('/estrenos', [\App\Http\Controllers\EstrenosController::class, 'index'])->name('estrenos');
+Route::get('/mangas', [\App\Http\Controllers\EstrenosController::class, 'index'])->name('estrenos')->middleware(['ban']);
 
 Route::middleware(["auth"])->controller(\App\Http\Controllers\AdminMangasController::class)->group(function () {
     //ABM
@@ -27,7 +27,7 @@ Route::middleware(["auth"])->controller(\App\Http\Controllers\AdminMangasControl
     Route::post('admin/mangas/nuevo', 'grabarNuevo')->name('admin.mangas.nuevo.grabar')->middleware(['admin']);
 
     //Ver detalle de un manga
-    Route::get('admin/mangas/{id}', 'ver')->name('admin.mangas.ver')->whereNumber('id');
+    Route::get('mangas/{id}', 'ver')->name('admin.mangas.ver')->whereNumber('id')->middleware(['ban']);
 
     //Fomulario para eliminar un manga
     Route::get('admin/mangas/{id}/eliminar', 'eliminarForm')->name('admin.mangas.eliminar.form')->whereNumber('id')->middleware(['admin']);
@@ -59,6 +59,10 @@ Route::post('out-sesion', [\App\Http\Controllers\AuthController::class, 'logOut'
 Route::get('perfil', [\App\Http\Controllers\AuthController::class, 'perfil'])->name('auth.perfil')->middleware(['auth']);
 Route::get('perfil-form', [\App\Http\Controllers\AuthController::class, 'perfil_form'])->name('auth.perfil.form')->middleware(['auth']);
 Route::post('perfil-edit', [\App\Http\Controllers\AuthController::class, 'perfil_edit'])->name('auth.perfil.accion')->middleware(['auth']);
+
+//Ban y Desban
+Route::post('/banear-usuario/{id}', [\App\Http\Controllers\AuthController::class, 'banear'])->name('admin.ban')->middleware(['auth'])->middleware(['admin']);
+Route::post('/desbanear-usuario/{id}', [\App\Http\Controllers\AuthController::class, 'desbanear'])->name('admin.sacar-ban')->middleware(['auth'])->middleware(['admin']);
 
 
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Manga;
 use App\Models\Genero;
+use App\Models\Usuario;
 
 class AdminMangasController extends Controller
 {
@@ -16,10 +17,10 @@ class AdminMangasController extends Controller
         ]);
     }
     public function ver(int $id)
-    {
+    {   
         $manga = Manga::findOrFail($id);
-        return view('admin.mangas.verDetalle', [
-            'manga' => $manga
+        return view('verDetalle', [
+            'manga' => $manga,
         ]);
     }
     public function formNuevo()

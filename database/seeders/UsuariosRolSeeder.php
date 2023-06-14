@@ -20,11 +20,15 @@ class UsuariosRolSeeder extends Seeder
         DB::table('usuarios_rols')->insert([
             [
                 'id' => 1,
-                'rol' => 'admin',
+                'rol' => 'Administrador',
             ],
             [
                 'id' => 2,
-                'rol' => 'userComun',
+                'rol' => 'Usuario Comun',
+            ],
+            [
+                'id' => 3,
+                'rol' => 'Baneado',
             ]
         ]);
     }

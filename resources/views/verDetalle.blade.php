@@ -6,12 +6,12 @@
 @section('main')
 @section('title'){{$manga -> titulo}} @endsection
 <section class=" container margen-vista bg-dark px-2 py-3 text-light d-flex flex-column  my-4">
-    <div class="w-100 mx-auto d-flex gap-5 p-3 mangaid flex-column flex-md-row">
-        <div class="mx-auto">
+    <div class="mx-auto d-flex gap-5 p-3 flex-column flex-lg-row">
+        <div class="d-flex justify-content-center">
             @if($manga->portada != null && file_exists(public_path('img/' . $manga->portada)))
-            <img class="rounded" src="{{ url('img/' . $manga->portada) }}" alt="Portada del manga {{$manga->titulo}}"></img>
+            <img class="rounded text-center col-10 col-sm-8 col-md-6 col-lg-12" src="{{ url('img/' . $manga->portada) }}" alt="Portada del manga {{$manga->titulo}}"></img>
             @elseif($manga->portada == null)
-            <img class="rounded" src="./../../../public/img/default.png" alt="Portada del manga {{$manga->titulo}}"></img>
+            <img class="rounded col-12" src="./../../../public/img/default.png" alt="Portada del manga {{$manga->titulo}}"></img>
             @endif
         </div>
         <div class="d-flex flex-column justify-content-center w-75">

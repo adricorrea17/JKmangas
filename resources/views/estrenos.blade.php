@@ -12,7 +12,7 @@
     <div class="d-flex text-center justify-content-sm-evenly justify-content-lg-around gap-4 row">
 
       @foreach($mangas as $manga)
-      <article data-aos="fade-down" class="manga card col-7 col-md-5 col-lg-2 mx-auto mx-md-0 p-0">
+      <article data-aos="fade-down" class="manga card col-10 col-md-5 col-lg-2 mx-auto mx-md-0 p-0">
           @if($manga->portada != null && file_exists(public_path('img/' . $manga->portada)))
           <img class="img-fluid " src="{{ url('img/' . $manga->portada) }}" alt="Portada del manga {{$manga->titulo}}">
           @elseif($manga->portada == null)

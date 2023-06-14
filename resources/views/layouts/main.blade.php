@@ -31,8 +31,8 @@
                     <ul class="navbar-nav d-flex align-items-center gap-3">
                         <li class="nav-item">
                             <a class="nav-link text-light font" href="{{ route('inicio')}}">Home</a>
-
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link text-light font " href="{{ route('estrenos')}}">Mangas</a>
                         </li>
@@ -46,7 +46,7 @@
                         </li>
                         @endif
 
-                        @if(Auth::check() && Auth::user()->usuarios_rol_id <= 2) <li class="nav-item">
+                        @if(Auth::check() && Auth::user()->usuarios_rol_id <= 3 ) <li class="nav-item">
                             <a class="nav-link text-light font " href="{{ route('auth.perfil') }}">Perfil</a>
                             </li>
                             <li class="nav-item ">
@@ -92,7 +92,7 @@
     // Función para ocultar el alert después de un tiempo determinado
     function hideAlert() {
         var alertElement = document.querySelector(".alert");
-        if( alertElement ) {
+        if (alertElement) {
 
             alertElement.classList.add("fade-out");
             setTimeout(function() {
