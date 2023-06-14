@@ -14,4 +14,5 @@ class EstrenosController extends AdminMangasController
             'mangas' => $mangas
         ]);
     }
+
 }

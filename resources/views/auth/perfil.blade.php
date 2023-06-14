@@ -7,6 +7,7 @@
 @section('title') {{$usuario->nombre_usuario}}@endsection
 
 @section('main')
+@if(Auth::user()->usuarios_rol_id != 3)
 <section id="perfil">
     <div class="bannerPerfil"></div>
     <div class="container">
@@ -54,5 +55,35 @@
 
     @include('components.planes')
 </section>
+@else
+<section id="perfil">
+    <div class="bannerPerfil"></div>
+    <div class="container">
+        <div class="row">
+            <div class="card col-lg-3" id="infoPerfil">
+                <div class="w-100 mx-auto d-flex gap-sm-5 p-3 ">
+                    <picture>
+                        <img class="rounded-3 perfilimg" src="img/perfil.png" alt="Imagen de perfil de {{$usuario -> nombre_usuario}}">
+                    </picture>
+                    <div class="d-flex flex-column mx-auto mx-sm-0">
+                        <h1 class="mb-1">{{$usuario->nombre_usuario}}</h1>
+                        <dl>
+                            <dt>Email</dt>
+                            <dd>{{$usuario->email}}</dd>
+                            <dt>Tu Plan</dt>
+                            <dd>
+                                <p><label class=" bg-danger text-dark px-3 rounded fw-bold">Sin paquete</label></p>
+                            </dd>
+
+                            <a class="btn btn-secondary" href="{{ route('inicio')}}">El usuario esta Baneado de momento</a>
+                        </dl>
+
+                    </div>
+
+                </div>
+            </div>
+
+</section>
+@endif
 
 @endsection

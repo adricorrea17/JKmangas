@@ -18,17 +18,16 @@
         </div>
         <div class="col-12 col-md-6 d-flex">
 
-            <marquee direction="up" class="marquee" loop scrollamount="18" >
+            <marquee direction="up" class="marquee" loop scrollamount="18">
                 <div class="marquee-grid">
-                    @for($z=0; $z<3; $z++)
-                        @foreach($mangas as $i => $manga)
+                    @for($z=0; $z<3; $z++) @foreach($mangas as $i=> $manga)
                         @if($manga->portada != null && file_exists(public_path('img/' . $manga->portada)))
                         <div class="item">
                             <img src="{{ url('img/' . $manga->portada) }}" alt="Portada del manga {{$manga->titulo}}">
                         </div>
                         @endif
                         @endforeach
-                    @endfor
+                        @endfor
                 </div>
             </marquee>
         </div>
@@ -38,7 +37,7 @@
 
             @if(!Auth::check())
             <p class="font fs-5">Crea una cuenta de JKmangas para poder leer tus mangas favoritos</p>
-            
+
             <form action="{{ route('auth.register.form') }}" method="get">
 
                 <div class="input-group w-75">
@@ -86,6 +85,24 @@
     @include('components.planes')
 </section>
 @else
-<h1 class="text-light">Estas baneado boludito</h1>
+<section class="margen rounded p-5 text-light mx-auto col-10 col-md-6 col-lg-8">
+
+<div class="">
+        <div class="card text-center text-white bg-dark border p-5">
+            <div class="card-header">
+                <h1 class="card-title">Usuario Baneado</h1>
+            </div>
+            <div class="card-body">
+                <p class="card-text fs-3">Lamentamos informarle que el usuario <b>{{$usuario -> nombre_usuario}}</b> está baneado de momento.</p>
+                <p class="card-text fs-4">Por favor, contacte al administrador para más información.</p>
+            </div>
+            <div class="card-footer">
+            <a class="btn btn-primary" href="mailto:adriancorrea2405@gmail.com">Aqui podras contactar con el admin</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 @endif
 @endsection

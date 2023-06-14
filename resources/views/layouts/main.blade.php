@@ -32,11 +32,11 @@
                         <li class="nav-item">
                             <a class="nav-link text-light font" href="{{ route('inicio')}}">Home</a>
                         </li>
-
+                        @if(!Auth::check() || Auth::user()->usuarios_rol_id != 3)
                         <li class="nav-item">
                             <a class="nav-link text-light font " href="{{ route('estrenos')}}">Mangas</a>
                         </li>
-
+                        @endif
                         @if(Auth::check() && Auth::user()->usuarios_rol_id == 1)
                         <li class="nav-item">
                             <a class="nav-link text-light font " href="{{ route('admin.mangas.lista')}}">Panel de administracion</a>
@@ -55,7 +55,7 @@
                                     <button type="submit" class="btn cerrar font">Cerrar sesion ({{ Auth::user()->nombre_usuario }})</button>
                                 </form>
                             </li>
-                            @else
+                            @elseif(!Auth::check())
                             <li class="nav-item rounded">
                                 <a class="nav-link text-light font " href="{{ route('auth.login.form')}}">Iniciar sesion</a>
                             </li>

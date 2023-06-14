@@ -36,7 +36,7 @@
             @elseif($usuario->usuarios_rol_id == 3)
             <form action="{{ route('admin.sacar-ban', ['id' => $usuario->id]) }}" method="post">
             @csrf
-                <button type="submit" class="btn btn-outline-success radius">Sacar-Ban</button>
+                <button type="submit" class="btn btn-outline-success w-100 radius">Sacar-Ban</button>
             </form>
             @endif
 

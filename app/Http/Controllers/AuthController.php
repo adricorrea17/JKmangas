@@ -145,13 +145,13 @@ class AuthController extends Controller
 
     public function banear($id)
     {
-        $user = Usuario::find($id);
+        $usuario = Usuario::find($id);
 
-        if ($user) {
-            $user->usuarios_rol_id = 3; 
-            $user->save();
+        if ($usuario) {
+            $usuario->usuarios_rol_id = 3; 
+            $usuario->save();
 
-            return redirect()->route('admin.mangas.usuarios')->with('status.message', 'El usuario a sido baneado')->with('status.type', 'success');
+            return redirect()->route('admin.mangas.usuarios')->with('status.message', 'El usuario <b>' . e($usuario->nombre_usuario) . '</b> a sido baneado con exito')->with('status.type', 'success');
         } else {
             return redirect()->route('admin.mangas.usuarios')->with('status.message', 'Por algun motivo el usuario no a sido baneado')->with('status.type', 'danger');
         }
@@ -159,15 +159,15 @@ class AuthController extends Controller
 
     public function desbanear($id)
     {
-        $user = Usuario::find($id);
+        $usuario = Usuario::find($id);
 
-        if ($user) {
-            $user->usuarios_rol_id = 2; 
-            $user->save();
+        if ($usuario) {
+            $usuario->usuarios_rol_id = 2; 
+            $usuario->save();
 
-            return redirect()->route('admin.mangas.usuarios')->with('status.message', 'Se le a quitado el ban a el usuario exitosamente')->with('status.type', 'success');
+            return redirect()->route('admin.mangas.usuarios')->with('status.message', 'Se le a quitado el ban a <b>' . e($usuario->nombre_usuario) . '</b> exitosamente')->with('status.type', 'success');
         } else {
-            return redirect()->route('admin.mangas.usuarios')->with('status.message', 'Por algun error no se le a podido quitar el ban a el usuario')->with('status.type', 'success');
+            return redirect()->route('admin.mangas.usuarios')->with('status.message', 'Por algun error no se le a podido quitar el ban a <b>' . e($usuario->nombre_usuario) . '</b>')->with('status.type', 'danger');
         }
     }
 }
