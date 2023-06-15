@@ -13,15 +13,28 @@
         <p class="fs-3 fw-bold font">${{$plan->precio}}</p>
         <p class="mt-2 col-10 mx-auto fs-6 font mb-4">{{$plan->descripcion}}</p>
 
-        @if(!Auth::check())
-        <button class="col-12 radius mx-auto btn btn-primary fs-5 font">Comprar {{$plan->nombre}}</button>
+        @if(Auth::check() && $usuario->usuarios_plan_id == null)
+        <form action="{{ route('comprar-plan', ['id' => $plan->id]) }}" method="post">
+            @csrf
+            <button class="col-12 radius mx-auto btn btn-primary fs-5 font">Comprar {{$plan->nombre}}</button>
+        </form>
         @elseif(Auth::check() && $usuario->usuarios_plan_id == $plan->id)
-        <button class="col-12 radius mx-auto btn btn-secondary fs-5 font disable" disabled>Este es tu plan</button>
+        <form action="{{ route('cancelar-plan')}}" method="post">
+            @csrf
+            <button class="col-12 radius mx-auto btn btn-primary fs-5 font">Cancelar mi plan {{$plan->nombre}}</button>
+        </form>
         @elseif(Auth::check() && $plan->id > $usuario->usuarios_plan_id)
-        <button class="col-12 radius mx-auto btn btn-success fs-5 font">Mejora tu plan a {{$plan->nombre}}</button>
+        <form action="{{ route('mejorar-plan', ['id' => $plan->id]) }}" method="post">
+            @csrf
+            <button class="col-12 radius mx-auto btn btn-success fs-5 font">Mejorar mi plan {{$plan->nombre}}</button>
+        </form>
         @elseif(Auth::check() && $plan->id < $usuario->usuarios_plan_id)
-        <button class="col-12 radius mx-auto btn btn-danger fs-5 font">Reduce tu plan :( {{$plan->nombre}}</button>
-        @endif
+            <form action="{{ route('reducir-plan', ['id' => $plan->id]) }}" method="post">
+                @csrf
+                <button class="col-12 radius mx-auto btn btn-danger fs-5 font">Reducir mi plan {{$plan->nombre}}</button>
+            </form>
+            @endif
+
     </div>
     @endforeach
 </div>

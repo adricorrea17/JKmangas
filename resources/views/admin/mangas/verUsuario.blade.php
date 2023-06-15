@@ -28,6 +28,8 @@
             @else
             <p><label class=" bg-light text-dark px-3 rounded fw-bold">{{ $usuario->UsuariosPlans()->first()->nombre }}</label></p>
             @endif
+
+            
             @if($usuario->usuarios_rol_id == 2)
             <form  action="{{ route('admin.ban', ['id' => $usuario->id]) }}" method="post">
             @csrf

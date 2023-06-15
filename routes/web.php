@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminMangasController;
 use App\Http\Controllers\EstrenosController;
 use Illuminate\Support\Facades\Route;
 /*
@@ -65,5 +66,11 @@ Route::post('perfil-edit', [\App\Http\Controllers\AuthController::class, 'perfil
 Route::post('/banear-usuario/{id}', [\App\Http\Controllers\AuthController::class, 'banear'])->name('admin.ban')->middleware(['auth'])->middleware(['admin']);
 Route::post('/desbanear-usuario/{id}', [\App\Http\Controllers\AuthController::class, 'desbanear'])->name('admin.sacar-ban')->middleware(['auth'])->middleware(['admin']);
 
+//editar plan
+Route::post('/comprar-plan/{id}', [\App\Http\Controllers\AuthController::class, 'comprar'])->name('comprar-plan');
+Route::post('/mejorar-plan/{id}', [\App\Http\Controllers\AuthController::class, 'mejorar'])->name('mejorar-plan');
+Route::post('/reducir-plan/{id}', [\App\Http\Controllers\AuthController::class, 'reducir'])->name('reducir-plan');
+Route::post('/cancelar-plan', [\App\Http\Controllers\AuthController::class, 'cancelar'])->name('cancelar-plan');
 
-
+//comentarios
+Route::post('/comentario', [AdminMangasController::class, 'guardar'])->name('guardar.comentario');

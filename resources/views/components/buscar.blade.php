@@ -1,4 +1,4 @@
-<form id="formulario" class="mb-4">
+<form id="formulario" class="mb-4" data-aos="fade-down">
     <input class="bg-dark border radius px-4 py-1 w-50 text-light buscar" type="text" id="buscar-titulo" placeholder="Encuentra tu manga">
     <button class="btn btn-primary border radius px-3" type="submit">Buscar</button>
 </form>

@@ -44,8 +44,8 @@ $primary : #04262e;
     }
 
     &:hover {
-        border: solid 2px white;
-        transition: 300ms !important;
+        border: solid 3px white !important;
+        transition: 200ms !important;
     }
 
     .btn {
@@ -61,4 +61,7 @@ $primary : #04262e;
         width: 300px;
         height: 100%;
     }
+}
+.card{
+    border: solid 2px transparent !important;
 }

@@ -65,4 +65,9 @@ class Manga extends Model
     {
         return $this->belongsToMany(Genero::class, 'generos_mangas', 'manga_id', 'genero_id', 'manga_id', 'genero_id');
     }
+
+    public function comentarios()
+    {
+        return $this->hasMany(Comentario::class, 'manga_id', 'manga_id');
+    }
 }

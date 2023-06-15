@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comentario;
 use Illuminate\Http\Request;
 use App\Models\Manga;
 use App\Models\Genero;
 use App\Models\Usuario;
+use Auth;
 
 class AdminMangasController extends Controller
 {
@@ -17,7 +19,7 @@ class AdminMangasController extends Controller
         ]);
     }
     public function ver(int $id)
-    {   
+    {
         $manga = Manga::findOrFail($id);
         return view('verDetalle', [
             'manga' => $manga,
@@ -35,7 +37,7 @@ class AdminMangasController extends Controller
         $request->validate(Manga::VALIDACION, Manga::MENSAJES);
         $data = $request->except(['_token']);
         if ($request->hasFile('portada')) {
-            
+
             $portada = $request->file('portada');
             $portadaName = date('YmdHis') . "_" . \Str::slug($data['titulo']) . "." . $portada->extension();
             $portada->move(public_path('img'), $portadaName);
@@ -100,5 +102,20 @@ class AdminMangasController extends Controller
         }
         return redirect()->route('admin.mangas.lista')->with('status.message', 'El Manga <b>' . e($manga->titulo) . '</b> fue editado con exito.')
             ->with('status.type', 'success');
+    }
+
+    public function guardar(Request $request)
+    {
+        $validatedData = $request->validate([
+            'manga_id' => 'required|integer',
+            'comentario' => 'required|string',
+        ]);
+        $usuarioId = Auth::user()->id;
+        $comentario = new Comentario();
+        $comentario->manga_id = $validatedData['manga_id'];
+        $comentario->comentario = $validatedData['comentario'];
+        $comentario->usuario_id = $usuarioId;
+        $comentario->save();
+        return redirect()->route('estrenos');
     }
 }

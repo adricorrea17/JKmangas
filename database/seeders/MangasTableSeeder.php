@@ -81,7 +81,7 @@ class MangasTableSeeder extends Seeder
                 'portada' => 'akame.png',
                 'mangaka' => 'Takahiro, Tetsuya Tashiro',
                 'tomos' => 15,
-                'proximo_tomo' => Carbon::now()->addMonths(2)->toDateString(),
+                'proximo_tomo' => now()->addMonths(2)->toDateString(),
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -93,7 +93,7 @@ class MangasTableSeeder extends Seeder
                 'portada' => 'blue.png',
                 'mangaka' => 'Muneyuki Kaneshiro, Yusuke Nomura',
                 'tomos' => 10,
-                'proximo_tomo' => Carbon::now()->addMonths(1)->toDateString(),
+                'proximo_tomo' => now()->addMonths(1)->toDateString(),
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -105,7 +105,7 @@ class MangasTableSeeder extends Seeder
                 'portada' => 'myhero.png',
                 'mangaka' => 'Kohei Horikoshi',
                 'tomos' => 32,
-                'proximo_tomo' => Carbon::now()->addMonths(3)->toDateString(),
+                'proximo_tomo' => now()->addMonths(3)->toDateString(),
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -117,7 +117,7 @@ class MangasTableSeeder extends Seeder
                 'portada' => 'doctor.png',
                 'mangaka' => 'Riichiro Inagaki, Boichi',
                 'tomos' => 22,
-                'proximo_tomo' => Carbon::now()->addMonths(1)->toDateString(),
+                'proximo_tomo' => now()->addMonths(1)->toDateString(),
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -129,7 +129,7 @@ class MangasTableSeeder extends Seeder
                 'portada' => 'black.png',
                 'mangaka' => 'Yuki Tabata',
                 'tomos' => 28,
-                'proximo_tomo' => Carbon::now()->addMonths(2)->toDateString(),
+                'proximo_tomo' => now()->addMonths(2)->toDateString(),
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -141,7 +141,7 @@ class MangasTableSeeder extends Seeder
                 'portada' => 'saitama.png',
                 'mangaka' => 'ONE, Yusuke Murata',
                 'tomos' => 23,
-                'proximo_tomo' => Carbon::now()->addMonths(3)->toDateString(),
+                'proximo_tomo' => now()->addMonths(3)->toDateString(),
                 'created_at' => now(),
                 'updated_at' => now()
             ],

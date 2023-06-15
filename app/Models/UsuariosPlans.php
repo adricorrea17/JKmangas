@@ -35,7 +35,7 @@ use Illuminate\Database\Eloquent\Model;
 class UsuariosPlans extends Model
 {
     protected $table = "usuarios_plans";
-    protected $primaryKey = "usuarios_plan_id";
+    protected $primaryKey = "id";
     protected $fillable = ['nombre', 'imagen', 'precio', 'descripcion', 'id'];
 
     public function usuarios()
