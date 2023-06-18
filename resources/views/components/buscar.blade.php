@@ -10,14 +10,11 @@
 
             let buscarTitulo = document.getElementById('buscar-titulo').value.toLowerCase();
 
-
             let mangas = document.getElementsByClassName('manga');
 
             for (let i = 0; i < mangas.length; i++) {
                 let manga = mangas[i];
                 let titulo = manga.querySelector('.titulo-manga').textContent.toLowerCase();
-
-
 
                 if (titulo.includes(buscarTitulo)) {
                     manga.style.display = 'block';

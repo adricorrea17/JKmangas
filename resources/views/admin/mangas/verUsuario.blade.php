@@ -29,16 +29,14 @@
             <p><label class=" bg-light text-dark px-3 rounded fw-bold">{{ $usuario->UsuariosPlans()->first()->nombre }}</label></p>
             @endif
 
-            
-            @if($usuario->usuarios_rol_id == 2)
-            <form  action="{{ route('admin.ban', ['id' => $usuario->id]) }}" method="post">
-            @csrf
+            @if($usuario->usuarios_rol_id != 1 && $usuario->id != Auth::user()->id)
+            <form action="{{ route('admin.ban', ['id' => $usuario->id]) }}" method="post">
+                @csrf
+                @if(!$usuario->ban)
                 <button type="submit" class="btn btn-outline-danger w-100 radius">Banear</button>
-            </form>
-            @elseif($usuario->usuarios_rol_id == 3)
-            <form action="{{ route('admin.sacar-ban', ['id' => $usuario->id]) }}" method="post">
-            @csrf
+                @else
                 <button type="submit" class="btn btn-outline-success w-100 radius">Sacar-Ban</button>
+                @endif
             </form>
             @endif
 

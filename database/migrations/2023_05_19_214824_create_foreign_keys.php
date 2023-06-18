@@ -19,11 +19,6 @@ class CreateForeignKeys extends Migration
 				->onDelete('set null')
 				->onUpdate('no action');
 		});
-		//Schema::table('mangas', function (Blueprint $table) {
-			//$table->foreign('mangaka')->references('id')->on('mangakas')
-				//->onDelete('no action')
-				//->onUpdate('no action');
-		//});
 		Schema::table('usuarios_pagos', function (Blueprint $table) {
 			$table->foreign('plan_id')->references('id')->on('usuarios_plans')
 				->onDelete('no action')

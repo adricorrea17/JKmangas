@@ -16,12 +16,13 @@ class CreateUsuariosTable extends Migration {
 			$table->string('imagen', 255)->nullable();
 			$table->integer('usuarios_plan_id')->unsigned()->nullable();
 			$table->integer('usuarios_rol_id')->unsigned()->nullable();
+			$table->boolean('ban')->default(false);
 			$table->datetime('fecha_cierre')->nullable();
 		});
 	}
 
 	public function down()
 	{
-		Schema::drop('usuarios');
+		Schema::dropIfExists('usuarios');
 	}
 }

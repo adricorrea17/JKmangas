@@ -31,6 +31,13 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('coments');
+        Schema::table('comentarios', function (Blueprint $table) {
+			$table->dropForeign('comentarios_usuario_id_foreign');
+		});
+        Schema::table('comentarios', function (Blueprint $table) {
+			$table->dropForeign('comentarios_manga_id_foreign');
+		});
+        Schema::dropIfExists('comentarios');
+        
     }
 };

@@ -14,6 +14,15 @@ class Comentario extends Model
         'usuario_id',
         'comentario',
     ];
+    public const VALIDACION = [
+        'manga_id' => 'required|integer',
+        'comentario' => 'required|string',
+    ];
+    public const MENSAJES = [
+        'manga_id.required' => 'El Campo de titulo esta vacio',
+        'comentario.required' => 'El titulo no puedes ser menor a dos caracteres',
+        
+    ];
 
     // Relación con el modelo Manga
     public function manga()

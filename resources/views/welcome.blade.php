@@ -5,7 +5,6 @@
 @extends('layouts.main')
 @section('main')
 @section('title') HOME @endsection
-@if(!Auth::check() || Auth::user()->usuarios_rol_id != 3)
 <section class="gradiant">
     <div class="hero container d-flex flex-md-row">
         <div class="letras-japonesas" data-aos="fade-left" data-aos-delay="3000" data-aos-duration="1000">
@@ -84,25 +83,5 @@
 
     @include('components.planes')
 </section>
-@else
-<section class="margen rounded p-5 text-light mx-auto col-10 col-md-6 col-lg-8">
 
-<div class="">
-        <div class="card text-center text-white bg-dark border p-5">
-            <div class="card-header">
-                <h1 class="card-title">Usuario Baneado</h1>
-            </div>
-            <div class="card-body">
-                <p class="card-text fs-3">Lamentamos informarle que el usuario <b>{{$usuario -> nombre_usuario}}</b> está baneado de momento.</p>
-                <p class="card-text fs-4">Por favor, contacte al administrador para más información.</p>
-            </div>
-            <div class="card-footer">
-            <a class="btn btn-primary" href="mailto:adriancorrea2405@gmail.com">Aqui podras contactar con el admin</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-@endif
 @endsection

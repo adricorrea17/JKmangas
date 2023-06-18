@@ -42,7 +42,7 @@
         @csrf
         <input type="hidden" name="manga_id" value="{{$manga->manga_id}}">
         <div class="form-group mb-2">
-            <label for="comentario">Agregar un comentario:</label>
+            <label for="comentario" class="mb-2 fs-5">Agregar un comentario:</label>
             <textarea class="form-control" id="comentario" name="comentario" rows="3"></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Enviar comentario</button>
@@ -56,7 +56,7 @@
                 <img class="img-comentario" src="{{ url('img/' . $comentario->usuario->imagen) }}" alt="">
                 <p class="px-2 my-auto"><strong>{{ $comentario->usuario->nombre_usuario }}</strong></p>
                 @if($comentario->usuario->usuarios_plan_id == 3)
-                    <img height="20px" src="{{ url('img/plan-3.png') }}" alt="">
+                    <img class="estrellita my-auto" src="{{ url('img/plan-3.png') }}" alt="">
                 @endif
                 <!-- @if($comentario->usuario->usuarios_rol_id == 1)
                     <p>aca poner el gogo del admin????</p>

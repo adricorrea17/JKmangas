@@ -147,82 +147,45 @@ class AuthController extends Controller
     {
         $usuario = Usuario::find($id);
 
-        if ($usuario) {
-            $usuario->usuarios_rol_id = 3;
+        if ($usuario && $usuario->usuarios_rol_id != 1) {
+            $usuario->ban = !$usuario->ban;
             $usuario->save();
-
-            return redirect()->route('admin.mangas.usuarios')->with('status.message', 'El usuario <b>' . e($usuario->nombre_usuario) . '</b> a sido baneado con exito')->with('status.type', 'success');
+            $mensaje = ($usuario->ban) ? 'baneado' : 'desbaneado';
+            return redirect()->route('admin.mangas.usuarios')->with('status.message', 'El usuario <b>' . e($usuario->nombre_usuario) . '</b> a sido ' . e($mensaje) . ' con exito')->with('status.type', 'success');
         } else {
             return redirect()->route('admin.mangas.usuarios')->with('status.message', 'Por algun motivo el usuario no a sido baneado')->with('status.type', 'danger');
         }
     }
 
-    public function desbanear($id)
+
+
+    public function cambiarPlan(Request $request)
     {
-        $usuario = Usuario::find($id);
+        $usuario = Auth::user();
+        $nuevo_plan_id = $request->input('plan');
+        if ($usuario->usuarios_plan_id == $nuevo_plan_id) {
+            return redirect()->back()->with('status.message', 'Por algun motivo no se pudo cambiar el plan')->with('status.type', 'danger');
+        } elseif ($nuevo_plan_id <= '0') {
+            $nuevo_plan_id = null;
+            $mensaje = 'El plan a sido cancelado correctamente';
+            //El cancelar plan no funciona correctamente, porque en los id 
+            //que mandan los planes nunca se manda el 0
+            //una idea que se me ocurrio (seguramente este mal) es que si 
+            //$usuario->usuarios_plan_id == $plan->id que el value del input hidden sea 0
+            //lo podraimos hacer con un operador ternario 
+        } elseif ($usuario->usuarios_plan_id < $nuevo_plan_id) {
 
-        if ($usuario) {
-            $usuario->usuarios_rol_id = 2;
-            $usuario->save();
-
-            return redirect()->route('admin.mangas.usuarios')->with('status.message', 'Se le a quitado el ban a <b>' . e($usuario->nombre_usuario) . '</b> exitosamente')->with('status.type', 'success');
-        } else {
-            return redirect()->route('admin.mangas.usuarios')->with('status.message', 'Por algun error no se le a podido quitar el ban a <b>' . e($usuario->nombre_usuario) . '</b>')->with('status.type', 'danger');
+            //Redirigir a mercado pago
+            //Usuario::where('id', $userId)->update(['usuarios_plan_id' => $plan->id]);
+            // Usuario::where('id', $userId)->update(['fecha_cierre' => now()->addMonths(1)]);
+            $mensaje = 'El plan a sido comprado correctamente';
+        } elseif ($usuario->usuarios_plan_id > $nuevo_plan_id) {
+            $mensaje = 'El plan a sido reducido correctamente';
         }
-    }
-
-    public function comprar($id)
-    {
-        $plan = UsuariosPlans::find($id);
-        if (!$plan) {
-            return redirect()->back()->with('status.message', 'El plan no existe')->with('status.type', 'danger');
-        }
-        $userId = Auth::user()->id;
-        Usuario::where('id', $userId)->update(['usuarios_plan_id' => $plan->id]);
-        Usuario::where('id', $userId)->update(['fecha_cierre' => now()->addMonths(1)]);
-        return redirect()->route('auth.perfil')->with('status.message', '¡Plan comprado con éxito!')->with('status.type', 'success');
-    }
-
-
-    public function cancelar()
-    {
-        $userId = Auth::user()->id;
-        Usuario::where('id', $userId)->update(['usuarios_plan_id' => null]);
-        return redirect()->route('auth.perfil')->with('status.message', '¡Plan cancelado con éxito!')->with('status.type', 'success');
+        Usuario::where('id', $usuario->id)->update(['usuarios_plan_id' => $nuevo_plan_id]);
+        return redirect()->route('auth.perfil')->with('status.message', $mensaje)->with('status.type', 'success');
     }
 
 
-    public function mejorar($id)
-    {
-        $plan = UsuariosPlans::find($id);
-        if (!$plan) {
-            return redirect()->back()->with('status.message', 'El plan no existe')->with('status.type', 'danger');
-        }
-        $userId = Auth::user()->id;
-        $usuario = Usuario::find($userId);
-        if ($usuario->usuarios_plan_id && $plan->id > $usuario->usuarios_plan_id) {
-            $usuario->usuarios_plan_id = $plan->id;
-            $usuario->save();
-            return redirect()->route('auth.perfil')->with('status.message', '¡Plan mejorado con éxito!')->with('status.type', 'success');
-        } else {
-            return redirect()->back()->with('status.message', 'No puedes mejorar tu plan')->with('status.type', 'danger');
-        }
-    }
-
-    public function reducir($id)
-    {
-        $plan = UsuariosPlans::find($id);
-        if (!$plan) {
-            return redirect()->back()->with('status.message', 'El plan no existe')->with('status.type', 'danger');
-        }
-        $userId = Auth::user()->id;
-        $usuario = Usuario::find($userId);
-        if ($usuario->usuarios_plan_id && $plan->id < $usuario->usuarios_plan_id) {
-            $usuario->usuarios_plan_id = $plan->id;
-            $usuario->save();
-            return redirect()->route('auth.perfil')->with('status.message', '¡Plan reducido con éxito!')->with('status.type', 'success');
-        } else {
-            return redirect()->route('auth.perfil')->with('status.message', 'No puedes reducir tu plan')->with('status.type', 'danger');
-        }
-    }
+    
 }

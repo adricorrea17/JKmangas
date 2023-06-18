@@ -106,10 +106,7 @@ class AdminMangasController extends Controller
 
     public function guardar(Request $request)
     {
-        $validatedData = $request->validate([
-            'manga_id' => 'required|integer',
-            'comentario' => 'required|string',
-        ]);
+        $validatedData = $request->validate(Comentario::VALIDACION, Comentario::MENSAJES);
         $usuarioId = Auth::user()->id;
         $comentario = new Comentario();
         $comentario->manga_id = $validatedData['manga_id'];
