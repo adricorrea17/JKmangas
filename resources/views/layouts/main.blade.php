@@ -27,7 +27,7 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Abrir/cerrar menú de navegación">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <nav class="collapse navbar-collapse d-flex flex-row-reverse " id="navbar">
+                <nav class="collapse navbar-collapse bg-primary " id="navbar">
                     <ul class="navbar-nav d-flex align-items-center gap-3">
                         <li class="nav-item">
                             <a class="nav-link text-light font" href="{{ route('inicio')}}">Home</a>
@@ -75,7 +75,7 @@
             @yield('main')
         </main>
 
-        <footer class="d-flex justify-content-around bg-dark align-items-center py-3">
+        <footer class="d-flex flex-column flex-sm-row justify-content-around bg-dark align-items-center py-3">
             <p class="col-md-4 mb-0 text-light">© Portales y Comercios Electronico</p>
 
             <div>

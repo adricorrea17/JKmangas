@@ -1,8 +1,9 @@
+$primary : #04262e;
+@import 'bootstrap/bootstrap';
+
 @import 'components/plans-boxes';
 @import 'components/manga';
-
-@import 'bootstrap/bootstrap';
-$primary : #04262e;
+@import 'components/hero';
 
 @font-face {
     font-family: 'Poppins', sans-serif;
@@ -301,92 +302,7 @@ body {
     }
 }
 
-.hero {
-    position: relative;
-    height: calc(100vh - 56px);
-    overflow-y: hidden;
 
-    &::after {
-        content: '';
-        display: block;
-        height: 150px;
-        background: #000;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: linear-gradient(0deg, black, transparent);
-    }
-
-    .marquee {
-        padding: 0 10%;
-
-        @include media-breakpoint-down(xl) {
-            padding: 0 20%;
-        }
-        .marquee-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            grid-gap: 2rem;
-
-            @include media-breakpoint-down(xl) {
-                grid-gap: 2rem;
-                grid-template-columns: repeat(1, 1fr);
-            }
-
-            width: 100%;
-
-            .item {
-                height: 450px;
-
-                &:nth-child(odd) {
-                    margin-top: -6rem;
-                }
-
-                img {
-                    height: 450px;
-                    width: 100%;
-                    object-fit: cover;
-                }
-
-                @include media-breakpoint-down(xl) {
-                    &:nth-child(odd) {
-                        margin-top: inherit;
-                    }
-
-                    height: auto;
-
-                    img {
-                        height: auto;
-                        max-height: 500px;
-                        object-fit: cover;
-                    }
-                }
-            }
-
-
-
-        }
-    }
-
-
-    .letras-japonesas {
-        opacity: .4;
-        color: white;
-        font-size: 7rem;
-        position: absolute;
-        top: 2rem;
-        left: 0rem;
-        font-weight: 900;
-
-        @include media-breakpoint-down(xl) {
-            left: 3rem;
-        }
-        @include media-breakpoint-down(sm) {
-            left: 1rem;
-        }
-    }
-}
 
 .container {
     max-width: 1580px;

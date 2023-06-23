@@ -17,7 +17,7 @@
         </div>
         <div class="col-12 col-md-6 d-flex">
 
-            <marquee direction="up" class="marquee" loop scrollamount="18">
+            <marquee id="marqueeMangas" direction="up" class="marquee" loop scrollamount="18">
                 <div class="marquee-grid">
                     @for($z=0; $z<3; $z++) @foreach($mangas as $i=> $manga)
                         @if($manga->portada != null && file_exists(public_path('img/' . $manga->portada)))
@@ -30,7 +30,7 @@
                 </div>
             </marquee>
         </div>
-        <div class="text-center text-md-start text-light radius gap-3 d-flex flex-column justify-content-center col-12 col-md-6 p-2 py-5 p-lg-5 ">
+        <div class="textColumn text-center text-md-start text-light radius gap-3 d-flex flex-column justify-content-center col-12 col-md-6 p-2 py-5 p-lg-5 ">
             <h1 class="font fw-bold">JKmangas</h1>
             <p class="font fs-3">La página en la cual podrás enterarte de los próximos estrenos y leer tus mangas favoritos</p>
 
@@ -50,6 +50,16 @@
             @endif
         </div>
     </div>
+    <script>
+        var marquee = document.getElementById("marqueeMangas");
+        if (window.innerWidth < 768) {
+            // Si la ventana es menor a 768px de ancho (típicamente dispositivos móviles), reducir la velocidad
+            marquee.setAttribute("scrollamount", "10");
+        } else {
+            // En caso contrario, dejar la velocidad original
+            marquee.setAttribute("scrollamount", "18");
+        }
+    </script>
 </section>
 
 
