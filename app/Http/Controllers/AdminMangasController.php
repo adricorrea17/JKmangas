@@ -61,11 +61,8 @@ class AdminMangasController extends Controller
     {
 
         $manga = Manga::findOrFail($id);
-        $comentarios = $manga->comentarios;
-        foreach ($comentarios as $comentario) {
-            $comentario->delete();
-        }
         $manga->generos()->detach();
+        $manga->comentarios()->delete();
         $manga->delete();
         $oldPortada = $manga->portada;
         if ($oldPortada != null && file_exists(public_path('img' . $oldPortada))) {

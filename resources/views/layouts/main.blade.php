@@ -32,7 +32,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-light font" href="{{ route('inicio')}}">Home</a>
                         </li>
-                        @if(!Auth::check() || Auth::user()->usuarios_rol_id != 3)
+                        @if(!Auth::check() || Auth::user()->ban != 1)
                         <li class="nav-item">
                             <a class="nav-link text-light font " href="{{ route('estrenos')}}">Mangas</a>
                         </li>

@@ -161,6 +161,7 @@ class AuthController extends Controller
 
     public function cambiarPlan(Request $request)
     {
+        //poner que si el usuario esta baneado no se haga la funcion de cambiar plan?
         $usuario = Auth::user();
         $nuevo_plan_id = $request->input('plan');
         if ($usuario->usuarios_plan_id == $nuevo_plan_id) {

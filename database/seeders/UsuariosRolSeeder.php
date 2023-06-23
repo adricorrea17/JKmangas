@@ -26,10 +26,7 @@ class UsuariosRolSeeder extends Seeder
                 'id' => 2,
                 'rol' => 'Usuario Comun',
             ],
-            [
-                'id' => 3,
-                'rol' => 'Baneado',
-            ]
+            
         ]);
     }
 }
