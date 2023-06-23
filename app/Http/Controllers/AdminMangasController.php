@@ -45,7 +45,7 @@ class AdminMangasController extends Controller
         }
         $manga = Manga::create($data);
         $manga->generos()->attach($data['generos'] ?? []);
-        return redirect()->route('admin.mangas.lista')->with('status.message', 'El Manga <b>' . e($manga->titulo) . '</b> fue creado con exito.')
+        return redirect()->route('admin.mangas.lista')->with('status.message', 'El Manga <b>' . $manga->titulo . '</b> fue creado con exito.')
             ->with('status.type', 'success');
     }
 
@@ -61,13 +61,17 @@ class AdminMangasController extends Controller
     {
 
         $manga = Manga::findOrFail($id);
+        $comentarios = $manga->comentarios;
+        foreach ($comentarios as $comentario) {
+            $comentario->delete();
+        }
         $manga->generos()->detach();
         $manga->delete();
         $oldPortada = $manga->portada;
         if ($oldPortada != null && file_exists(public_path('img' . $oldPortada))) {
             unlink(public_path('img/' . $oldPortada));
         }
-        return redirect()->route('admin.mangas.lista')->with('status.message', 'El Manga <b>' . e($manga->titulo) . '</b> fue eliminado con exito.')
+        return redirect()->route('admin.mangas.lista')->with('status.message', 'El Manga <b>' . $manga->titulo . '</b> fue eliminado con exito.')
             ->with('status.type', 'success');
     }
 
@@ -100,7 +104,7 @@ class AdminMangasController extends Controller
         if ($oldPortada != null && file_exists(public_path('img' . $oldPortada))) {
             unlink(public_path('img/' . $oldPortada));
         }
-        return redirect()->route('admin.mangas.lista')->with('status.message', 'El Manga <b>' . e($manga->titulo) . '</b> fue editado con exito.')
+        return redirect()->route('admin.mangas.lista')->with('status.message', 'El Manga <b>' . $manga->titulo . '</b> fue editado con exito.')
             ->with('status.type', 'success');
     }
 
