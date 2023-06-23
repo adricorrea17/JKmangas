@@ -83,8 +83,6 @@
                     <img src="{{ url('img/logo.png')}}" alt="El logo de jkmangas">
                 </a>
             </div>
-
-
         </footer>
     </div>
 </body>

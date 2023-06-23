@@ -9,6 +9,12 @@ class UsuariosPagos extends Model
 {
     protected $table = 'usuarios_pagos';
     public $timestamps = true;
+    protected $fillable = [
+        'plan_id',
+        'usuario_id',
+        'mp_validacion',
+        'monto'
+    ];
 
     public function plan()
     {

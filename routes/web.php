@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminMangasController;
+use App\Models\UsuariosPagos;
 use App\Http\Controllers\EstrenosController;
 use Illuminate\Support\Facades\Route;
 /*
@@ -72,3 +73,22 @@ Route::post('/cambiar-plan', [\App\Http\Controllers\AuthController::class, 'camb
 
 //comentarios
 Route::post('/comentario', [AdminMangasController::class, 'guardar'])->name('guardar.comentario');
+
+Route::get('pago/feedback', function() {
+
+    // $respuesta = array(
+    //     'Payment' => request()->get('payment_id'),
+    //     'Status' => request()->get('status'),
+    //     'MerchantOrder' => request()->get('merchant_order_id')        
+    // ); 
+
+    // UsuariosPagos::create([
+    //     'plan_id' => 1,
+    //     'usuario_id' => 2,
+    //     'mp_validacion' => json_encode($respuesta),
+    //     'monto' => 20
+    // ]);
+
+    // dd($respuesta);
+
+});
