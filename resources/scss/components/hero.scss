@@ -106,7 +106,7 @@
         @include media-breakpoint-down(xl) {
             left: 3rem;
         }
-        @include media-breakpoint-down(sm) {
+        @include media-breakpoint-down(md) {
             left: 1rem;
             display: none;
         }

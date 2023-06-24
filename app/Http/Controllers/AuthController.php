@@ -161,6 +161,7 @@ class AuthController extends Controller
 
     public function cambiarPlan(Request $request)
     {
+        if(Auth::user()->ban != 1){
         //poner que si el usuario esta baneado no se haga la funcion de cambiar plan?
         $usuario = Auth::user();
         $nuevo_plan_id = $request->input('plan');
@@ -184,7 +185,10 @@ class AuthController extends Controller
             $mensaje = 'El plan a sido reducido correctamente';
         }
         Usuario::where('id', $usuario->id)->update(['usuarios_plan_id' => $nuevo_plan_id]);
-        return redirect()->route('auth.perfil')->with('status.message', $mensaje)->with('status.type', 'success');
+        return redirect()->back()->with('status.message', $mensaje)->with('status.type', 'success');
+    }else{
+        return redirect()->back()->with('status.message', 'No pudiste cambiar el plan porque el usuario se encuentra baneado')->with('status.type', 'danger');
+    }
     }
 
 

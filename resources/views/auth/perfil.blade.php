@@ -44,6 +44,7 @@
             </div>
 
 </section>
+@if($usuario->ban != 1)
 <section class="mb-6 mt-1 container mx-auto">
     <h2 class="pt-5 text-light text-center font">
         @if( $usuario->usuarios_plan_id )
@@ -55,6 +56,6 @@
 
     @include('components.planes')
 </section>
-
+@endif
 
 @endsection

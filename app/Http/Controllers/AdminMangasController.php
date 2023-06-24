@@ -114,6 +114,6 @@ class AdminMangasController extends Controller
         $comentario->comentario = $validatedData['comentario'];
         $comentario->usuario_id = $usuarioId;
         $comentario->save();
-        return redirect()->route('estrenos');
+        return redirect()->back();
     }
 }
