@@ -76,19 +76,22 @@ Route::post('/comentario', [AdminMangasController::class, 'guardar'])->name('gua
 
 Route::get('pago/feedback', function() {
 
-    // $respuesta = array(
-    //     'Payment' => request()->get('payment_id'),
-    //     'Status' => request()->get('status'),
-    //     'MerchantOrder' => request()->get('merchant_order_id')        
-    // ); 
+    $respuesta = array(
+        'Payment' => request()->get('payment_id'),
+        'Status' => request()->get('status'),
+        'MerchantOrder' => request()->get('merchant_order_id')        
+    ); 
 
-    // UsuariosPagos::create([
-    //     'plan_id' => 1,
-    //     'usuario_id' => 2,
-    //     'mp_validacion' => json_encode($respuesta),
-    //     'monto' => 20
-    // ]);
+    if( request()->get('status') == 'approved' ) {
+        UsuariosPagos::create([
+            'plan_id' => 1,
+            'usuario_id' => 2,
+            'mp_validacion' => json_encode($respuesta),
+            'monto' => 20
+        ]);
+    }
 
-    // dd($respuesta);
+
+    dd($respuesta);
 
 });
