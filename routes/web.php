@@ -68,30 +68,11 @@ Route::post('/banear-usuario/{id}', [\App\Http\Controllers\AuthController::class
 
 
 //editar plan
-Route::post('/cambiar-plan', [\App\Http\Controllers\AuthController::class, 'cambiarPlan'])->name('cambiar-plan')->middleware(['auth']);
+Route::post('/cambiar-plan', [\App\Http\Controllers\UsuariosPagosController::class, 'cambiarPlan'])->name('cambiar-plan')->middleware(['auth']);
 
-
+//Pagar plan
+Route::get('pagar-plan', [\App\Http\Controllers\UsuariosPagosController::class, 'CrearBotonPago'])->name('pagar-plan')->middleware(['auth','ban']);
+Route::get('pago/feedback', [\App\Http\Controllers\UsuariosPagosController::class, 'respuestaPagoMP'])->name('pagar-feedback')->middleware(['auth']);
 //comentarios
 Route::post('/comentario', [AdminMangasController::class, 'guardar'])->name('guardar.comentario');
 
-Route::get('pago/feedback', function() {
-
-    $respuesta = array(
-        'Payment' => request()->get('payment_id'),
-        'Status' => request()->get('status'),
-        'MerchantOrder' => request()->get('merchant_order_id')        
-    ); 
-
-    if( request()->get('status') == 'approved' ) {
-        UsuariosPagos::create([
-            'plan_id' => 1,
-            'usuario_id' => 2,
-            'mp_validacion' => json_encode($respuesta),
-            'monto' => 20
-        ]);
-    }
-
-
-    dd($respuesta);
-
-});
