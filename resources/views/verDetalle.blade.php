@@ -58,9 +58,6 @@
                 @if($comentario->usuario->usuarios_plan_id == 3)
                     <img class="estrellita my-auto" src="{{ url('img/plan-3.png') }}" alt="">
                 @endif
-                <!-- @if($comentario->usuario->usuarios_rol_id == 1)
-                    <p>aca poner el gogo del admin????</p>
-                @endif -->
             </div>
             <p>{{ $comentario->comentario }}</p>
         @endforeach

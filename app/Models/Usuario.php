@@ -27,14 +27,17 @@ class Usuario extends User
     ];
 
     public const VALIDAR = [
-        'nombre_usuario' => 'required',
-        'password' => 'required',
-        'email' => 'required',
+        'nombre_usuario' => 'required|unique:usuarios',
+        'password' => 'required|min:5',
+        'email' => 'required|unique:usuarios',
     ];
     public const MENSAJE = [
         'nombre_usuario.required' => 'El Campo de nombre de usuario esta vacio',
+        'nombre_usuario.unique' => 'El nombre de usuario ya existe',
         'password.required' => 'El Campo de password esta vacio',
+        'password.min' => 'La contraseña debe tener al menos 5 caracteres',
         'email.required' => 'El Campo de email esta vacio',
+        'email.unique' => 'El correo electrónico ya está registrado',
     ];
 
     public function rol()
@@ -46,4 +49,5 @@ class Usuario extends User
     {
         return $this->hasOne(UsuariosPlans::class, 'id', 'usuarios_plan_id');
     }
+    
 };

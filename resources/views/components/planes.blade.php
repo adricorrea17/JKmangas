@@ -17,7 +17,7 @@
         <form action="{{ route('cambiar-plan', ['id' => $plan->id]) }}" method="post">
             @csrf
             @if(Auth::check())
-            <input type="hidden" name="plan" value="{{ $usuario->usuarios_plan_id == $plan->id ? 0 : $plan->id}}">
+            <input type="hidden" name="plan" value="{{$plan->id}}">
             @endif
             @if(!Auth::check() || Auth::check() && $usuario->usuarios_plan_id == null)
             <button class="col-12 radius mx-auto btn btn-primary fs-5 font">Comprar {{$plan->nombre}}</button>

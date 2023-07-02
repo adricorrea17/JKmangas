@@ -16,24 +16,37 @@ class UsuariosPagosController extends Controller
         if (Auth::user()->ban != 1) {
             $usuario = Auth::user();
             $nuevo_plan_id = $request->input('plan');
-            if ($usuario->usuarios_plan_id == $nuevo_plan_id) {
-                return redirect()->back()->with('status.message', 'Por algun motivo no se pudo cambiar el plan')->with('status.type', 'danger');
-            } elseif ($nuevo_plan_id <= '0') {
-                $nuevo_plan_id = null;
-                $mensaje = 'El plan a sido cancelado correctamente';
+            if ($usuario->usuarios_plan_id == $nuevo_plan_id || $usuario->usuarios_plan_id > $nuevo_plan_id) {
+                $planUsuario = UsuariosPlans::findOrFail($nuevo_plan_id);
+                $usuarioId = Usuario::findOrFail($usuario->id);
+                return view('auth.verificacionPlan', [
+                    'plan' => $planUsuario,
+                    'usuario' => $usuarioId,
+                ]);
             } elseif ($usuario->usuarios_plan_id < $nuevo_plan_id) {
                 $request->session()->put('plan_id_para_pagar', $nuevo_plan_id);
                 return redirect()->route('pagar-plan');
-            } elseif ($usuario->usuarios_plan_id > $nuevo_plan_id) {
-                $mensaje = 'El plan a sido reducido correctamente';
             }
-            Usuario::where('id', $usuario->id)->update(['usuarios_plan_id' => $nuevo_plan_id]);
-            return redirect()->back()->with('status.message', $mensaje)->with('status.type', 'success');
         } else {
             return redirect()->back()->with('status.message', 'No pudiste cambiar el plan porque el usuario se encuentra baneado')->with('status.type', 'danger');
         }
     }
 
+
+    
+    public function VerificacionPlan(Request $request)
+    {
+        $usuario = Auth::user();
+        $plan_id = $request->input('plan');
+        if ($usuario->usuarios_plan_id == $plan_id) {
+            $plan_id = null;
+            $mensaje = 'El Plan a sido cancelado con exito';
+        } elseif ($usuario->usuarios_plan_id > $plan_id) {
+            $mensaje = 'El Plan a sido reducido con exito';
+        }
+        Usuario::where('id',$usuario->id)->update(['usuarios_plan_id' => $plan_id]);
+        return redirect()->route('inicio')->with('status.message', $mensaje)->with('status.type', 'success');
+    }
     public function CrearBotonPago(Request $request)
     {
         $planId = $request->session()->get('plan_id_para_pagar');

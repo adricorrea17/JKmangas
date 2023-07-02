@@ -42,6 +42,9 @@
                             <a class="nav-link text-light font " href="{{ route('admin.mangas.lista')}}">Panel de administracion</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-light font " href="{{ route('admin.dashboard')}}">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-light font " href="{{ route('admin.mangas.usuarios')}}">Usuarios</a>
                         </li>
                         @endif

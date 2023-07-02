@@ -7,7 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\Manga;
 use App\Models\Genero;
 use App\Models\Usuario;
+use App\Models\UsuariosPagos;
+use Illuminate\Support\Facades\DB;
 use Auth;
+use Carbon\Carbon;
 
 class AdminMangasController extends Controller
 {
@@ -115,5 +118,37 @@ class AdminMangasController extends Controller
         $comentario->usuario_id = $usuarioId;
         $comentario->save();
         return redirect()->back();
+    }
+    public function dashboard()
+    {
+        $usuarios = Usuario::latest()->take(5)->get();
+        $ultimasSuscripciones = UsuariosPagos::select('usuarios_pagos.monto', 'usuarios.nombre_usuario', 'usuarios_plans.nombre as plan', 'usuarios_pagos.created_at')
+            ->join('usuarios', 'usuarios_pagos.usuario_id', '=', 'usuarios.id')
+            ->join('usuarios_plans', 'usuarios_pagos.plan_id', '=', 'usuarios_plans.id')
+            ->orderBy('usuarios_pagos.created_at')
+            ->get();
+        $ingresosTotales = DB::table('usuarios_pagos')->sum('monto');
+
+        $now = Carbon::now();
+        $month = $now->month;
+        $year = $now->year;
+
+        $ingresosEsteMes =
+            DB::table('usuarios_pagos')
+            ->whereYear('created_at', $year)
+            ->whereMonth('created_at', $month)->sum('monto');
+
+        $usuariosTotales = DB::table('usuarios')->count();
+
+        $planesAdquiridos = DB::table('usuarios')->whereNotNull('usuarios_plan_id')->count();
+
+        return view('admin.mangas.dashboard', [
+            'ingresosEsteMes' => $ingresosEsteMes,
+            'ingresosTotales' => $ingresosTotales,
+            'planesAdquiridos' => $planesAdquiridos,
+            'usuariosTotales' => $usuariosTotales,
+            'usuarios' => $usuarios,
+            'ultimasSuscripciones' => $ultimasSuscripciones,
+        ]);
     }
 }

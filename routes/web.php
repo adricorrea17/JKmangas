@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'home'])->name('inicio');
 
 //Todos los mangas
-Route::get('/mangas', [\App\Http\Controllers\EstrenosController::class, 'index'])->name('estrenos')->middleware(['ban']);
+Route::get('mangas', [\App\Http\Controllers\EstrenosController::class, 'index'])->name('estrenos')->middleware(['ban']);
 
 Route::middleware(["auth"])->controller(\App\Http\Controllers\AdminMangasController::class)->group(function () {
     //ABM
@@ -42,10 +42,10 @@ Route::middleware(["auth"])->controller(\App\Http\Controllers\AdminMangasControl
 });
 
 //Listado de usuarios
-Route::get('/admin/mangas/usuarios', [\App\Http\Controllers\AuthController::class, 'usuario'])->name('admin.mangas.usuarios')->middleware(['auth'])->middleware(['admin']);
+Route::get('admin/mangas/usuarios', [\App\Http\Controllers\AuthController::class, 'usuario'])->name('admin.mangas.usuarios')->middleware(['auth'])->middleware(['admin']);
 
 //Detalle de usuarios
-Route::get('/admin/mangas/usuarios/{id}', [\App\Http\Controllers\AuthController::class, 'ver'])->name('admin.mangas.verusuario')->middleware(['auth'])->middleware(['admin']);
+Route::get('admin/mangas/usuarios/{id}', [\App\Http\Controllers\AuthController::class, 'ver'])->name('admin.mangas.verusuario')->middleware(['auth'])->middleware(['admin']);
 
 //Login
 Route::get('inicio-sesion', [\App\Http\Controllers\AuthController::class, 'loginForm'])->name('auth.login.form')->middleware(['redirect']);
@@ -64,15 +64,20 @@ Route::get('perfil-form', [\App\Http\Controllers\AuthController::class, 'perfil_
 Route::post('perfil-edit', [\App\Http\Controllers\AuthController::class, 'perfil_edit'])->name('auth.perfil.accion')->middleware(['auth']);
 
 //Ban y Desban
-Route::post('/banear-usuario/{id}', [\App\Http\Controllers\AuthController::class, 'banear'])->name('admin.ban')->middleware(['auth'])->middleware(['admin']);
+Route::post('banear-usuario/{id}', [\App\Http\Controllers\AuthController::class, 'banear'])->name('admin.ban')->middleware(['auth'])->middleware(['admin']);
 
+//Dashboard
+Route::get('admin/dashboard', [\App\Http\Controllers\AdminMangasController::class, 'dashboard'])->name('admin.dashboard')->middleware(['auth','admin']);
 
 //editar plan
-Route::post('/cambiar-plan', [\App\Http\Controllers\UsuariosPagosController::class, 'cambiarPlan'])->name('cambiar-plan')->middleware(['auth']);
+Route::post('cambiar-plan', [\App\Http\Controllers\UsuariosPagosController::class, 'cambiarPlan'])->name('cambiar-plan')->middleware(['auth']);
 
 //Pagar plan
 Route::get('pagar-plan', [\App\Http\Controllers\UsuariosPagosController::class, 'CrearBotonPago'])->name('pagar-plan')->middleware(['auth','ban']);
 Route::get('pago/feedback', [\App\Http\Controllers\UsuariosPagosController::class, 'respuestaPagoMP'])->name('pagar-feedback')->middleware(['auth']);
+
+//Verificacion de reduccion o eliminacion de plan
+Route::post('verificacion', [\App\Http\Controllers\UsuariosPagosController::class, 'VerificacionPlan'])->name('verificacion')->middleware(['auth','ban']);
 //comentarios
-Route::post('/comentario', [AdminMangasController::class, 'guardar'])->name('guardar.comentario');
+Route::post('comentario', [AdminMangasController::class, 'guardar'])->name('guardar.comentario');
 

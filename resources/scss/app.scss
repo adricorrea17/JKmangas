@@ -1,9 +1,11 @@
 $primary : #04262e;
+$secondary : lighten($primary, 30%);
 @import 'bootstrap/bootstrap';
 
 @import 'components/plans-boxes';
 @import 'components/manga';
 @import 'components/hero';
+@import 'components/cards';
 
 @font-face {
     font-family: 'Poppins', sans-serif;
@@ -47,12 +49,12 @@ body {
     color: #f8f9fa;
 
     &:hover {
-        color: lighten($primary, 30%);
+        color: $secondary;
     }
 }
 
 .nav-link:hover {
-    color: lighten($primary, 30%) !important;
+    color: $secondary !important;
 }
 
 .footer p {
@@ -145,7 +147,7 @@ body {
     &:hover {
         background-color: lighten($primary, 10%);
         transition: 300ms;
-        border: solid 1px lighten($primary, 30%);
+        border: solid 1px $secondary;
     }
 }
 
@@ -159,7 +161,7 @@ body {
     color: #f8f9fa;
 
     &:hover {
-        color: lighten($primary, 30%);
+        color: $secondary;
     }
 }
 
@@ -167,7 +169,7 @@ body {
     color: #f8f9fa;
 
     &:hover {
-        color: lighten($primary, 30%);
+        color: $secondary;
     }
 }
 
