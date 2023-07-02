@@ -2,8 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Usuario;
-use App\Models\UsuariosPagos;
+use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -50,6 +49,10 @@ class UsuariosSeeder extends Seeder
                 'updated_at' => $faker->dateTimeBetween('-1 year', 'now'),
             ]);
 
+            $startDate = Carbon::now()->subMonths(1)->startOfDay();
+            $endDate = Carbon::now()->startOfDay();
+            $createdDate = $faker->dateTimeBetween($startDate, $endDate);
+
             $plan = $faker->numberBetween(1, 3);
 
             if ($plan == 1) {
@@ -67,8 +70,8 @@ class UsuariosSeeder extends Seeder
                 'mp_validacion' => 'Aprobada',
                 'monto' => $monto,
                 'plan_id' => $plan,
-                'created_at' => $faker->dateTimeBetween('-1 year', 'now'),
-                'updated_at' => $faker->dateTimeBetween('-1 year', 'now'),
+                'created_at' => $faker->dateTimeBetween($startDate, $endDate),
+                'updated_at' => $faker->dateTimeBetween($createdDate, 'now'),
             ]);
         }
     }

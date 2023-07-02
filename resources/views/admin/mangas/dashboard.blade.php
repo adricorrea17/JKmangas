@@ -6,7 +6,7 @@
     <div class="mb-4">
         @include('components/admin/cardsCounter')
     </div>
-    
+
     <div class="row">
         <div class="col-6">
             <h2>Ultimos usuarios</h2>
@@ -29,12 +29,16 @@
                     </td>
                 </tr>
                 @endforeach
+
                 </tbody>
 
             </table>
+            <tr>
+                <a href="{{route('admin.mangas.usuarios')}}" class="btn btn-primary col-12">Ver mas</a>
+            </tr>
         </div>
         <div class="col-6">
-        <h2>Últimas Suscripciones</h2>
+            <h2>Últimas Suscripciones</h2>
             <table class="w-100 mt-4 table">
                 <thead class="bg-dark text-light">
                     <tr>
