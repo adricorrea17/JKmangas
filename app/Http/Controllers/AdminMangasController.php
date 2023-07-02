@@ -132,7 +132,7 @@ class AdminMangasController extends Controller
             ->join('usuarios', 'usuarios_pagos.usuario_id', '=', 'usuarios.id')
             ->join('usuarios_plans', 'usuarios_pagos.plan_id', '=', 'usuarios_plans.id')
             ->orderBy('usuarios_pagos.created_at')
-            ->get();
+            ->latest()->take(8)->get();
         $ingresosTotales = DB::table('usuarios_pagos')->sum('monto');
 
         $now = Carbon::now();

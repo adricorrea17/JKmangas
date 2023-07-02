@@ -53,7 +53,7 @@
     @if(count($manga->comentarios) > 0)
         @foreach ($manga->comentarios as $comentario)
             <div class="d-flex mb-3">
-                <img class="img-comentario" src="{{ url('img/' . $comentario->usuario->imagen) }}" alt="">
+                <img class="img-comentario" src="{{ url('img/perfil/' . $comentario->usuario->imagen) }}" alt="Imagen de perfil de {{ $comentario->usuario->nombre_usuario }}">
                 <p class="px-2 my-auto"><strong>{{ $comentario->usuario->nombre_usuario }}</strong></p>
                 @if($comentario->usuario->usuarios_plan_id == 3)
                     <img class="estrellita my-auto" src="{{ url('img/plan-3.png') }}" alt="">

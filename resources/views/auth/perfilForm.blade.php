@@ -25,10 +25,10 @@
         @enderror
         <div class="mb-3">
             <label for="imagen" class="form-label w-100 mt-3 font fs-5">Foto de perfil:</label>
-            @if($usuario -> imagen != null && file_exists(public_path('img/' . $usuario->imagen)))
-            <img class="rounded mt-3 perfilimg" src="{{ url('img/' . $usuario->imagen) }}" alt="Imagen de perfil de {{$usuario->nombre_usuario}}">
-            @else
+            @if($usuario -> imagen == null)
             <p class="fw-bold">No tiene foto de perfil</p>
+            @else
+            <img class="rounded mt-3 perfilimg" src="img/perfil/{{$usuario -> imagen}}" alt="Imagen de perfil de {{$usuario->nombre_usuario}}">
             @endif
             <input class="form-control mt-3" type="file" name="imagen" id="imagen" />
         </div>

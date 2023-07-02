@@ -12,9 +12,9 @@
     <div class="w-100 mx-auto d-flex gap-5 p-4 bg-dark px-5 py-3 d-flex flex-column margen-usuario flex-md-row radius text-center text-md-start">
         <picture>
             @if ($usuario->imagen == null)
-            <img class="rounded-3 perfilimg" src="../../../../public/img/perfil.png" alt="Imagen de perfil de {{$usuario -> nombre_usuario}}">
+            <img class="rounded-3 perfilimg" src="../../../../public/img/perfil/perfil.png" alt="Imagen de perfil de {{$usuario -> nombre_usuario}}">
             @else
-            <img class="rounded-3 perfilimg" src="../../../../public/img/{{$usuario -> imagen}}" alt="Imagen de perfil de {{$usuario -> nombre_usuario}}">
+            <img class="rounded-3 perfilimg" src="../../../../public/img/perfil/{{$usuario -> imagen}}" alt="Imagen de perfil de {{$usuario -> nombre_usuario}}">
             @endif
         </picture>
         <div class="d-flex flex-column ">
