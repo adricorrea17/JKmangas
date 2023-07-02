@@ -109,20 +109,26 @@ class AdminMangasController extends Controller
     }
 
     public function guardar(Request $request)
-    {
-        $validatedData = $request->validate(Comentario::VALIDACION, Comentario::MENSAJES);
-        $usuarioId = Auth::user()->id;
-        $comentario = new Comentario();
-        $comentario->manga_id = $validatedData['manga_id'];
-        $comentario->comentario = $validatedData['comentario'];
-        $comentario->usuario_id = $usuarioId;
-        $comentario->save();
-        return redirect()->back();
-    }
+{
+    $validatedData = $request->validate(Comentario::VALIDACION, Comentario::MENSAJES);
+    $usuarioId = Auth::user()->id;
+    
+    DB::table('comentarios')->insert([
+        'manga_id' => $validatedData['manga_id'],
+        'comentario' => $validatedData['comentario'],
+        'usuario_id' => $usuarioId,
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now()
+    ]);
+
+    return redirect()->back();
+}
+
+
     public function dashboard()
     {
         $usuarios = Usuario::latest()->take(5)->get();
-        $ultimasSuscripciones = UsuariosPagos::select('usuarios_pagos.monto', 'usuarios.nombre_usuario', 'usuarios_plans.nombre as plan', 'usuarios_pagos.created_at')
+        $ultimasSuscripciones = DB::table('usuarios_pagos')->select('usuarios_pagos.monto', 'usuarios.nombre_usuario', 'usuarios_plans.nombre as plan', 'usuarios_pagos.created_at')
             ->join('usuarios', 'usuarios_pagos.usuario_id', '=', 'usuarios.id')
             ->join('usuarios_plans', 'usuarios_pagos.plan_id', '=', 'usuarios_plans.id')
             ->orderBy('usuarios_pagos.created_at')
