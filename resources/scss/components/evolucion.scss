@@ -1,0 +1,25 @@
+
+.evolucion-img-1 {
+    opacity: 1;
+    animation: aparecer-1 1s ease-in-out infinite;
+}
+
+.evolucion-img-2 {
+    animation: aparecer-2 1s ease-in-out infinite;
+}
+
+@keyframes aparecer-1 {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+

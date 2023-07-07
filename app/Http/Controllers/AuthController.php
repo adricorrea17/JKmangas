@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Usuario;
 use App\Models\UsuariosPlans;
 use App\Models\UsuariosRol;
+use DB;
 use Hash;
 
 class AuthController extends Controller
@@ -61,7 +62,12 @@ class AuthController extends Controller
     }
     public function usuario()
     {
-        $usuarios = Usuario::all();
+        $usuarios = DB::table('usuarios')
+        ->select('usuarios.*', 'usuarios_plans.imagen as imgPlan')
+        ->join('usuarios_plans', 'usuarios.usuarios_plan_id', '=', 'usuarios_plans.id')
+        ->orderBy('id')
+        ->get();
+
         return view('admin.mangas.usuarios', [
             'usuarios' => $usuarios
         ]);
@@ -101,27 +107,30 @@ class AuthController extends Controller
     }
 
     public function perfil_edit(Request $request)
-    {
-        // $request->validate(Usuario::VALIDACION, Usuario::MENSAJES);
-        $usuario = Usuario::find(Auth::user()->id);
+{
+    $usuario = Usuario::find(Auth::user()->id);
 
-        $data = $request->except(['_token']);
+    $data = $request->except(['_token']);
 
-        if ($request->input('newpassword') && $request->input('oldpassword')) {
+    if ($request->input('newpassword') && $request->input('oldpassword')) {
 
-            $credentials = [
-                'email' => Auth::user()->email,
-                'password' => $request->input('oldpassword')
-            ];
-
-            if (Auth::attempt($credentials)) {
-
-                // aca agregamos al array que se va a hacer el update
-                $data['password'] = Hash::make($request->input('newpassword'));
-            } else {
-                return redirect()->route('auth.perfil')->with('status.message', 'Contraseña incorrecta')->with('status.type', 'danger');
-            }
+        if ($request->input('newpassword') == $request->input('oldpassword')) {
+            return redirect()->route('auth.perfil')->with('status.message', 'Las Contraseñas no se pueden repetir')->with('status.type', 'danger');
+            
         }
+
+        $credentials = [
+            'email' => Auth::user()->email,
+            'password' => $request->input('oldpassword')
+        ];
+
+        if (Auth::attempt($credentials)) {
+            $data['password'] = Hash::make($request->input('newpassword'));
+        } else {
+            return redirect()->route('auth.perfil')->with('status.message', 'La contraseña es incorrecta')->with('status.type', 'danger');
+            
+        }
+    }
 
         $oldimagen = $usuario->imagen;
         if ($request->hasFile('imagen')) {
@@ -156,41 +165,4 @@ class AuthController extends Controller
             return redirect()->route('admin.mangas.usuarios')->with('status.message', 'Por algun motivo el usuario no a sido baneado')->with('status.type', 'danger');
         }
     }
-
-
-
-    public function cambiarPlan(Request $request)
-    {
-        if(Auth::user()->ban != 1){
-        //poner que si el usuario esta baneado no se haga la funcion de cambiar plan?
-        $usuario = Auth::user();
-        $nuevo_plan_id = $request->input('plan');
-        if ($usuario->usuarios_plan_id == $nuevo_plan_id) {
-            return redirect()->back()->with('status.message', 'Por algun motivo no se pudo cambiar el plan')->with('status.type', 'danger');
-        } elseif ($nuevo_plan_id <= '0') {
-            $nuevo_plan_id = null;
-            $mensaje = 'El plan a sido cancelado correctamente';
-            //El cancelar plan no funciona correctamente, porque en los id 
-            //que mandan los planes nunca se manda el 0
-            //una idea que se me ocurrio (seguramente este mal) es que si 
-            //$usuario->usuarios_plan_id == $plan->id que el value del input hidden sea 0
-            //lo podraimos hacer con un operador ternario 
-        } elseif ($usuario->usuarios_plan_id < $nuevo_plan_id) {
-
-            //Redirigir a mercado pago
-            //Usuario::where('id', $userId)->update(['usuarios_plan_id' => $plan->id]);
-            // Usuario::where('id', $userId)->update(['fecha_cierre' => now()->addMonths(1)]);
-            $mensaje = 'El plan a sido comprado correctamente';
-        } elseif ($usuario->usuarios_plan_id > $nuevo_plan_id) {
-            $mensaje = 'El plan a sido reducido correctamente';
-        }
-        Usuario::where('id', $usuario->id)->update(['usuarios_plan_id' => $nuevo_plan_id]);
-        return redirect()->back()->with('status.message', $mensaje)->with('status.type', 'success');
-    }else{
-        return redirect()->back()->with('status.message', 'No pudiste cambiar el plan porque el usuario se encuentra baneado')->with('status.type', 'danger');
-    }
-    }
-
-
-    
 }

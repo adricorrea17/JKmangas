@@ -7,7 +7,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Usuario;
 use App\Models\UsuariosPlans;
 use App\Models\UsuariosPagos;
+use DB;
 use MercadoPago;
+
 
 class UsuariosPagosController extends Controller
 {
@@ -15,6 +17,8 @@ class UsuariosPagosController extends Controller
     {
         if (Auth::user()->ban != 1) {
             $usuario = Auth::user();
+            $usuarioPlan = $usuario->usuarios_plan_id;
+            $request->session()->put('plan_anterior', $usuarioPlan);
             $nuevo_plan_id = $request->input('plan');
             if ($usuario->usuarios_plan_id == $nuevo_plan_id || $usuario->usuarios_plan_id > $nuevo_plan_id) {
                 $planUsuario = UsuariosPlans::findOrFail($nuevo_plan_id);
@@ -33,7 +37,7 @@ class UsuariosPagosController extends Controller
     }
 
 
-    
+
     public function VerificacionPlan(Request $request)
     {
         $usuario = Auth::user();
@@ -44,7 +48,7 @@ class UsuariosPagosController extends Controller
         } elseif ($usuario->usuarios_plan_id > $plan_id) {
             $mensaje = 'El Plan a sido reducido con exito';
         }
-        Usuario::where('id',$usuario->id)->update(['usuarios_plan_id' => $plan_id]);
+        Usuario::where('id', $usuario->id)->update(['usuarios_plan_id' => $plan_id]);
         return redirect()->route('inicio')->with('status.message', $mensaje)->with('status.type', 'success');
     }
     public function CrearBotonPago(Request $request)
@@ -55,7 +59,6 @@ class UsuariosPagosController extends Controller
         MercadoPago\SDK::setAccessToken(env('APP_MPKEY'));
         $preference = new MercadoPago\Preference();
 
-        // Crea un ítem en la preferencia
         $item = new MercadoPago\Item();
         $item->title = $planUsuario->nombre;
         $item->quantity = 1;
@@ -100,10 +103,28 @@ class UsuariosPagosController extends Controller
                 'mp_validacion' => json_encode($respuesta),
                 'monto' => $plan->precio
             ]);
-            Usuario::where('id', Auth::user()->id)->update(['usuarios_plan_id' => $plan->id, 'fecha_cierre' => now()->addMonths(1)]);
-            return redirect()->route('inicio')->with('status.message', 'Felicidades el pago se a completado con exito')->with('status.type', 'success');
+            Usuario::where('id', Auth::user()->id)->update(['usuarios_plan_id' => $planId, 'fecha_cierre' => now()->addMonths(1)]);
+            return redirect()->route('evolucion')->with('status.message', 'Parece que su plan esta evolucionando!!!')->with('status.type', 'success');
         } else {
             abort(404);
         }
+    }
+
+    public function EvolucionPlan(Request $request)
+    {
+        $planId = $request->session()->get('plan_id_para_pagar');
+        $anteriorPlanId = $request->session()->get('plan_anterior');
+
+        $plan = UsuariosPlans::findOrFail($planId);
+        if ($anteriorPlanId != null) {
+            $planAnterior = UsuariosPlans::findOrFail($anteriorPlanId);
+        } else {
+            $planAnterior = null;
+        }
+
+        return view('evolucion', [
+            'plan' => $plan,
+            'anteriorPlan' => $planAnterior,
+        ]);
     }
 }

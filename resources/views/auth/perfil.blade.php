@@ -22,7 +22,7 @@
                         @endif
                     </picture>
                     <div class="d-flex flex-column mx-auto mx-sm-0">
-                        <h1 class="mb-1">{{$usuario->nombre_usuario}}</h1>
+                        <h1 class="mb-1 h1Perfil">{{$usuario->nombre_usuario}}</h1>
                         <dl>
                             <dt>Email</dt>
                             <dd>{{$usuario->email}}</dd>
@@ -35,7 +35,11 @@
                                 @endif
                             </dd>
 
-                            <a class="btn btn-secondary" href="{{ route('auth.perfil.form')}}">¿Quieres modificar tus datos?</a>
+                            <!--<a class="btn btn-secondary" href="{{ route('auth.perfil.form')}}">¿Quieres modificar tus datos?</a>-->
+                            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#myModal">
+                                ¿Quieres modificar tus datos?
+                            </button>
+                            @include('components/perfilForm')
                         </dl>
 
                     </div>
@@ -57,5 +61,16 @@
     @include('components.planes')
 </section>
 @endif
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelector('#changePassCheck').addEventListener('change', function() {
+            document.getElementById('hidePasswd')
+                .classList.toggle('d-block');
+
+            document.getElementById('hidePasswd')
+                .classList.toggle('d-none');
+        })
+    });
+</script>
 
 @endsection

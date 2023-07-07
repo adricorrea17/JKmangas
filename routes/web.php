@@ -78,6 +78,10 @@ Route::get('pago/feedback', [\App\Http\Controllers\UsuariosPagosController::clas
 
 //Verificacion de reduccion o eliminacion de plan
 Route::post('verificacion', [\App\Http\Controllers\UsuariosPagosController::class, 'VerificacionPlan'])->name('verificacion')->middleware(['auth','ban']);
+
 //comentarios
 Route::post('comentario', [AdminMangasController::class, 'guardar'])->name('guardar.comentario');
+
+//Evolucion de plan
+Route::get('evolucion', [\App\Http\Controllers\UsuariosPagosController::class, 'EvolucionPlan'])->name('evolucion')->middleware(['auth']);
 

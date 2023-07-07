@@ -21,7 +21,7 @@
                         @endif
                     </picture>
                     <div class="d-flex flex-column mx-auto mx-sm-0">
-                        <h1 class="mb-1">{{$usuario->nombre_usuario}}</h1>
+                        <h1 class="mb-1 h1Perfil">{{$usuario->nombre_usuario}}</h1>
                         <dl>
                             <dt>Email</dt>
                             <dd>{{$usuario->email}}</dd>
