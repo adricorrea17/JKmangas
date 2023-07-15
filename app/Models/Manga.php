@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -37,6 +38,22 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Manga extends Model
 {
+
+    /**
+     * $rules = [
+     *     'archivo' => 'required|mimes:jpeg,png,pdf|max:2048',
+     * ];
+     *$messages = [
+     *    'archivo.required' => 'Debe seleccionar un archivo para cargar.',
+     *    'archivo.mimes' => 'El archivo debe ser de tipo JPEG, PNG o PDF.',
+     *   'archivo.max' => 'El tamaño máximo del archivo es de 2 MB.',
+     *];
+     *$validator = Validator::make($request->all(), $rules, $messages);
+     *
+     * if ($validator->fails()) {
+     *     return redirect()->back()->withErrors($validator)->withInput();*
+     */
+
     protected $table = "mangas";
     protected $primaryKey = "manga_id";
     protected $fillable = ['titulo', 'precio', 'descripcion', 'portada', 'mangaka', 'tomos', 'proximo_tomo', 'genero_id'];
@@ -69,5 +86,10 @@ class Manga extends Model
     public function comentarios()
     {
         return $this->hasMany(Comentario::class, 'manga_id', 'manga_id');
+    }
+
+    public function human_proximo_tomo()
+    {
+        return Carbon::parse($this->proximo_tomo)->locale('es')->diffForHumans();
     }
 }

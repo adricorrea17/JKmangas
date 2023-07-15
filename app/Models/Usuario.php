@@ -16,22 +16,22 @@ class Usuario extends User
     protected $fillable = ['nombre_usuario', 'password', 'email', 'usuarios_rol_id', 'imagen'];
     protected $hidden = ['password', 'remember_token'];
 
-
-    public const VALIDACION = [
+//Validacion de Inicio de sesion
+    public const VALIDAR_INICIO = [
         'nombre_usuario' => 'required',
         'password' => 'required',
     ];
-    public const MENSAJES = [
+    public const MENSAJES_INICIO = [
         'nombre_usuario.required' => 'Tiene que poner su nombre para ingresar',
         'password.required' => 'Tiene que poner su contraseña para ingresar',
     ];
-
-    public const VALIDAR = [
+//Validacion de Registro
+    public const VALIDAR_REGISTRO = [
         'nombre_usuario' => 'required|unique:usuarios',
         'password' => 'required|min:5',
         'email' => 'required|unique:usuarios',
     ];
-    public const MENSAJE = [
+    public const MENSAJES_REGISTRO = [
         'nombre_usuario.required' => 'El Campo de nombre de usuario esta vacio',
         'nombre_usuario.unique' => 'El nombre de usuario ya existe',
         'password.required' => 'El Campo de password esta vacio',

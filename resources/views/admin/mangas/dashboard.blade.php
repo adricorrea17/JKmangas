@@ -58,6 +58,9 @@
                 </tbody>
 
             </table>
+            <tr>
+                <a href="{{route('admin.pagos')}}" class="btn btn-primary col-12">Ver mas</a>
+            </tr>
         </div>
     </div>
 </section>

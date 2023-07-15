@@ -9,32 +9,45 @@
 
 <section class="container mt-4">
   <h1 class="text-light">Usuarios</h1>
-  <form id="formulario" class="mb-4 text-center" data-aos="fade-down">
-    <input class="bg-dark border radius px-4 py-1 w-50 text-light buscar" type="text" id="buscar-usuario" placeholder="Busca al usuario">
+  <form id="formulario" class="mb-4 text-center" data-aos="fade-down" method="get">
+    <input class="bg-dark border radius px-4 py-1 w-50 text-light buscar" type="text" name="search" id="buscar-usuario" placeholder="Busca al usuario">
     <button class="btn btn-primary border radius px-3" type="submit">Buscar</button>
   </form>
   <table class="w-100 mt-4 table">
     <thead class="bg-dark text-light">
       <tr>
         <th></th>
-        <th></th>
-        <th>Usuario</th>
-        <th>Mail</th>
-        <th>Se unio el:</th>
-        <th>Su plan vence el:</th>
+
+        @foreach([
+        'usuarios_plan_id'=>'Plan',
+        'nombre_usuario'=>'Usuario',
+        'email'=>'Mail',
+        'created_at'=>'Se unio el:',
+        'fecha_cierre'=>'Su plan vence el:'
+        ] as $key => $item)
+        <th>
+          <a class="text-white" href="?o={{ $key }}{{ $orden == ($key && $direccion != 'desc') ? '&d=desc' : '' }}">
+            {{ $item }} <i class="fa fa-arrow-{{ ($orden == $key && $direccion != 'desc') ? 'up' : 'down' }}" style="{{ $orden != $key ? 'opacity:.5' : '' }}"></i>
+          </a>
+        </th>
+        @endforeach
         <th>Acciones</th>
       </tr>
     </thead>
     </tbody>
     @foreach($usuarios as $usuario)
     <tr class="usuario">
-      
-      <td class="mb-3 text-light nombre-usuario"><b><img class="img-comentario" src="{{ url('img/perfil/' . ($usuario->imagen == null ? 'perfil.png' : $usuario->imagen)) }}" alt="Imagen de perfil de {{ $usuario->imagen }}"></b></td>
-      <td class="mb-3 text-light nombre-usuario"><b><img class="img-comentario" src="{{ url('img/' . ($usuario->imgPlan == null ? 'perfil.png' : $usuario->imgPlan)) }}" alt="Imagen de perfil de {{ $usuario->imgPlan }}"></b></td>
-      <td class="mb-3 text-light nombre-usuario"><b>{{ $usuario->nombre_usuario }}</b></td>
-      <td class="mb-3 text-light nombre-usuario"><b>{{ $usuario->email }}</b></td>
-      <td class="mb-3 text-light nombre-usuario"><b>{{ $usuario->created_at }}</b></td>
-      <td class="mb-3 text-light nombre-usuario"><b>{{ $usuario->fecha_cierre }}</b></td>
+
+      <td class="mb-3 text-light"><img class="img-comentario" src="{{ url('img/perfil/' . ($usuario->imagen == null ? 'perfil.png' : $usuario->imagen)) }}" alt="Imagen de perfil de {{ $usuario->imagen }}"></td>
+      <td class="mb-3 text-light">
+        @if($usuario->imgPlan != null)
+        <img class="img-comentario" src="{{ url('img/' . $usuario->imgPlan) }}" alt="Imagen de perfil de {{ $usuario->imgPlan }}">
+        @endif
+      </td>
+      <td class="mb-3 text-light"><b>{{ $usuario->nombre_usuario }}</b></td>
+      <td class="mb-3 text-light">{{ $usuario->email }}</td>
+      <td class="mb-3 text-light">{{ $usuario->created_at }}</td>
+      <td class="mb-3 text-light">{{ $usuario->fecha_cierre }}</td>
       <td>
         <div class="d-flex gap-1">
           <a href="{{route('admin.mangas.verusuario',['id'=> $usuario->id] )}}" class="btn btn-primary">Ver</a>
@@ -48,29 +61,5 @@
 
   </table>
 </section>
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('formulario').addEventListener('submit', function(event) {
-      event.preventDefault();
 
-      let buscarTitulo = document.getElementById('buscar-usuario').value.toLowerCase();
-
-
-      let usuarios = document.getElementsByClassName('usuario');
-
-      for (let i = 0; i < usuarios.length; i++) {
-        let usuario = usuarios[i];
-        let titulo = usuario.querySelector('.nombre-usuario').textContent.toLowerCase();
-
-
-
-        if (titulo.includes(buscarTitulo)) {
-          usuario.style.display = 'block';
-        } else {
-          usuario.style.display = 'none';
-        }
-      }
-    });
-  });
-</script>
 @endsection

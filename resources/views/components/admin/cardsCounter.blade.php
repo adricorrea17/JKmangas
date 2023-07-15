@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+
 <div class="container">
     <div class="row">
         <div class="col-md-3">
@@ -26,7 +26,7 @@
         </div>
 
         <div class="col-md-3">
-            <div class="card-counter ">
+            <div class="card-counter">
                 <i class="fa fa-users"></i>
                 <span class="count-numbers">{{ $usuariosTotales }}</span>
                 <span class="count-name">Usuarios</span>

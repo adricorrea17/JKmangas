@@ -19,7 +19,7 @@ class AuthController extends Controller
     public function loginAccion(Request $request,)
     {
 
-        $request->validate(Usuario::VALIDACION, Usuario::MENSAJES);
+        $request->validate(Usuario::VALIDAR_INICIO, Usuario::MENSAJES_INICIO);
         $request->validate([
             'nombre_usuario' => 'required',
             'password' => 'required',
@@ -49,7 +49,7 @@ class AuthController extends Controller
     }
     public function registroAccion(Request $request)
     {
-        $request->validate(Usuario::VALIDAR, Usuario::MENSAJE);
+        $request->validate(Usuario::VALIDAR_REGISTRO, Usuario::MENSAJES_REGISTRO);
 
 
         Usuario::create([
@@ -59,28 +59,6 @@ class AuthController extends Controller
             'usuarios_rol_id' => 2,
         ]);
         return redirect()->route('inicio')->with('status.message', 'La cuenta se a creado con exito')->with('status.type', 'success');
-    }
-    public function usuario()
-    {
-        $usuarios = DB::table('usuarios')
-        ->select('usuarios.*', 'usuarios_plans.imagen as imgPlan')
-        ->join('usuarios_plans', 'usuarios.usuarios_plan_id', '=', 'usuarios_plans.id')
-        ->orderBy('id')
-        ->get();
-
-        return view('admin.mangas.usuarios', [
-            'usuarios' => $usuarios
-        ]);
-    }
-
-    public function ver(int $id)
-    {
-
-        $usuario = Usuario::findOrFail($id);
-        return view('admin.mangas.verUsuario', [
-            'usuario' => $usuario,
-
-        ]);
     }
 
     public function perfil()

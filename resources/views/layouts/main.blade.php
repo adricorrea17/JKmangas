@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
     @vite(['resources/scss/app.scss', 'resources/js/app.js'])
@@ -39,15 +40,18 @@
                         </li>
                         @endif
                         @if(Auth::check() && Auth::user()->usuarios_rol_id == 1)
-                        <li class="nav-item">
-                            <a class="nav-link text-light font " href="{{ route('admin.mangas.lista')}}">Panel de administracion</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-light" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Administracion
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('admin.dashboard')}}">Dashboard</a>
+                                <a class="dropdown-item" href="{{ route('admin.mangas.lista')}}">Mangas</a>
+                                <a class="dropdown-item" href="{{ route('admin.mangas.usuarios')}}">Usuarios</a>
+                                <a class="dropdown-item" href="{{ route('admin.pagos')}}">Pagos</a>
+                            </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light font " href="{{ route('admin.dashboard')}}">Dashboard</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light font " href="{{ route('admin.mangas.usuarios')}}">Usuarios</a>
-                        </li>
+                        
                         @endif
 
                         @if(Auth::check() && Auth::user()->usuarios_rol_id <= 3 ) <li class="nav-item">

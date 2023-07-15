@@ -32,6 +32,7 @@ class UsuariosSeeder extends Seeder
             'usuarios_rol_id' => 1,
             'created_at' => now(),
             'updated_at' => now(),
+            'fecha_cierre' => $faker->dateTimeBetween('-29 days' , 'now'),
         ]);
 
         foreach (range(2, 100) as $index) {

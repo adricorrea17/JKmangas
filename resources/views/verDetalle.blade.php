@@ -18,7 +18,8 @@
             <h1 class="mb-3 fw-bold">{{$manga->titulo}}</h1>
             <p class="fs-5"><b class="fs-4">Descripcion:</b> {{$manga->descripcion}}</p>
             <p class="fs-5"><b class="fs-4">Tomos:</b> {{$manga->tomos}}</p>
-            <p class="fs-5"><b class="fs-4">Estreno del siguiente tomo:</b> {{$manga->proximo_tomo}}</p>
+
+            <p class="fs-5"><b class="fs-4">{{ (now() < $manga->proximo_tomo) ? 'Estreno del siguiente tomo' : 'Último estreno' }}:</b> {{ $manga->human_proximo_tomo() }}</p>
             <ul class="d-flex list-unstyled gap-3 mb-3">
                 @forelse($manga->generos as $genero)
                 <li class="bg-light text-dark px-3 rounded fw-bold">
@@ -51,18 +52,18 @@
     <p>Inicia sesión para dejar un comentario.</p>
     @endif
     @if(count($manga->comentarios) > 0)
-        @foreach ($manga->comentarios as $comentario)
-            <div class="d-flex mb-3">
-                <img class="img-comentario" src="{{ url('img/perfil/' . $comentario->usuario->imagen) }}" alt="Imagen de perfil de {{ $comentario->usuario->nombre_usuario }}">
-                <p class="px-2 my-auto"><strong>{{ $comentario->usuario->nombre_usuario }}</strong></p>
-                @if($comentario->usuario->usuarios_plan_id == 3)
-                    <img class="estrellita my-auto" src="{{ url('img/plan-3.png') }}" alt="">
-                @endif
-            </div>
-            <p>{{ $comentario->comentario }}</p>
-        @endforeach
+    @foreach ($manga->comentarios as $comentario)
+    <div class="d-flex mb-3">
+        <img class="img-comentario" src="{{ url('img/perfil/' . $comentario->usuario->imagen) }}" alt="Imagen de perfil de {{ $comentario->usuario->nombre_usuario }}">
+        <p class="px-2 my-auto"><strong>{{ $comentario->usuario->nombre_usuario }}</strong></p>
+        @if($comentario->usuario->usuarios_plan_id == 3)
+        <img class="estrellita my-auto" src="{{ url('img/plan-3.png') }}" alt="">
+        @endif
+    </div>
+    <p>{{ $comentario->comentario }}</p>
+    @endforeach
     @else
-        <p>Sé el primer usuario en comentar.</p>
+    <p>Sé el primer usuario en comentar.</p>
     @endif
 
 </section>

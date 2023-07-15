@@ -16,6 +16,9 @@
             </div>
         </div>
         <div id="wallet_container"></div>
+        @if(Auth::user()->usuarios_plan_id >= 1 && now() > Auth::user()->fecha_cierre)
+        <p>Si queres cambiar o eliminar el plan puedes hacerlo desde el <a class="text-white" href="{{ route('auth.perfil') }}">perfil</a></p>
+        @endif
     </div>
 </section>
 

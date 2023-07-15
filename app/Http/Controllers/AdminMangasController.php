@@ -37,6 +37,7 @@ class AdminMangasController extends Controller
 
     public function grabarNuevo(Request $request)
     {
+        //Hacer una validacion de que si la IMG pesa mas de 5mb salte un error de que no se puede subir la img
         $request->validate(Manga::VALIDACION, Manga::MENSAJES);
         $data = $request->except(['_token']);
         if ($request->hasFile('portada')) {
@@ -45,6 +46,7 @@ class AdminMangasController extends Controller
             $portadaName = date('YmdHis') . "_" . \Str::slug($data['titulo']) . "." . $portada->extension();
             $portada->move(public_path('img'), $portadaName);
             $data['portada'] = $portadaName;
+
         }
         $manga = Manga::create($data);
         $manga->generos()->attach($data['generos'] ?? []);
@@ -109,20 +111,69 @@ class AdminMangasController extends Controller
     }
 
     public function guardar(Request $request)
-{
-    $validatedData = $request->validate(Comentario::VALIDACION, Comentario::MENSAJES);
-    $usuarioId = Auth::user()->id;
-    
-    DB::table('comentarios')->insert([
-        'manga_id' => $validatedData['manga_id'],
-        'comentario' => $validatedData['comentario'],
-        'usuario_id' => $usuarioId,
-        'created_at' => Carbon::now(),
-        'updated_at' => Carbon::now()
-    ]);
+    {
+        $validatedData = $request->validate(Comentario::VALIDACION, Comentario::MENSAJES);
+        $usuarioId = Auth::user()->id;
 
-    return redirect()->back();
-}
+        DB::table('comentarios')->insert([
+            'manga_id' => $validatedData['manga_id'],
+            'comentario' => $validatedData['comentario'],
+            'usuario_id' => $usuarioId,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+
+        return redirect()->back();
+    }
+
+
+    public function usuarioLista(Request $request)
+    {
+        //no me esta trayendo toda la lista de usuarios
+        $buscar = $request->input('search');
+        $orden = $request->input('o', 'created_at');
+        $direccion = $request->input('d','asc');
+        $usuarios = Usuario::
+        select('usuarios.*', 'usuarios_plans.imagen as imgPlan',)
+        ->leftJoin('usuarios_plans', 'usuarios.usuarios_plan_id', '=', 'usuarios_plans.id')
+        ->orderBy($orden,$direccion)
+        ->where('usuarios.nombre_usuario', 'LIKE', '%' . $buscar . '%')
+        ->get();
+        return view('admin.mangas.usuarios', [
+            'usuarios' => $usuarios,
+            'orden' => $orden,
+            'direccion' => $direccion,
+        ]);
+    }
+
+    public function verUsuario(int $id)
+    {
+
+        $usuario = Usuario::findOrFail($id);
+        return view('admin.mangas.verUsuario', [
+            'usuario' => $usuario,
+
+        ]);
+    }
+
+    public function pagosLista(Request $request){
+        $buscar = $request->input('search');
+        $orden = $request->input('o','created_at');
+        $direccion = $request->input('d','asc');
+        $pagosSuscripciones = UsuariosPagos::select('usuarios_pagos.monto', 'usuarios.nombre_usuario','usuarios.imagen','usuarios.id as usuarioId', 'usuarios_plans.nombre as plan', 'usuarios_pagos.created_at', 'usuarios_pagos.id')
+            ->join('usuarios', 'usuarios_pagos.usuario_id', '=', 'usuarios.id')
+            ->join('usuarios_plans', 'usuarios_pagos.plan_id', '=', 'usuarios_plans.id')
+            ->where('usuarios.nombre_usuario','LIKE', '%' . $buscar . '%')
+            ->orderBy($orden, $direccion)
+            ->get();
+        return view('admin.mangas.pagos', [
+            'pagos' => $pagosSuscripciones,
+            'orden' => $orden,
+            'direccion' => $direccion,
+
+        ]);
+
+    }
 
 
     public function dashboard()
@@ -132,7 +183,7 @@ class AdminMangasController extends Controller
             ->join('usuarios', 'usuarios_pagos.usuario_id', '=', 'usuarios.id')
             ->join('usuarios_plans', 'usuarios_pagos.plan_id', '=', 'usuarios_plans.id')
             ->orderBy('usuarios_pagos.created_at')
-            ->latest()->take(8)->get();
+            ->latest()->take(7)->get();
         $ingresosTotales = DB::table('usuarios_pagos')->sum('monto');
 
         $now = Carbon::now();
