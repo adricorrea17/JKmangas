@@ -25,7 +25,7 @@ class ControlDeSesion
                 if (!$request->session()->get('plan_id_para_pagar')) {
                     $plan_id = Auth::user()->usuarios_plan_id;
                     $request->session()->put('plan_id_para_pagar', $plan_id);
-                    return redirect()->route('pagar-plan')->with('status.message', 'Tu plana a expirado, Debes abonar para seguir disfrutando de nuestros beneficios')
+                    return redirect()->route('pagar-plan')->with('status.message', 'Tu plan a expirado, Debes abonar para seguir disfrutando de nuestros beneficios')
                         ->with('status.type', 'danger');
                 } else {
                     return redirect()->route('pagar-plan');

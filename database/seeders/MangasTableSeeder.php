@@ -21,6 +21,7 @@ class MangasTableSeeder extends Seeder
             [
                 'manga_id' => 1,
                 'titulo' => 'Tokyo Ghoul',
+                'categoria_id' => 1,
                 'precio' => 1999,
                 'descripcion' => 'Se trata de una producción de terror con violencia explícita y ambientación sobrenatural que presenta una ciudad 
                 de Tokio en la que mueren personas inocentes a manos de ghouls, seres misteriosos que se alimentan de humanos.',
@@ -34,6 +35,7 @@ class MangasTableSeeder extends Seeder
             [
                 'manga_id' => 2,
                 'titulo' => 'Nanatsu no taizai',
+                'categoria_id' => 1,
                 'precio' => 2199,
                 'descripcion' => 'Nanatsu no Taizai (七つの大罪 lit. Los siete pecados capitales), comúnmente conocido como Los siete pecados 
                 capitales en España y Hispanoamérica, es un serie de manga y anime escrita e ilustrada por Nakaba Suzuki, 
@@ -48,6 +50,7 @@ class MangasTableSeeder extends Seeder
             [
                 'manga_id' => 3,
                 'titulo' => 'Kimetsu no yaiba',
+                'categoria_id' => 1,
                 'precio' => 1599,
                 'descripcion' => 'La serie narra las desventuras de Tanjiro, un joven de un Japón feudal fantástico que se ve abocado a 
                 la venganza después de que un demonio acabe con toda su familia, a excepción de su hermana, Nezuko, también demoníaca y 
@@ -62,6 +65,7 @@ class MangasTableSeeder extends Seeder
             [
                 'manga_id' => 4,
                 'titulo' => 'Shingeki no Kyojin',
+                'categoria_id' => 1,
                 'precio' => 3000,
                 'descripcion' => 'Attack on Titan (進撃の巨人 Shingeki no Kyojin) es un manga serializado escrito e ilustrado por Hajime Isayama. 
                 Cuenta la historia de la humanidad en una época con estética germana del siglo 19, 
@@ -76,6 +80,7 @@ class MangasTableSeeder extends Seeder
             [   
                 'manga_id'=> 5,
                 'titulo' => 'Akame ga Kill!',
+                'categoria_id' => 2,
                 'precio' => 999.99,
                 'descripcion' => 'Tatsumi se une a Night Raid, un grupo de asesinos rebeldes que luchan contra el corrupto Imperio.',
                 'portada' => 'akame.png',
@@ -88,6 +93,7 @@ class MangasTableSeeder extends Seeder
             [
                 'manga_id'=> 6,
                 'titulo' => 'Blue Lock',
+                'categoria_id' => 2,
                 'precio' => 899.99,
                 'descripcion' => 'Un equipo de fútbol especializado en la delantera, donde todos los jugadores compiten para ser el número uno.',
                 'portada' => 'blue.png',
@@ -100,6 +106,7 @@ class MangasTableSeeder extends Seeder
             [   
                 'manga_id' => 7,
                 'titulo' => 'My Hero Academia',
+                'categoria_id' => 2,
                 'precio' => 999.99,
                 'descripcion' => 'Izuku Midoriya persigue su sueño de convertirse en un héroe en un mundo donde todos tienen superpoderes.',
                 'portada' => 'myhero.png',
@@ -112,6 +119,7 @@ class MangasTableSeeder extends Seeder
             [   
                 'manga_id'=> 8,
                 'titulo' => 'Dr. Stone',
+                'categoria_id' => 2,
                 'precio' => 899.99,
                 'descripcion' => 'Después de que toda la humanidad queda petrificada, Senku despierta miles de años después y trabaja para reconstruir la civilización.',
                 'portada' => 'doctor.png',
@@ -124,6 +132,7 @@ class MangasTableSeeder extends Seeder
             [   
                 'manga_id'=> 9,
                 'titulo' => 'Black Clover',
+                'categoria_id' => 3,
                 'precio' => 799.99,
                 'descripcion' => 'Asta, un joven sin magia en un mundo lleno de ella, lucha por convertirse en el Rey Mago y proteger su reino.',
                 'portada' => 'black.png',
@@ -136,6 +145,7 @@ class MangasTableSeeder extends Seeder
             [   
                 'manga_id'=> 10,
                 'titulo' => 'One Punch Man',
+                'categoria_id' => 3,
                 'precio' => 899.99,
                 'descripcion' => 'Saitama, un superhéroe extremadamente poderoso, se enfrenta a enemigos poderosos con un solo golpe. ¡Descubre su historia hilarante!',
                 'portada' => 'saitama.png',

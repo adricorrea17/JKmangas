@@ -38,6 +38,21 @@
                 @enderror
             </div>
             <div>
+                <label for="categoria" class="form-label w-100 fs-5 font mt-3">Categoría:</label>
+                <select class="form-select" name="categoria_id" id="categoria">
+                    <option value="">Selecciona una categoría</option>
+                    @foreach($categorias as $categoria)
+                    <option value="{{ $categoria->id }}">
+                        {{ $categoria->categoria }}
+                    </option>
+                    @endforeach
+                </select>
+                @error('categoria')
+                <div class="text-danger fw-bold font" id="categoria-error">{{ $errors->first('categoria') }}</div>
+                @enderror
+            </div>
+
+            <div>
                 <label for="mangaka" class="form-label w-100 fs-5 font mt-3">Mangaka:</label>
                 <input class="form-control" type="text" name="mangaka" id="mangaka" value="{{old('mangaka')}}" @error('mangaka') aria-describedby="mangaka-error" @enderror>
 

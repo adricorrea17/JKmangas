@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('mangas', function (Blueprint $table) {
             $table->id('manga_id');
             $table->string('titulo', 60);
+            $table->unsignedBigInteger('categoria_id');
+            $table->foreign('categoria_id')->references('id')->on('categorias');
             $table->unsignedInteger('precio');
             $table->text('descripcion');
             $table->string('portada', 255)->nullable();

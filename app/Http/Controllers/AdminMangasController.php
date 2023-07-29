@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorias;
 use App\Models\Comentario;
 use Illuminate\Http\Request;
 use App\Models\Manga;
@@ -32,14 +33,15 @@ class AdminMangasController extends Controller
     {
         return view('admin.mangas.formNuevo', [
             'generos' => Genero::orderBy('nombre')->get(),
+            'categorias' => Categorias::orderBy('categoria')->get(),
         ]);
     }
 
     public function grabarNuevo(Request $request)
     {
-        //Hacer una validacion de que si la IMG pesa mas de 5mb salte un error de que no se puede subir la img
         $request->validate(Manga::VALIDACION, Manga::MENSAJES);
         $data = $request->except(['_token']);
+        
         if ($request->hasFile('portada')) {
 
             $portada = $request->file('portada');
@@ -48,6 +50,7 @@ class AdminMangasController extends Controller
             $data['portada'] = $portadaName;
 
         }
+        
         $manga = Manga::create($data);
         $manga->generos()->attach($data['generos'] ?? []);
         return redirect()->route('admin.mangas.lista')->with('status.message', 'El Manga <b>' . $manga->titulo . '</b> fue creado con exito.')
@@ -83,6 +86,7 @@ class AdminMangasController extends Controller
         return view('admin.mangas.editar', [
             'manga' => $manga,
             'generos' => Genero::orderBy('nombre')->get(),
+            'categorias' => Categorias::orderBy('categoria')->get(),
         ]);
     }
 
@@ -207,5 +211,19 @@ class AdminMangasController extends Controller
             'usuarios' => $usuarios,
             'ultimasSuscripciones' => $ultimasSuscripciones,
         ]);
+    }
+
+    public function banear($id)
+    {
+        $usuario = Usuario::find($id);
+
+        if ($usuario && $usuario->usuarios_rol_id != 1) {
+            $usuario->ban = !$usuario->ban;
+            $usuario->save();
+            $mensaje = ($usuario->ban) ? 'baneado' : 'desbaneado';
+            return redirect()->route('admin.mangas.usuarios')->with('status.message', 'El usuario <b>' . $usuario->nombre_usuario . '</b> a sido ' . $mensaje . ' con exito')->with('status.type', 'success');
+        } else {
+            return redirect()->route('admin.mangas.usuarios')->with('status.message', 'Por algun motivo el usuario no a sido baneado')->with('status.type', 'danger');
+        }
     }
 }

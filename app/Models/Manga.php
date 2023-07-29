@@ -56,7 +56,7 @@ class Manga extends Model
 
     protected $table = "mangas";
     protected $primaryKey = "manga_id";
-    protected $fillable = ['titulo', 'precio', 'descripcion', 'portada', 'mangaka', 'tomos', 'proximo_tomo', 'genero_id'];
+    protected $fillable = ['titulo', 'precio', 'descripcion', 'portada', 'mangaka', 'tomos', 'proximo_tomo', 'genero_id','categoria_id'];
     public const VALIDACION = [
         'titulo' => 'required', 'min:2',
         'descripcion' => 'required',
@@ -81,6 +81,11 @@ class Manga extends Model
     public function generos()
     {
         return $this->belongsToMany(Genero::class, 'generos_mangas', 'manga_id', 'genero_id', 'manga_id', 'genero_id');
+    }
+
+    public function categorias()
+    {
+        return $this->hasOne(Categorias::class, 'id', 'categoria_id');
     }
 
     public function comentarios()

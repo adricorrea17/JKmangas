@@ -130,17 +130,4 @@ class AuthController extends Controller
         return redirect()->route('auth.perfil')->with('status.message', 'Tu usuario ha sido actualizado')->with('status.type', 'success');
     }
 
-    public function banear($id)
-    {
-        $usuario = Usuario::find($id);
-
-        if ($usuario && $usuario->usuarios_rol_id != 1) {
-            $usuario->ban = !$usuario->ban;
-            $usuario->save();
-            $mensaje = ($usuario->ban) ? 'baneado' : 'desbaneado';
-            return redirect()->route('admin.mangas.usuarios')->with('status.message', 'El usuario <b>' . $usuario->nombre_usuario . '</b> a sido ' . $mensaje . ' con exito')->with('status.type', 'success');
-        } else {
-            return redirect()->route('admin.mangas.usuarios')->with('status.message', 'Por algun motivo el usuario no a sido baneado')->with('status.type', 'danger');
-        }
-    }
 }
