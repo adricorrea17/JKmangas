@@ -41,7 +41,7 @@
             <div>
                 <label for="categoria" class="form-label w-100 fs-5 font mt-3">Categoría:</label>
                 <select class="form-select" name="categoria_id" id="categoria">
-                    <option value="">Selecciona una categoría</option>
+                    <option value={{old('categoria_id', $manga->categoria_id)}}>Selecciona una categoría</option>
                     @foreach($categorias as $categoria)
                     <option value="{{ $categoria->id }}">
                         {{ $categoria->categoria }}

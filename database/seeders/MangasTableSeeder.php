@@ -80,7 +80,7 @@ class MangasTableSeeder extends Seeder
             [   
                 'manga_id'=> 5,
                 'titulo' => 'Akame ga Kill!',
-                'categoria_id' => 2,
+                'categoria_id' => 1,
                 'precio' => 999.99,
                 'descripcion' => 'Tatsumi se une a Night Raid, un grupo de asesinos rebeldes que luchan contra el corrupto Imperio.',
                 'portada' => 'akame.png',
@@ -132,7 +132,7 @@ class MangasTableSeeder extends Seeder
             [   
                 'manga_id'=> 9,
                 'titulo' => 'Black Clover',
-                'categoria_id' => 3,
+                'categoria_id' => 2,
                 'precio' => 799.99,
                 'descripcion' => 'Asta, un joven sin magia en un mundo lleno de ella, lucha por convertirse en el Rey Mago y proteger su reino.',
                 'portada' => 'black.png',
@@ -145,7 +145,7 @@ class MangasTableSeeder extends Seeder
             [   
                 'manga_id'=> 10,
                 'titulo' => 'One Punch Man',
-                'categoria_id' => 3,
+                'categoria_id' => 2,
                 'precio' => 899.99,
                 'descripcion' => 'Saitama, un superhéroe extremadamente poderoso, se enfrenta a enemigos poderosos con un solo golpe. ¡Descubre su historia hilarante!',
                 'portada' => 'saitama.png',
@@ -154,6 +154,71 @@ class MangasTableSeeder extends Seeder
                 'proximo_tomo' => now()->addMonths(3)->toDateString(),
                 'created_at' => now(),
                 'updated_at' => now()
+            ],
+            [
+                'manga_id' => 11,
+                'titulo' => 'Solo Leveling',
+                'categoria_id' => 3,
+                'precio' => 1199.99,
+                'descripcion' => 'La humanidad se encuentra en un mundo donde portales conectan el mundo real con mazmorras llenas de monstruos y tesoros. Jin-Woo es un cazador más débil pero pronto obtiene un poder asombroso.',
+                'portada' => 'solo-leveling.png',
+                'mangaka' => 'Chugong, Jang Sung-lak',
+                'tomos' => 5,
+                'proximo_tomo' => Carbon::now()->addMonths(1)->toDateString(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'manga_id' => 12,
+                'titulo' => 'Tower of God',
+                'categoria_id' => 3,
+                'precio' => 1099.99,
+                'descripcion' => 'Un niño llamado Bam ingresa a la Torre para buscar a su amiga Rachel y enfrenta una serie de desafíos en cada piso, mientras hace aliados y enemigos.',
+                'portada' => 'tower-of-god.png',
+                'mangaka' => 'SIU',
+                'tomos' => 4,
+                'proximo_tomo' => Carbon::now()->addMonths(2)->toDateString(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'manga_id' => 13,
+                'titulo' => 'The Beginning After the End',
+                'categoria_id' => 3,
+                'precio' => 899.99,
+                'descripcion' => 'Arthur, un rey guerrero que murió en su mundo, reencarna en otro mundo como un niño con poderes mágicos. Ahora debe aprender a controlar sus poderes y proteger a sus seres queridos.',
+                'portada' => 'beginning-after-the-end.png',
+                'mangaka' => 'TurtleMe, Fuyuki23',
+                'tomos' => 6,
+                'proximo_tomo' => Carbon::now()->addMonths(3)->toDateString(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'manga_id' => 14,
+                'titulo' => 'The God of High School',
+                'categoria_id' => 3,
+                'precio' => 999.99,
+                'descripcion' => 'Jin Mori, un estudiante de preparatoria y artista marcial, entra en un torneo épico para enfrentar a combatientes de todo el mundo y demostrar su habilidad.',
+                'portada' => 'god-of-high-school.png',
+                'mangaka' => 'Park Yong-je',
+                'tomos' => 9,
+                'proximo_tomo' => Carbon::now()->addMonths(2)->toDateString(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'manga_id' => 15,
+                'titulo' => 'Dice: The Cube That Changes Everything',
+                'categoria_id' => 3,
+                'precio' => 799.99,
+                'descripcion' => 'Dongtae, un joven desfavorecido, recibe un dado misterioso que le otorga habilidades sobrenaturales. A medida que lo usa, su vida comienza a cambiar drásticamente.',
+                'portada' => 'dice-the-cube.png',
+                'mangaka' => 'Hyunseok Yun',
+                'tomos' => 7,
+                'proximo_tomo' => Carbon::now()->addMonths(1)->toDateString(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             
@@ -289,7 +354,67 @@ class MangasTableSeeder extends Seeder
                 'genero_id' => 7,
                 'created_at' => now(),
                 'updated_at' => now(),
-            ]
+            ],
+            [
+                'manga_id' => 11,
+                'genero_id' => 15,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'manga_id' => 11,
+                'genero_id' => 21,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'manga_id' => 12,
+                'genero_id' => 19,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'manga_id' => 12,
+                'genero_id' => 14,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'manga_id' => 13,
+                'genero_id' => 15,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'manga_id' => 13,
+                'genero_id' => 18,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'manga_id' => 14,
+                'genero_id' => 17,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'manga_id' => 14,
+                'genero_id' => 11,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'manga_id' => 15,
+                'genero_id' => 17,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'manga_id' => 15,
+                'genero_id' => 21,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
 
         ]);
     }

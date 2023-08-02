@@ -82,6 +82,72 @@ class GenerosTableSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'genero_id' => 12,
+                'nombre' => 'Acción',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'genero_id' => 13,
+                'nombre' => 'Aventura',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'genero_id' => 14,
+                'nombre' => 'Horror',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'genero_id' => 15,
+                'nombre' => 'Fantasía',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'genero_id' => 16,
+                'nombre' => 'Drama',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'genero_id' => 17,
+                'nombre' => 'Comedia',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'genero_id' => 18,
+                'nombre' => 'Misterio',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'genero_id' => 19,
+                'nombre' => 'Ciencia Ficción',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'genero_id' => 20,
+                'nombre' => 'Romance',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'genero_id' => 21,
+                'nombre' => 'Supernatural',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'genero_id' => 22,
+                'nombre' => 'Webtoon',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
 
         ]);
     }

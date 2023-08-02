@@ -96,6 +96,7 @@ class AdminMangasController extends Controller
         $manga = Manga::find($id);
         $data = $request->except(['_token']);
         $oldPortada = $manga->portada;
+        
         if ($request->hasFile('portada')) {
             $portada = $request->file('portada');
             $portadaName = date('YmdHis') . "_" . \Str::slug($data['titulo']) . "." . $portada->extension();

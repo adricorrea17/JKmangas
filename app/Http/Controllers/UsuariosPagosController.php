@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Usuario;
 use App\Models\UsuariosPlans;
 use App\Models\UsuariosPagos;
-use DB;
 use MercadoPago;
 
 
@@ -41,7 +40,7 @@ class UsuariosPagosController extends Controller
         $usuario = Auth::user();
         $plan_id = $request->input('plan');
 
-        if(now() < $usuario->fecha_cierre) {
+        if (now() < $usuario->fecha_cierre) {
             if ($usuario->usuarios_plan_id == $plan_id) {
                 $plan_id = null;
                 $mensaje = 'El Plan a sido cancelado con exito';
@@ -57,13 +56,12 @@ class UsuariosPagosController extends Controller
         }
     }
 
-    
+
     public function CrearBotonPago(Request $request)
     {
 
         $planId = $request->session()->get('plan_id_para_pagar');
-        // resetamos
-        $request->session()->put('plan_id_para_pagar',false);
+        $request->session()->put('plan_id_para_pagar', false);
 
         $planUsuario = UsuariosPlans::findOrFail($planId);
         $mp_public = env('APP_MP_PUBLIC');
@@ -87,7 +85,7 @@ class UsuariosPagosController extends Controller
         $preference->auto_return = "approved";
 
         $preference->save();
-
+        $request->session()->put('plan_id_respuesta', $planId);
         return view('pagarPlan', [
             'preference' => $preference,
             'plan' => $planUsuario,
@@ -104,10 +102,9 @@ class UsuariosPagosController extends Controller
             'MerchantOrder' => request()->get('merchant_order_id')
         );
 
-        if (request()->get('status') == 'approved') {
-            $planId = $request->session()->get('plan_id_para_pagar');
+        if (request()->get('status') === 'approved') {
+            $planId = $request->session()->get('plan_id_respuesta');
             $plan = UsuariosPlans::findOrFail($planId);
-
             UsuariosPagos::create([
                 'plan_id' => $plan->id,
                 'usuario_id' => Auth::user()->id,
@@ -117,7 +114,9 @@ class UsuariosPagosController extends Controller
             Usuario::where('id', Auth::user()->id)->update(['usuarios_plan_id' => $planId, 'fecha_cierre' => now()->addMonths(1)]);
             return redirect()->route('inicio')->with('status.message', 'Felicidades tu pago se completo con exito!!!')->with('status.type', 'success');
         } else {
+            
             return redirect()->route('inicio');
         }
+    
     }
 }
