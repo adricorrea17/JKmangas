@@ -1,4 +1,4 @@
-{
+
 
     {"version": 2,
     "framework": "null",
@@ -30,4 +30,4 @@
         "LOG_CHANNEL": "stderr",
         "SESSION_DRIVER": "cookie"
     }}
-    }
+    
