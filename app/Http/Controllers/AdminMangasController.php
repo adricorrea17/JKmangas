@@ -134,7 +134,6 @@ class AdminMangasController extends Controller
 
     public function usuarioLista(Request $request)
     {
-        //no me esta trayendo toda la lista de usuarios
         $buscar = $request->input('search');
         $orden = $request->input('o', 'created_at');
         $direccion = $request->input('d','asc');
